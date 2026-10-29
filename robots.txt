@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://mhashemy19-cmd.github.io/hb-portfolio/sitemap.xml

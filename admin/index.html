@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin — HB Studio</title>
+<meta name="theme-color" content="#060607">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Lalezar&family=Syne:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+ main{padding-top:0}
+ .adm-top{position:sticky;top:0;z-index:50;background:rgba(6,6,7,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);padding:12px 0}
+ .adm-top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+ .adm-top .logo{font-size:1.25rem}
+ .adm-state{font:600 .8rem var(--f-ui);color:var(--mute)}
+ .adm-state.dirty{color:var(--key-2)}
+ .login{min-height:100svh;display:grid;place-items:center;padding:32px var(--gutter)}
+ .login-card{width:min(560px,100%);display:grid;gap:18px}
+ .box{padding:clamp(20px,3vw,32px);border:1px solid var(--line-soft);border-radius:18px;background:linear-gradient(180deg,rgba(255,236,206,.03),transparent 50%),var(--bg-2)}
+ .msg{padding:12px 16px;border-radius:var(--r-sm);font-size:.92rem;border:1px solid var(--line)}
+ .msg.err{border-color:var(--bad);color:#ffd2ca;background:rgba(255,140,122,.08)}
+ .msg.ok{border-color:var(--ok);color:#d6f5dc;background:rgba(143,209,158,.08)}
+ .msg.warn{border-color:var(--key);background:rgba(233,166,83,.08)}
+ details.help{border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:12px 16px;background:var(--bg)}
+ details.help summary{cursor:pointer;font:700 .8rem var(--f-ui);letter-spacing:.06em;color:var(--key-2)}
+ details.help ol,details.help ul{margin:12px 0 4px;padding-inline-start:20px;display:grid;gap:6px;color:var(--ink-2);font-size:.92rem}
+ details.help ul{list-style:disc} details.help ol{list-style:decimal}
+ details.help code,.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em;background:#000;border:1px solid var(--line-soft);border-radius:4px;padding:1px 6px;color:var(--key-2)}
+ .chk{display:flex;gap:10px;align-items:center;font-size:.92rem;color:var(--ink-2)}
+ .chk input{width:18px;height:18px;accent-color:var(--key)}
+ .ed{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(16px,3vw,40px);padding-block:28px 140px;align-items:start}
+ @media (max-width:900px){.ed{grid-template-columns:1fr}}
+ .tabs{position:sticky;top:78px;display:flex;flex-direction:column;gap:4px}
+ @media (max-width:900px){.tabs{position:static;flex-direction:row;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}.tabs button{flex:none}}
+ .tabs button{text-align:start;padding:10px 14px;border-radius:10px;font:600 .88rem var(--f-ui);color:var(--ink-2);border:1px solid transparent;transition:.2s}
+ .tabs button:hover{color:var(--ink);background:var(--bg-2)}
+ .tabs button[aria-selected="true"]{background:var(--bg-2);border-color:var(--key);color:var(--key-2)}
+ .pane h2{font-family:var(--f-display);font-weight:400;font-size:2rem;margin-bottom:6px}
+ .pane>p.hint{color:var(--mute);margin-bottom:20px}
+ fieldset.grp{border:1px solid var(--line-soft);border-radius:14px;padding:16px;margin:0 0 16px;min-width:0;display:grid;gap:14px;background:rgba(255,236,206,.015)}
+ fieldset.grp>legend{padding:0 8px;font:700 .72rem var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--key)}
+ .f{display:grid;gap:6px;min-width:0}
+ .f>label,.f>.lab{font:700 .68rem var(--f-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+ .f input[type=text],.f input[type=number],.f input:not([type]),.f select,.f textarea{width:100%;min-height:44px;padding:10px 14px;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.95rem}
+ .f textarea{min-height:96px;resize:vertical}
+ .f input:focus,.f select:focus,.f textarea:focus{outline:0;border-color:var(--key);box-shadow:0 0 0 3px rgba(233,166,83,.16)}
+ .bi{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ @media (max-width:700px){.bi{grid-template-columns:1fr}}
+ .bi .tagl{font:700 .62rem var(--f-ui);letter-spacing:.14em;color:var(--key);margin-bottom:4px;display:block}
+ .bi [lang=fa]{direction:rtl;font-family:"Vazirmatn",sans-serif}
+ .img-f{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+ .img-f .thumb{width:72px;height:72px;border-radius:8px;border:1px solid var(--line);background:var(--bg-3) center/cover no-repeat;flex:none;display:grid;place-items:center;color:var(--mute);font-size:.7rem;overflow:hidden}
+ .img-f .thumb img{width:100%;height:100%;object-fit:cover}
+ .img-f input[type=text]{flex:1 1 200px}
+ .item{border:1px solid var(--line);border-radius:14px;background:var(--bg-1);overflow:hidden}
+ .item>header{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg-2);cursor:pointer}
+ .item>header .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 .92rem var(--f-ui)}
+ .item>header .n{color:var(--key);font:700 .76rem var(--f-ui)}
+ .item .body{padding:14px;display:none;gap:14px}
+ .item.open .body{display:grid}
+ .ib{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink-2);font-size:.95rem;transition:.2s;flex:none}
+ .ib:hover:not([disabled]){border-color:var(--key);color:var(--key-2)} .ib[disabled]{opacity:.3;cursor:default}
+ .ib.danger:hover:not([disabled]){border-color:var(--bad);color:var(--bad)}
+ .list{display:grid;gap:10px}
+ .strrow{display:flex;gap:8px;align-items:flex-start}
+ .strrow .img-f{flex:1}
+ .savebar{position:fixed;inset-inline:0;bottom:0;z-index:60;background:rgba(6,6,7,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 0}
+ .savebar .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+ .savebar .row{gap:8px}
+ .pub{font:700 .9rem var(--f-ui)} .pub.ok{color:var(--ok)} .pub.err{color:var(--bad)}
+ .sm{min-height:38px}
+ .uiGrid{display:grid;gap:10px}
+ .keytag{font:600 .7rem ui-monospace,Menlo,Consolas,monospace;color:var(--mute)}
+ dialog{background:var(--bg-1);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:0;max-width:min(560px,92vw);width:100%}
+ dialog::backdrop{background:rgba(3,3,4,.7)}
+ .cred{display:grid;gap:14px}
+</style>
+</head>
+<body data-page="admin">
+<div id="app"></div>
+<script>
+(function () {
+  'use strict';
+  /* ───────── config ───────── */
+  var DEFAULT_REPO = 'mhashemy19-cmd/hb-portfolio';
+  var CONTENT_PATH = 'content/content.json', ADMIN_PATH = 'content/admin.json', MEDIA_DIR = 'content/media/';
+  var API = 'https://api.github.com';
+  var SITE_ROOT = new URL('../', location.href).href;
+  var TOKEN_KEY = 'hb-admin-token', REPO_KEY = 'hb-admin-repo', BRANCH_KEY = 'hb-admin-branch';
+
+  /* ───────── tiny helpers ───────── */
+  function h(tag, attrs) {
+    var el = document.createElement(tag);
+    if (attrs) for (var k in attrs) { var v = attrs[k]; if (v == null || v === false) continue; if (k === 'class') el.className = v; else if (k === 'text') el.textContent = v; else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v); else if (k === 'value') el.value = v; else if (k === 'checked') el.checked = !!v; else el.setAttribute(k, v === true ? '' : v); }
+    for (var i = 2; i < arguments.length; i++) { var c = arguments[i]; if (c == null || c === false) continue; if (Array.isArray(c)) c.forEach(function (x) { if (x != null) el.appendChild(typeof x === 'string' ? document.createTextNode(x) : x); }); else el.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); }
+    return el;
+  }
+  function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); return el; }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+  function b64enc(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64dec(b) { return decodeURIComponent(escape(atob(String(b).replace(/\s/g, '')))); }
+  function human(k) { if (/^\d+$/.test(k)) return '#' + (+k + 1); return k.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]/g, ' ').replace(/^./, function (c) { return c.toUpperCase(); }); }
+
+  /* SHA-256: WebCrypto when available (https/localhost), otherwise a small pure-JS fallback */
+  function sha256js(msg) {
+    function rr(n, x) { return (x >>> n) | (x << (32 - n)); }
+    var K = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070, 0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2];
+    var H = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+    var bytes = Array.prototype.slice.call(new TextEncoder().encode(msg)), l = bytes.length * 8;
+    bytes.push(0x80); while (bytes.length % 64 !== 56) bytes.push(0);
+    for (var i = 7; i >= 0; i--) bytes.push(i > 3 ? 0 : (l >>> (i * 8)) & 255);
+    for (var o = 0; o < bytes.length; o += 64) {
+      var w = new Array(64);
+      for (var t = 0; t < 16; t++) w[t] = (bytes[o + t * 4] << 24) | (bytes[o + t * 4 + 1] << 16) | (bytes[o + t * 4 + 2] << 8) | bytes[o + t * 4 + 3];
+      for (t = 16; t < 64; t++) { var s0 = rr(7, w[t - 15]) ^ rr(18, w[t - 15]) ^ (w[t - 15] >>> 3), s1 = rr(17, w[t - 2]) ^ rr(19, w[t - 2]) ^ (w[t - 2] >>> 10); w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0; }
+      var a = H[0], b = H[1], c = H[2], d = H[3], e = H[4], f = H[5], g = H[6], hh = H[7];
+      for (t = 0; t < 64; t++) { var S1 = rr(6, e) ^ rr(11, e) ^ rr(25, e), ch = (e & f) ^ (~e & g), t1 = (hh + S1 + ch + K[t] + w[t]) | 0, S0 = rr(2, a) ^ rr(13, a) ^ rr(22, a), mj = (a & b) ^ (a & c) ^ (b & c), t2 = (S0 + mj) | 0; hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0; }
+      H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c) | 0; H[3] = (H[3] + d) | 0; H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + hh) | 0;
+    }
+    return H.map(function (x) { return ('00000000' + (x >>> 0).toString(16)).slice(-8); }).join('');
+  }
+  function sha256(str) {
+    if (window.crypto && crypto.subtle && window.isSecureContext) {
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str)).then(function (buf) { return Array.prototype.map.call(new Uint8Array(buf), function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); });
+    }
+    return Promise.resolve(sha256js(str));
+  }
+
+  /* ───────── GitHub backend ───────── */
+  var S = { token: '', repo: DEFAULT_REPO, branch: '', content: null, contentSha: '', admin: null, adminSha: '', dirty: false, tab: 'projects', previews: {}, open: {} };
+  function ghErr(r, body) {
+    var m = (body && body.message) || ('HTTP ' + r.status), e = new Error(m); e.status = r.status;
+    if (r.status === 401) e.friendly = 'GitHub rejected this token (expired, revoked or mistyped).';
+    else if (r.status === 403) e.friendly = 'The token has no permission for this. It needs “Contents: Read and write” on ' + S.repo + '.';
+    else if (r.status === 404) e.friendly = 'Not found. Check the repository name, and that the token is scoped to ' + S.repo + '.';
+    else if (r.status === 409 || r.status === 422) e.friendly = 'The file changed on GitHub since you loaded it (or the commit conflicted). Use “Reload from GitHub”, re-apply your change and save again.';
+    else e.friendly = m;
+    return e;
+  }
+  function gh(method, path, body) {
+    return fetch(API + path, { method: method, headers: { Authorization: 'Bearer ' + S.token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' })
+      .then(function (r) { return r.text().then(function (t) { var j = null; try { j = t ? JSON.parse(t) : null; } catch (e) {} if (!r.ok) throw ghErr(r, j); return j; }); });
+  }
+  function refQ() { return S.branch ? '?ref=' + encodeURIComponent(S.branch) : ''; }
+  function getFile(path) { return gh('GET', '/repos/' + S.repo + '/contents/' + path + refQ()); }
+  function putFile(path, b64, message, sha) {
+    var body = { message: message, content: b64 }; if (sha) body.sha = sha; if (S.branch) body.branch = S.branch;
+    return gh('PUT', '/repos/' + S.repo + '/contents/' + path, body);
+  }
+
+  /* ───────── views ───────── */
+  var app = document.getElementById('app');
+  function showLogin(msg, kind) {
+    var u = h('input', { id: 'u', type: 'text', autocomplete: 'username', required: true, autocapitalize: 'off', spellcheck: 'false' });
+    var p = h('input', { id: 'p', type: 'password', autocomplete: 'current-password', required: true });
+    var rem = lsGet(TOKEN_KEY);
+    var t = h('input', { id: 't', type: 'password', autocomplete: 'off', required: true, placeholder: 'github_pat_…', value: rem || '' });
+    var r = h('input', { id: 'r', type: 'checkbox', checked: !!rem });
+    var repo = h('input', { id: 'repo', type: 'text', value: lsGet(REPO_KEY) || DEFAULT_REPO });
+    var br = h('input', { id: 'br', type: 'text', placeholder: '(default branch)', value: lsGet(BRANCH_KEY) || '' });
+    var out = h('div', { id: 'lmsg', role: 'alert' });
+    if (msg) out.appendChild(h('div', { class: 'msg ' + (kind || 'err'), text: msg }));
+    var btn = h('button', { class: 'btn', type: 'submit', text: 'Sign in' });
+    var form = h('form', { class: 'box', style: 'display:grid;gap:16px', novalidate: true, onsubmit: function (e) { e.preventDefault(); doLogin(); } },
+      h('div', { class: 'f' }, h('label', { for: 'u', text: 'Username' }), u),
+      h('div', { class: 'f' }, h('label', { for: 'p', text: 'Password' }), p),
+      h('div', { class: 'f' }, h('label', { for: 't', text: 'GitHub fine-grained token' }), t),
+      h('label', { class: 'chk' }, r, 'Remember the token on this device (stored in this browser only)'),
+      h('details', { class: 'help' }, h('summary', { text: 'Advanced: repository / branch' }),
+        h('div', { class: 'f', style: 'margin-top:12px' }, h('label', { for: 'repo', text: 'Repository (owner/name)' }), repo),
+        h('div', { class: 'f', style: 'margin-top:12px' }, h('label', { for: 'br', text: 'Branch' }), br)),
+      out, h('div', { class: 'row' }, btn));
+    form._refs = { u: u, p: p, t: t, r: r, repo: repo, br: br, out: out, btn: btn };
+    S._login = form._refs;
+    var help = h('details', { class: 'help', open: true }, h('summary', { text: 'How to create the token (once)' }),
+      h('ol', null,
+        h('li', null, 'Sign in to GitHub, then open ', h('b', { text: 'Settings → Developer settings → Personal access tokens → Fine-grained tokens' }), ' and press ', h('b', { text: 'Generate new token' }), '.'),
+        h('li', null, 'Resource owner: ', h('code', { text: 'mhashemy19-cmd' }), '. Pick an expiry (90 days is sensible).'),
+        h('li', null, 'Repository access: ', h('b', { text: 'Only select repositories' }), ' → choose ', h('code', { text: 'mhashemy19-cmd/hb-portfolio' }), ' and nothing else.'),
+        h('li', null, 'Repository permissions → ', h('b', { text: 'Contents: Read and write' }), '. (Metadata: Read-only is added automatically.) Leave every other permission off.'),
+        h('li', null, 'Generate, copy the ', h('code', { text: 'github_pat_…' }), ' value and paste it above. GitHub shows it only once.')));
+    var honest = h('div', { class: 'msg warn' }, h('b', { text: 'Please read: how the login really works. ' }),
+      'This site is static, so there is no server to check your password. The username and password are hashed (SHA-256) and compared with ', h('code', { text: 'content/admin.json' }), ' only as a first gate, to stop accidents. That file is public, so it can be guessed offline and must not be trusted. ',
+      h('b', { text: 'The real protection is the GitHub token: ' }), 'without it nothing can be saved, because every save is a commit made with your token. Keep the token secret, scope it to this one repository, give it an expiry, and revoke it on GitHub if a device is lost. “Remember” stores it in this browser’s localStorage, so use it only on a device you trust.');
+    clear(app).appendChild(h('main', { class: 'login' }, h('div', { class: 'login-card' },
+      h('a', { class: 'logo', href: '../index.html' }, h('i', { text: 'HB' }), h('span', { text: 'Admin' })),
+      h('h1', { class: 'display', style: 'font-size:2.4rem', text: 'Sign in to edit the site' }),
+      form, help, honest)));
+    u.focus();
+  }
+
+  function doLogin() {
+    var R = S._login, user = R.u.value.trim(), pass = R.p.value, tok = R.t.value.trim();
+    var say = function (m, k) { clear(R.out).appendChild(h('div', { class: 'msg ' + (k || 'err'), text: m })); };
+    if (!user || !pass || !tok) return say('Enter the username, password and token.');
+    S.token = tok; S.repo = (R.repo.value.trim() || DEFAULT_REPO).replace(/^\/+|\/+$/g, ''); S.branch = R.br.value.trim();
+    if (!/^[\w.-]+\/[\w.-]+$/.test(S.repo)) return say('Repository must look like owner/name.');
+    R.btn.disabled = true; R.btn.textContent = 'Checking…'; say('Checking with GitHub…', 'ok');
+    var uh, ph;
+    Promise.all([sha256(user), sha256(pass)]).then(function (hs) { uh = hs[0]; ph = hs[1]; return gh('GET', '/repos/' + S.repo); })
+      .then(function (repoInfo) {
+        if (repoInfo && repoInfo.permissions && repoInfo.permissions.push === false) throw Object.assign(new Error('read-only'), { friendly: 'This token can read the repository but cannot write to it. Re-create it with “Contents: Read and write”.' });
+        return getFile(ADMIN_PATH);
+      })
+      .then(function (f) {
+        S.adminSha = f.sha; S.admin = JSON.parse(b64dec(f.content));
+        if (S.admin.user !== uh || S.admin.pass !== ph) throw Object.assign(new Error('bad creds'), { friendly: 'Username or password is incorrect.' });
+        if (R.r.checked) { lsSet(TOKEN_KEY, S.token); lsSet(REPO_KEY, S.repo); lsSet(BRANCH_KEY, S.branch); } else { lsDel(TOKEN_KEY); lsSet(REPO_KEY, S.repo); lsSet(BRANCH_KEY, S.branch); }
+        S.pass = pass;
+        if (S.admin.mustChange) return showChange(true);
+        return loadContent();
+      })
+      .catch(function (e) { R.btn.disabled = false; R.btn.textContent = 'Sign in'; say(e.friendly || e.message || 'Something went wrong.'); });
+  }
+
+  function showChange(forced) {
+    var nu = h('input', { id: 'nu', type: 'text', autocomplete: 'username', autocapitalize: 'off', spellcheck: 'false' });
+    var np = h('input', { id: 'np', type: 'password', autocomplete: 'new-password' });
+    var np2 = h('input', { id: 'np2', type: 'password', autocomplete: 'new-password' });
+    var out = h('div', { role: 'alert' });
+    var say = function (m, k) { clear(out).appendChild(h('div', { class: 'msg ' + (k || 'err'), text: m })); };
+    var go = h('button', { class: 'btn', type: 'submit', text: 'Save new credentials' });
+    var form = h('form', { class: 'box cred', novalidate: true, onsubmit: function (e) {
+      e.preventDefault();
+      var u2 = nu.value.trim(), p2 = np.value;
+      if (u2.length < 3) return say('Pick a username of at least 3 characters.');
+      if (p2.length < 10) return say('Pick a password of at least 10 characters.');
+      if (p2 !== np2.value) return say('The two passwords do not match.');
+      if (u2.toLowerCase() === 'admin' || p2 === 'change-me') return say('Do not reuse the default username or password.');
+      go.disabled = true; say('Committing the new credentials to GitHub…', 'ok');
+      Promise.all([sha256(u2), sha256(p2)]).then(function (hs) {
+        var obj = { algo: 'SHA-256', user: hs[0], pass: hs[1], mustChange: false, note: 'First gate only. The real protection is the GitHub token.' };
+        return putFile(ADMIN_PATH, b64enc(JSON.stringify(obj, null, 1) + '\n'), 'admin: change credentials', S.adminSha).then(function (res) { S.admin = obj; S.adminSha = res.content.sha; });
+      }).then(function () { return loadContent(); })
+        .catch(function (e) { go.disabled = false; say(e.friendly || e.message); });
+    } },
+      h('h2', { class: 'display', style: 'font-size:1.8rem', text: forced ? 'Choose your own login' : 'Change username and password' }),
+      h('p', { class: 'mute', text: forced ? 'You signed in with the default credentials. Set new ones now. Only their SHA-256 hashes are committed to content/admin.json.' : 'Only the SHA-256 hashes are committed to content/admin.json.' }),
+      h('div', { class: 'f' }, h('label', { for: 'nu', text: 'New username' }), nu),
+      h('div', { class: 'f' }, h('label', { for: 'np', text: 'New password (10+ characters)' }), np),
+      h('div', { class: 'f' }, h('label', { for: 'np2', text: 'Repeat password' }), np2),
+      out, h('div', { class: 'row' }, go, !forced ? h('button', { class: 'btn ghost', type: 'button', text: 'Cancel', onclick: function () { showEditor(); } }) : null));
+    clear(app).appendChild(h('main', { class: 'login' }, h('div', { class: 'login-card' }, h('a', { class: 'logo', href: '../index.html' }, h('i', { text: 'HB' }), h('span', { text: 'Admin' })), form)));
+    nu.focus();
+  }
+
+  function loadContent() {
+    return getFile(CONTENT_PATH).then(function (f) {
+      S.contentSha = f.sha; S.content = JSON.parse(b64dec(f.content)); S.dirty = false; showEditor();
+    });
+  }
+
+  /* ───────── schema-less friendly editor ───────── */
+  var TAB_LABELS = { site: 'Site', ui: 'Interface texts', contact: 'Contact details', home: 'Home page', work: 'Work page', projects: 'Projects', studio: 'Studio page', tools: 'Tools', about: 'About + timeline', contactPage: 'Contact page', services: 'Services' };
+  var TAB_HINT = { projects: 'Each project is a room in the 3D studio and a page in Work. Reorder with the arrows. Add images, a film, credits.', ui: 'Buttons, labels and messages used across the site.', about: 'Bio, timeline entries (change the years here), and the software icons.', tools: 'Products shown on the Tools page. Status: dev = in development, soon = coming soon.', contact: 'Used by every copy button, the contact panel, the footer and the quote form.', home: 'Hero, showreel slot, featured projects, services teaser and call to action.' };
+  var IMG_KEYS = { image: 1, poster: 1, cover: 1, portrait: 1 };
+  var VIDEO_KEYS = { video: 1 };
+  function isBi(o) { return o && typeof o === 'object' && !Array.isArray(o) && 'en' in o && Object.keys(o).every(function (k) { return k === 'en' || k === 'fa'; }); }
+  function markDirty() { if (!S.dirty) { S.dirty = true; } var el = document.getElementById('state'); if (el) { el.textContent = 'Unsaved changes'; el.className = 'adm-state dirty'; } var pb = document.getElementById('pub'); if (pb) { pb.textContent = ''; pb.className = 'pub'; } }
+  function itemTitle(it, i) {
+    var t = it && (it.title || it.name || it.label || it.role); var s = t ? (isBi(t) ? (t.en || t.fa) : (typeof t === 'string' ? t : '')) : '';
+    if (!s && it && it.year) s = String(it.year); if (!s && it && it.id) s = it.id; return s || 'Item';
+  }
+  function blank(v) {
+    if (Array.isArray(v)) return [];
+    if (v && typeof v === 'object') { var o = {}; Object.keys(v).forEach(function (k) { o[k] = blank(v[k]); }); return o; }
+    if (typeof v === 'number') return v; if (typeof v === 'boolean') return false; return '';
+  }
+  function uniqueId(base, list) { var id = base, n = 1; while (list.some(function (x) { return x.id === id; })) id = base + '-' + (++n); return id; }
+  function newItem(arrPath, arr) {
+    var o;
+    if (arrPath === 'projects') {
+      var cats = (S.content.work.categories || []); o = { id: uniqueId('new-project', arr), category: cats[0] ? cats[0].id : 'commercial', title: { en: 'New project', fa: 'پروژهٔ جدید' }, client: { en: '', fa: '' }, year: String(new Date().getFullYear()), role: { en: '', fa: '' }, summary: { en: '', fa: '' }, description: { en: '', fa: '' }, cover: '', images: [], video: '', credits: [] };
+    } else if (arrPath === 'projects.*.credits') o = { role: { en: '', fa: '' }, name: { en: '', fa: '' } };
+    else if (arrPath === 'tools.items') o = { id: uniqueId('new-tool', arr), name: { en: 'New tool', fa: 'ابزار جدید' }, kind: { en: '', fa: '' }, status: 'soon', description: { en: '', fa: '' }, image: '', icon: 'glass', hue: 38 };
+    else if (arrPath === 'about.timeline') o = { year: String(new Date().getFullYear()), title: { en: '', fa: '' }, text: { en: '', fa: '' } };
+    else if (arrPath === 'about.software') o = { id: 'x' + (arr.length + 1), name: 'New tool', mono: 'Nt', color: '#e9a653', group: 'edit' };
+    else if (arrPath === 'work.categories') o = { id: 'new-category', label: { en: 'New category', fa: 'دستهٔ جدید' } };
+    else if (arr.length) o = blank(arr[arr.length - 1]); else o = { en: '', fa: '' };
+    return o;
+  }
+  function pathKey(path) { return path.replace(/\.\d+(?=\.|$)/g, '.*'); }
+
+  /* media upload → commits to content/media/ through the contents API (base64) */
+  function slug(n) { return n.toLowerCase().replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'file'; }
+  function readFile(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = rej; r.readAsDataURL(file); }); }
+  function resizeImage(file) {
+    return readFile(file).then(function (url) { return new Promise(function (res, rej) {
+      var im = new Image(); im.onload = function () {
+        var m = 1800, w = im.naturalWidth, hh = im.naturalHeight, k = Math.min(1, m / Math.max(w, hh)), c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(hh * k);
+        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(im, 0, 0, c.width, c.height);
+        var d = c.toDataURL('image/jpeg', .82); res({ dataUrl: d, b64: d.split(',')[1], ext: 'jpg' });
+      }; im.onerror = function () { rej(new Error('That file is not a readable image.')); }; im.src = url;
+    }); });
+  }
+  function uploadMedia(file, kind) {
+    var isImg = /^image\//.test(file.type) && !/svg|gif/.test(file.type), isVid = /^video\//.test(file.type);
+    if (kind === 'video' && !isVid) return Promise.reject(new Error('Choose a video file (MP4 recommended).'));
+    if (kind === 'image' && !/^image\//.test(file.type)) return Promise.reject(new Error('Choose an image file.'));
+    if (file.size > 40 * 1024 * 1024) return Promise.reject(new Error('File is larger than 40 MB. Compress it first (keep the whole site under ~25 MB of media if you can).'));
+    var prep = isImg ? resizeImage(file) : readFile(file).then(function (u) { return { dataUrl: u, b64: u.split(',')[1], ext: (file.name.split('.').pop() || 'bin').toLowerCase() }; });
+    return prep.then(function (p) {
+      var name = slug(file.name) + '-' + Date.now().toString(36).slice(-4) + '.' + p.ext, path = MEDIA_DIR + name;
+      return putFile(path, p.b64, 'media: upload ' + name).then(function () { S.previews[path] = p.dataUrl; return path; });
+    });
+  }
+
+  function fieldImage(obj, key, path, label, kind) {
+    var wrap = h('div', { class: 'f' }); wrap.appendChild(h('span', { class: 'lab', text: label }));
+    var thumb = h('div', { class: 'thumb' }), inp = h('input', { type: 'text', value: obj[key] || '', placeholder: kind === 'video' ? 'content/media/reel.mp4' : 'content/media/photo.jpg', 'aria-label': label });
+    var status = h('span', { class: 'keytag', role: 'status' });
+    function paint() { clear(thumb); var v = obj[key]; if (!v) { thumb.textContent = kind === 'video' ? 'no file' : 'empty'; return; } if (kind === 'video') { thumb.textContent = 'video'; return; } thumb.appendChild(h('img', { src: S.previews[v] || (/^https?:/.test(v) ? v : SITE_ROOT + v), alt: '' })); }
+    inp.addEventListener('input', function () { obj[key] = inp.value.trim(); markDirty(); paint(); });
+    var file = h('input', { type: 'file', accept: kind === 'video' ? 'video/*' : 'image/*', hidden: true });
+    var up = h('button', { type: 'button', class: 'btn ghost sm', text: kind === 'video' ? 'Upload video' : 'Upload image', onclick: function () { file.click(); } });
+    file.addEventListener('change', function () {
+      if (!file.files[0]) return; up.disabled = true; status.textContent = 'Uploading to GitHub…';
+      uploadMedia(file.files[0], kind).then(function (p) { obj[key] = p; inp.value = p; paint(); markDirty(); status.textContent = 'Committed ' + p + ' (live in ~1 min).'; })
+        .catch(function (e) { status.textContent = e.friendly || e.message; }).then(function () { up.disabled = false; file.value = ''; });
+    });
+    var clr = h('button', { type: 'button', class: 'ib', 'aria-label': 'Clear', text: '×', onclick: function () { obj[key] = ''; inp.value = ''; paint(); markDirty(); } });
+    wrap.appendChild(h('div', { class: 'img-f' }, thumb, inp, up, clr, file)); wrap.appendChild(status); paint(); return wrap;
+  }
+
+  function fieldBi(obj, key, label) {
+    var v = obj[key], long = (v.en && v.en.length > 70) || (v.fa && v.fa.length > 70) || /\n/.test(v.en || '');
+    var mk = function (lang) {
+      var el = h(long ? 'textarea' : 'input', { lang: lang, dir: lang === 'fa' ? 'rtl' : 'ltr', value: v[lang] || '', 'aria-label': label + ' (' + lang.toUpperCase() + ')' }); if (!long) el.type = 'text';
+      el.addEventListener('input', function () { v[lang] = el.value; markDirty(); }); return el;
+    };
+    var ens = mk('en'), fas = mk('fa');
+    return h('div', { class: 'f' }, h('span', { class: 'lab', text: label }), h('div', { class: 'bi' }, h('div', null, h('span', { class: 'tagl', text: 'ENGLISH' }), ens), h('div', null, h('span', { class: 'tagl', text: 'فارسی' }), fas)));
+  }
+
+  function fieldSelect(obj, key, label, opts) {
+    var sel = h('select', { 'aria-label': label }); opts.forEach(function (o) { sel.appendChild(h('option', { value: o[0], text: o[1] })); });
+    if (!opts.some(function (o) { return o[0] === obj[key]; })) sel.appendChild(h('option', { value: obj[key], text: String(obj[key]) }));
+    sel.value = obj[key]; sel.addEventListener('change', function () { obj[key] = sel.value; markDirty(); });
+    return h('div', { class: 'f' }, h('span', { class: 'lab', text: label }), sel);
+  }
+
+  function renderNode(parent, obj, key, path, depth) {
+    var v = obj[key], label = human(key), pk = pathKey(path);
+    if (S.tab === 'ui' && depth === 1) label = key; // show real keys in the UI text list
+    if (typeof v === 'string') {
+      if (IMG_KEYS[key]) return parent.appendChild(fieldImage(obj, key, path, label, 'image'));
+      if (VIDEO_KEYS[key]) return parent.appendChild(fieldImage(obj, key, path, label, 'video'));
+      if (key === 'category') return parent.appendChild(fieldSelect(obj, key, label, (S.content.work.categories || []).map(function (c) { return [c.id, (c.label && c.label.en) || c.id]; })));
+      if (key === 'status') return parent.appendChild(fieldSelect(obj, key, label, [['dev', 'In development'], ['soon', 'Coming soon']]));
+      if (key === 'icon') return parent.appendChild(fieldSelect(obj, key, label, ['glass', 'wave', 'folder', 'chat', 'text'].map(function (x) { return [x, x]; })));
+      if (key === 'group') return parent.appendChild(fieldSelect(obj, key, label, ['edit', 'motion', 'image', '3d', 'ai'].map(function (x) { return [x, x]; })));
+      var long = v.length > 90 || /\n/.test(v), el = h(long ? 'textarea' : 'input', { value: v, 'aria-label': label });
+      if (!long) { el.type = key === 'color' && /^#[0-9a-f]{6}$/i.test(v) ? 'color' : 'text'; }
+      el.addEventListener('input', function () { obj[key] = el.value; markDirty(); if (key === 'id' || key === 'title') refreshTitles(); });
+      var f = h('div', { class: 'f' }, h('label', { text: label }), el); if (key === 'year') f.querySelector('label').textContent = 'Year (shown on the site and the plaque)';
+      return parent.appendChild(f);
+    }
+    if (typeof v === 'number') { var n = h('input', { type: 'number', value: v, 'aria-label': label }); n.addEventListener('input', function () { obj[key] = +n.value; markDirty(); }); return parent.appendChild(h('div', { class: 'f' }, h('label', { text: label }), n)); }
+    if (typeof v === 'boolean') { var c = h('input', { type: 'checkbox', checked: v }); c.addEventListener('change', function () { obj[key] = c.checked; markDirty(); }); return parent.appendChild(h('label', { class: 'chk' }, c, label)); }
+    if (isBi(v)) { if (!('fa' in v)) v.fa = ''; return parent.appendChild(fieldBi(obj, key, label)); }
+    if (Array.isArray(v)) return parent.appendChild(renderArray(v, path, label, key));
+    if (v && typeof v === 'object') {
+      var fs = h('fieldset', { class: 'grp' }, h('legend', { text: label }));
+      Object.keys(v).forEach(function (k) { renderNode(fs, v, k, path + '.' + k, depth + 1); });
+      return parent.appendChild(fs);
+    }
+  }
+  var titleRefs = [];
+  function refreshTitles() { titleRefs.forEach(function (r) { r.el.textContent = itemTitle(r.arr[r.idx()], r.idx()); }); }
+
+  function renderArray(arr, path, label, key) {
+    var pk = pathKey(path), box = h('div', { class: 'f' }), list = h('div', { class: 'list' });
+    box.appendChild(h('span', { class: 'lab', text: label + ' (' + arr.length + ')' })); box.appendChild(list);
+    var strings = arr.length && typeof arr[0] === 'string' || (!arr.length && (key === 'images' || key === 'ids'));
+    function paint() {
+      clear(list); titleRefs = titleRefs.filter(function (r) { return r.arr !== arr; });
+      arr.forEach(function (it, i) {
+        var tools = function () {
+          return [h('button', { type: 'button', class: 'ib', 'aria-label': 'Move up', text: '↑', disabled: i === 0, onclick: function (e) { e.stopPropagation(); arr.splice(i - 1, 0, arr.splice(i, 1)[0]); markDirty(); paint(); } }),
+            h('button', { type: 'button', class: 'ib', 'aria-label': 'Move down', text: '↓', disabled: i === arr.length - 1, onclick: function (e) { e.stopPropagation(); arr.splice(i + 1, 0, arr.splice(i, 1)[0]); markDirty(); paint(); } }),
+            h('button', { type: 'button', class: 'ib danger', 'aria-label': 'Remove', text: '🗑', onclick: function (e) { e.stopPropagation(); if (confirm('Remove this item?')) { arr.splice(i, 1); markDirty(); paint(); } } })];
+        };
+        if (typeof it === 'string') {
+          var holder = { v: it }, row = h('div', { class: 'strrow' });
+          var holderObj = arr; var fld = (key === 'images') ? fieldImage({ get x() { return arr[i]; }, set x(val) { arr[i] = val; } }, 'x', path + '.' + i, 'Image ' + (i + 1), 'image') : (function () { var inp = h('input', { type: 'text', value: it, 'aria-label': label + ' ' + (i + 1) }); inp.addEventListener('input', function () { arr[i] = inp.value; markDirty(); }); return h('div', { class: 'f' }, inp); })();
+          row.appendChild(fld); row.appendChild(h('div', { class: 'row', style: 'gap:6px;flex-wrap:nowrap' }, tools())); list.appendChild(row); return;
+        }
+        var key2 = path + '#' + i, item = h('div', { class: 'item' + (S.open[key2] ? ' open' : '') }), ttl = h('span', { class: 't', text: itemTitle(it, i) });
+        titleRefs.push({ arr: arr, idx: function () { return arr.indexOf(it); }, el: ttl });
+        var head = h('header', { onclick: function () { item.classList.toggle('open'); S.open[key2] = item.classList.contains('open'); } }, h('span', { class: 'n', text: String(i + 1).padStart(2, '0') }), ttl, tools());
+        var bodyEl = h('div', { class: 'body' }); Object.keys(it).forEach(function (k) { renderNode(bodyEl, it, k, path + '.' + i + '.' + k, 3); });
+        item.appendChild(head); item.appendChild(bodyEl); list.appendChild(item);
+      });
+      if (!arr.length) list.appendChild(h('p', { class: 'mute', text: 'Nothing here yet.' }));
+    }
+    paint();
+    var addRow = h('div', { class: 'row' });
+    if (strings) {
+      addRow.appendChild(h('button', { type: 'button', class: 'btn ghost sm', text: key === 'images' ? '+ Add image' : '+ Add', onclick: function () { arr.push(''); markDirty(); paint(); } }));
+    } else {
+      addRow.appendChild(h('button', { type: 'button', class: 'btn ghost sm', text: '+ Add ' + (key === 'projects' || pk === 'projects' ? 'project' : 'item'), onclick: function () { var ni = newItem(pk, arr); arr.push(ni); S.open[path + '#' + (arr.length - 1)] = true; markDirty(); paint(); } }));
+    }
+    box.appendChild(addRow); return box;
+  }
+
+  function renderTab(tab) {
+    var pane = h('section', { class: 'pane', 'aria-label': human(tab) }), v = S.content[tab];
+    pane.appendChild(h('h2', { text: TAB_LABELS[tab] || human(tab) }));
+    if (TAB_HINT[tab]) pane.appendChild(h('p', { class: 'hint', text: TAB_HINT[tab] }));
+    if (Array.isArray(v)) pane.appendChild(renderArray(v, tab, TAB_LABELS[tab] || human(tab), tab));
+    else if (tab === 'ui') {
+      var g = h('div', { class: 'uiGrid' }); Object.keys(v).forEach(function (k) { renderNode(g, v, k, 'ui.' + k, 1); }); pane.appendChild(g);
+    } else Object.keys(v).forEach(function (k) { renderNode(pane, v, k, tab + '.' + k, 1); });
+    return pane;
+  }
+
+  function showEditor() {
+    var tabs = Object.keys(S.content).filter(function (k) { return k !== 'version'; });
+    if (tabs.indexOf(S.tab) < 0) S.tab = tabs[0];
+    var main = h('div', { class: 'wrap ed' }), tabbar = h('nav', { class: 'tabs', role: 'tablist', 'aria-label': 'Sections' }), content = h('div');
+    function paintTab() { titleRefs = []; clear(content).appendChild(renderTab(S.tab)); $$tabs(); }
+    function $$tabs() { Array.prototype.forEach.call(tabbar.children, function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === S.tab)); }); }
+    tabs.forEach(function (t) { tabbar.appendChild(h('button', { type: 'button', role: 'tab', 'data-tab': t, text: TAB_LABELS[t] || human(t), onclick: function () { S.tab = t; paintTab(); window.scrollTo({ top: 0 }); } })); });
+    main.appendChild(tabbar); main.appendChild(content);
+    var stateEl = h('span', { id: 'state', class: 'adm-state', text: 'All changes published' });
+    var top = h('div', { class: 'adm-top' }, h('div', { class: 'wrap' }, h('a', { class: 'logo', href: '../index.html', target: '_blank', rel: 'noopener' }, h('i', { text: 'HB' }), h('span', { text: 'Admin' })), stateEl,
+      h('div', { class: 'row', style: 'gap:8px' },
+        h('a', { class: 'btn ghost sm', href: '../index.html', target: '_blank', rel: 'noopener', text: 'View site' }),
+        h('button', { type: 'button', class: 'btn ghost sm', text: 'Backup', title: 'Download content.json', onclick: backup }),
+        h('button', { type: 'button', class: 'btn ghost sm', text: 'Change login', onclick: function () { showChange(false); } }),
+        h('button', { type: 'button', class: 'btn ghost sm', text: 'Sign out', onclick: signOut }))));
+    var pub = h('span', { id: 'pub', class: 'pub', role: 'status' });
+    var save = h('button', { type: 'button', class: 'btn', id: 'save', text: 'Save and publish', onclick: function () { save_(save, pub); } });
+    var reload = h('button', { type: 'button', class: 'btn ghost sm', text: 'Reload from GitHub', onclick: function () { if (!S.dirty || confirm('Discard unsaved changes and reload from GitHub?')) loadContent(); } });
+    var bar = h('div', { class: 'savebar' }, h('div', { class: 'wrap' }, pub, h('div', { class: 'row' }, reload, save)));
+    clear(app).appendChild(h('div', null, top, main, bar)); paintTab();
+    if (S.dirty) markDirty();
+  }
+  function backup() { var blob = new Blob([JSON.stringify(S.content, null, 1)], { type: 'application/json' }), a = h('a', { href: URL.createObjectURL(blob), download: 'content-backup.json' }); document.body.appendChild(a); a.click(); a.remove(); }
+  function signOut() { if (S.dirty && !confirm('You have unsaved changes. Sign out anyway?')) return; S.token = ''; S.content = null; S.admin = null; S.pass = ''; S.dirty = false; showLogin(); }
+
+  function validate() {
+    var c = S.content, ids = {}, errs = [];
+    (c.projects || []).forEach(function (p, i) { if (!p.id || !/^[a-z0-9-]+$/.test(p.id)) errs.push('Project #' + (i + 1) + ': the id must use only lowercase letters, numbers and dashes.'); if (ids[p.id]) errs.push('Two projects share the id “' + p.id + '”.'); ids[p.id] = 1; if (!(p.title && p.title.en)) errs.push('Project #' + (i + 1) + ' needs an English title.'); });
+    return errs;
+  }
+  function save_(btn, pub) {
+    var errs = validate(); if (errs.length) { pub.className = 'pub err'; pub.textContent = errs[0]; return; }
+    btn.disabled = true; pub.className = 'pub'; pub.textContent = 'Publishing…';
+    var body = JSON.stringify(S.content, null, 1) + '\n';
+    putFile(CONTENT_PATH, b64enc(body), 'content: update via admin panel', S.contentSha).then(function (res) {
+      S.contentSha = res.content.sha; S.dirty = false; pub.className = 'pub ok'; pub.textContent = 'Published — live in ~1 min';
+      var st = document.getElementById('state'); if (st) { st.textContent = 'All changes published'; st.className = 'adm-state'; }
+    }).catch(function (e) { pub.className = 'pub err'; pub.textContent = e.friendly || e.message; }).then(function () { btn.disabled = false; });
+  }
+  window.addEventListener('beforeunload', function (e) { if (S.dirty) { e.preventDefault(); e.returnValue = ''; } });
+  window.__adm = S;
+  showLogin();
+})();
+</script>
+</body>
+</html>

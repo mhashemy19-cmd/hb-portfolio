@@ -1,0 +1,1459 @@
+{
+ "version": 1,
+ "site": {
+  "brand": "Mohammad Hashemi",
+  "studio": "HB Studio",
+  "title": {
+   "en": "Mohammad Hashemi — Film, jewelry and motion",
+   "fa": "محمد هاشمی — فیلم، جواهر و موشن"
+  },
+  "description": {
+   "en": "Mohammad Hashemi and HB Studio: commercial films, gold and jewelry, real estate, podcasts, motion graphics and AI films. Based in Mashhad, working worldwide.",
+   "fa": "محمد هاشمی و اچ‌بی استودیو: فیلم تبلیغاتی، طلا و جواهر، املاک، پادکست، موشن گرافیک و فیلم هوش مصنوعی. مستقر در مشهد، فعال در سراسر جهان."
+  }
+ },
+ "ui": {
+  "nav.home": {
+   "en": "Home",
+   "fa": "خانه"
+  },
+  "nav.work": {
+   "en": "Work",
+   "fa": "نمونه‌کارها"
+  },
+  "nav.studio": {
+   "en": "Walk the studio",
+   "fa": "قدم‌زدن در استودیو"
+  },
+  "nav.tools": {
+   "en": "Tools",
+   "fa": "ابزارها"
+  },
+  "nav.about": {
+   "en": "About",
+   "fa": "درباره"
+  },
+  "nav.services": {
+   "en": "Services",
+   "fa": "خدمات"
+  },
+  "nav.contact": {
+   "en": "Contact",
+   "fa": "تماس"
+  },
+  "cta.quote": {
+   "en": "Get a quote",
+   "fa": "درخواست قیمت"
+  },
+  "cta.work": {
+   "en": "See the work",
+   "fa": "دیدن نمونه‌کارها"
+  },
+  "cta.studio": {
+   "en": "Walk the studio",
+   "fa": "قدم بزن در استودیو"
+  },
+  "cta.talk": {
+   "en": "Start a project",
+   "fa": "شروع یک پروژه"
+  },
+  "cta.all": {
+   "en": "All projects",
+   "fa": "همهٔ پروژه‌ها"
+  },
+  "cta.services": {
+   "en": "All services",
+   "fa": "همهٔ خدمات"
+  },
+  "cta.view": {
+   "en": "View project",
+   "fa": "دیدن پروژه"
+  },
+  "cta.notify": {
+   "en": "Notify me",
+   "fa": "خبرم کن"
+  },
+  "cta.copy": {
+   "en": "Copy",
+   "fa": "کپی"
+  },
+  "cta.back": {
+   "en": "Back",
+   "fa": "بازگشت"
+  },
+  "cta.choose": {
+   "en": "Choose",
+   "fa": "انتخاب"
+  },
+  "cta.close": {
+   "en": "Close",
+   "fa": "بستن"
+  },
+  "cta.next": {
+   "en": "Next",
+   "fa": "بعدی"
+  },
+  "cta.prev": {
+   "en": "Previous",
+   "fa": "قبلی"
+  },
+  "cta.listview": {
+   "en": "List view",
+   "fa": "نمای فهرست"
+  },
+  "cta.walkview": {
+   "en": "3D walk",
+   "fa": "قدم‌زدن سه‌بعدی"
+  },
+  "cta.play": {
+   "en": "Play",
+   "fa": "پخش"
+  },
+  "filter.all": {
+   "en": "All",
+   "fa": "همه"
+  },
+  "status.dev": {
+   "en": "In development",
+   "fa": "در حال توسعه"
+  },
+  "status.soon": {
+   "en": "Coming soon",
+   "fa": "به‌زودی"
+  },
+  "label.client": {
+   "en": "Client",
+   "fa": "کارفرما"
+  },
+  "label.year": {
+   "en": "Year",
+   "fa": "سال"
+  },
+  "label.role": {
+   "en": "Role",
+   "fa": "نقش"
+  },
+  "label.credits": {
+   "en": "Credits",
+   "fa": "عوامل"
+  },
+  "label.category": {
+   "en": "Category",
+   "fa": "دسته"
+  },
+  "label.gallery": {
+   "en": "Gallery",
+   "fa": "گالری"
+  },
+  "label.video": {
+   "en": "Film",
+   "fa": "فیلم"
+  },
+  "label.next": {
+   "en": "Next project",
+   "fa": "پروژهٔ بعدی"
+  },
+  "label.email": {
+   "en": "Email",
+   "fa": "ایمیل"
+  },
+  "label.phone": {
+   "en": "Phone",
+   "fa": "تلفن"
+  },
+  "label.whatsapp": {
+   "en": "WhatsApp",
+   "fa": "واتساپ"
+  },
+  "label.telegram": {
+   "en": "Telegram",
+   "fa": "تلگرام"
+  },
+  "label.instagram": {
+   "en": "Instagram",
+   "fa": "اینستاگرام"
+  },
+  "label.menu": {
+   "en": "Menu",
+   "fa": "منو"
+  },
+  "label.language": {
+   "en": "Language",
+   "fa": "زبان"
+  },
+  "label.contactus": {
+   "en": "Contact",
+   "fa": "تماس"
+  },
+  "label.preview": {
+   "en": "Preview",
+   "fa": "پیش‌نمایش"
+  },
+  "label.rooms": {
+   "en": "Rooms",
+   "fa": "اتاق‌ها"
+  },
+  "label.room": {
+   "en": "Room",
+   "fa": "اتاق"
+  },
+  "footer.line": {
+   "en": "Film, photography and motion for brands that care how they look.",
+   "fa": "فیلم، عکاسی و موشن برای برندهایی که به چهره‌شان اهمیت می‌دهند."
+  },
+  "footer.rights": {
+   "en": "All rights reserved.",
+   "fa": "همهٔ حقوق محفوظ است."
+  },
+  "footer.nav": {
+   "en": "Pages",
+   "fa": "صفحات"
+  },
+  "footer.reach": {
+   "en": "Reach me",
+   "fa": "ارتباط با من"
+  },
+  "toast.copied": {
+   "en": "Copied",
+   "fa": "کپی شد"
+  },
+  "toast.copyFail": {
+   "en": "Press Ctrl+C to copy",
+   "fa": "برای کپی، Ctrl+C را بزنید"
+  },
+  "toast.msgCopied": {
+   "en": "Message copied — paste it in the chat",
+   "fa": "پیام کپی شد — آن را در چت جای‌گذاری کنید"
+  },
+  "toast.notify": {
+   "en": "Noted — send your message and I will tell you first.",
+   "fa": "ثبت شد — پیامتان را بفرستید تا اول به شما خبر بدهم."
+  },
+  "panel.title": {
+   "en": "Let's talk",
+   "fa": "بیایید صحبت کنیم"
+  },
+  "panel.sub": {
+   "en": "Fastest replies on WhatsApp and Telegram.",
+   "fa": "سریع‌ترین پاسخ در واتساپ و تلگرام."
+  },
+  "panel.notifyTitle": {
+   "en": "Notify me about",
+   "fa": "خبر بده دربارهٔ"
+  },
+  "panel.notifyMsg": {
+   "en": "Hello Mohammad, please notify me when this tool is released: ",
+   "fa": "سلام آقای هاشمی، لطفاً وقتی این ابزار منتشر شد به من خبر بدهید: "
+  },
+  "quote.title": {
+   "en": "Request a quote",
+   "fa": "درخواست قیمت"
+  },
+  "quote.sub": {
+   "en": "Four short questions. Your message opens in WhatsApp or Telegram, ready to send.",
+   "fa": "چهار سؤال کوتاه. پیام شما آمادهٔ ارسال در واتساپ یا تلگرام باز می‌شود."
+  },
+  "quote.name": {
+   "en": "Your name",
+   "fa": "نام شما"
+  },
+  "quote.contact": {
+   "en": "Phone or email",
+   "fa": "تلفن یا ایمیل"
+  },
+  "quote.type": {
+   "en": "Project type",
+   "fa": "نوع پروژه"
+  },
+  "quote.tier": {
+   "en": "Package",
+   "fa": "پکیج"
+  },
+  "quote.budget": {
+   "en": "Budget",
+   "fa": "بودجه"
+  },
+  "quote.deadline": {
+   "en": "Deadline",
+   "fa": "مهلت"
+  },
+  "quote.message": {
+   "en": "Tell me about the project",
+   "fa": "دربارهٔ پروژه بگویید"
+  },
+  "quote.review": {
+   "en": "Review message",
+   "fa": "مرور پیام"
+  },
+  "quote.send": {
+   "en": "Send via",
+   "fa": "ارسال با"
+  },
+  "quote.copy": {
+   "en": "Copy message",
+   "fa": "کپی پیام"
+  },
+  "quote.edit": {
+   "en": "Edit",
+   "fa": "ویرایش"
+  },
+  "quote.required": {
+   "en": "Please fill this in",
+   "fa": "لطفاً این بخش را پر کنید"
+  },
+  "quote.tgNote": {
+   "en": "Telegram cannot pre-fill the message, so it is copied for you — just paste it in the chat.",
+   "fa": "تلگرام اجازهٔ پر شدن خودکار پیام را نمی‌دهد؛ پیام برایتان کپی می‌شود، فقط در چت جای‌گذاری کنید."
+  },
+  "quote.hello": {
+   "en": "Hello Mohammad, I'd like to request a quote.",
+   "fa": "سلام آقای هاشمی، می‌خواهم درخواست قیمت بدهم."
+  },
+  "quote.any": {
+   "en": "Not sure yet",
+   "fa": "هنوز مطمئن نیستم"
+  },
+  "type.commercial": {
+   "en": "Commercial film",
+   "fa": "فیلم تبلیغاتی"
+  },
+  "type.jewelry": {
+   "en": "Gold and jewelry",
+   "fa": "طلا و جواهر"
+  },
+  "type.realestate": {
+   "en": "Real estate",
+   "fa": "املاک"
+  },
+  "type.podcast": {
+   "en": "Podcast",
+   "fa": "پادکست"
+  },
+  "type.motion": {
+   "en": "Motion graphics",
+   "fa": "موشن گرافیک"
+  },
+  "type.ai": {
+   "en": "AI film",
+   "fa": "فیلم هوش مصنوعی"
+  },
+  "type.other": {
+   "en": "Something else",
+   "fa": "چیز دیگر"
+  },
+  "budget.starter": {
+   "en": "Starter",
+   "fa": "شروع"
+  },
+  "budget.mid": {
+   "en": "Mid",
+   "fa": "متوسط"
+  },
+  "budget.premium": {
+   "en": "Premium",
+   "fa": "ویژه"
+  },
+  "budget.flagship": {
+   "en": "Flagship",
+   "fa": "پرچم‌دار"
+  },
+  "studio.enter": {
+   "en": "Click to enter the studio",
+   "fa": "برای ورود به استودیو کلیک کنید"
+  },
+  "studio.enterTouch": {
+   "en": "Tap to enter the studio",
+   "fa": "برای ورود به استودیو لمس کنید"
+  },
+  "studio.helpDesk": {
+   "en": "Mouse to look · WASD or arrows to walk · click the floor to go there · click a frame to open it · Esc to release the mouse",
+   "fa": "ماوس برای نگاه کردن · WASD یا فلش‌ها برای راه رفتن · روی کف کلیک کنید تا بروید · روی قاب کلیک کنید تا باز شود · Esc برای آزاد کردن ماوس"
+  },
+  "studio.helpTouch": {
+   "en": "Drag to look · tap a doorway or the floor to go there · tap a frame to open it",
+   "fa": "برای نگاه کردن بکشید · درگاه یا کف را لمس کنید تا بروید · قاب را لمس کنید تا باز شود"
+  },
+  "studio.loading": {
+   "en": "Building the studio…",
+   "fa": "در حال ساخت استودیو…"
+  },
+  "studio.hall": {
+   "en": "Main hall",
+   "fa": "سالن اصلی"
+  },
+  "studio.nogl": {
+   "en": "Your browser cannot run the 3D walk, so here is the list view.",
+   "fa": "مرورگر شما نمی‌تواند راه‌رفتن سه‌بعدی را اجرا کند؛ نمای فهرست را ببینید."
+  },
+  "studio.exit": {
+   "en": "Release mouse",
+   "fa": "آزاد کردن ماوس"
+  },
+  "about.toolsHint": {
+   "en": "Move your cursor through them.",
+   "fa": "نشانگر را بینشان حرکت بدهید."
+  },
+  "tools.sub": {
+   "en": "Plugins and panels I build for my own edits, and soon for yours.",
+   "fa": "افزونه‌ها و پنل‌هایی که برای تدوین خودم می‌سازم و به‌زودی برای شما."
+  },
+  "notfound": {
+   "en": "Project not found",
+   "fa": "پروژه پیدا نشد"
+  },
+  "skip": {
+   "en": "Skip to content",
+   "fa": "رفتن به محتوا"
+  }
+ },
+ "contact": {
+  "email": "Mhashemy54@yahoo.com",
+  "phone": "09211359942",
+  "phoneIntl": "+989211359942",
+  "whatsapp": "https://wa.me/989211359942",
+  "telegram": "https://t.me/+989211359942",
+  "instagram": "https://instagram.com/hashemibros",
+  "instagramHandle": "@hashemibros",
+  "location": {
+   "en": "Based in Mashhad, Iran — working worldwide",
+   "fa": "مستقر در مشهد، ایران — فعال در سراسر جهان"
+  }
+ },
+ "home": {
+  "hero": {
+   "kicker": {
+    "en": "Film · Jewelry · Motion",
+    "fa": "فیلم · جواهر · موشن"
+   },
+   "title": {
+    "en": "Films that make gold look like gold.",
+    "fa": "فیلم‌هایی که طلا را طلا نشان می‌دهند."
+   },
+   "sub": {
+    "en": "I am Mohammad Hashemi. For twelve years I have made commercial films, product and jewelry content, real estate tours, podcasts and motion for brands. HB Studio is the seven-person team behind it.",
+    "fa": "من محمد هاشمی هستم. دوازده سال است برای برندها فیلم تبلیغاتی، محتوای محصول و جواهر، تور املاک، پادکست و موشن می‌سازم. اچ‌بی استودیو تیم هفت‌نفره‌ای است که پشت این کارهاست."
+   },
+   "image": "content/media/portrait-1.jpg",
+   "cta1": {
+    "en": "See the work",
+    "fa": "دیدن نمونه‌کارها"
+   },
+   "cta2": {
+    "en": "Walk the studio",
+    "fa": "قدم بزن در استودیو"
+   }
+  },
+  "stats": [
+   {
+    "value": "12",
+    "label": {
+     "en": "Years in production",
+     "fa": "سال تجربهٔ تولید"
+    }
+   },
+   {
+    "value": "7",
+    "label": {
+     "en": "People in the studio",
+     "fa": "نفر در استودیو"
+    }
+   },
+   {
+    "value": "6",
+    "label": {
+     "en": "Specialities",
+     "fa": "تخصص"
+    }
+   }
+  ],
+  "reel": {
+   "title": {
+    "en": "Showreel",
+    "fa": "شوریل"
+   },
+   "sub": {
+    "en": "Twelve years in ninety seconds. The reel is loading soon: add reel.mp4 and a poster from the admin panel.",
+    "fa": "دوازده سال در نود ثانیه. شوریل به‌زودی اضافه می‌شود: از پنل مدیریت reel.mp4 و پوستر را اضافه کنید."
+   },
+   "poster": "content/media/onset.jpg",
+   "video": ""
+  },
+  "featured": {
+   "title": {
+    "en": "Featured projects",
+    "fa": "پروژه‌های منتخب"
+   },
+   "sub": {
+    "en": "A few rooms from the studio.",
+    "fa": "چند اتاق از استودیو."
+   },
+   "ids": [
+    "hashemibros-series",
+    "on-set",
+    "zargar"
+   ]
+  },
+  "services": {
+   "title": {
+    "en": "What we make",
+    "fa": "چه چیزی می‌سازیم"
+   },
+   "sub": {
+    "en": "One team for the whole chain, from idea to publish.",
+    "fa": "یک تیم برای کل زنجیره، از ایده تا انتشار."
+   },
+   "items": [
+    {
+     "title": {
+      "en": "Commercial film",
+      "fa": "فیلم تبلیغاتی"
+     },
+     "text": {
+      "en": "Brand and product films, shot and lit with intent.",
+      "fa": "فیلم برند و محصول، با نور و کادر حساب‌شده."
+     }
+    },
+    {
+     "title": {
+      "en": "Gold and jewelry",
+      "fa": "طلا و جواهر"
+     },
+     "text": {
+      "en": "Macro, reflections and metal that holds up under any grade.",
+      "fa": "ماکرو، بازتاب و فلزی که زیر هر رنگ‌بندی دوام می‌آورد."
+     }
+    },
+    {
+     "title": {
+      "en": "Motion and AI films",
+      "fa": "موشن و فیلم هوش مصنوعی"
+     },
+     "text": {
+      "en": "After Effects craft and generative film, directed with discipline.",
+      "fa": "هنر افترافکتس و فیلم مولد، با کارگردانی منضبط."
+     }
+    }
+   ]
+  },
+  "cta": {
+   "title": {
+    "en": "Have a brand that deserves better light?",
+    "fa": "برندی دارید که نور بهتری می‌خواهد؟"
+   },
+   "sub": {
+    "en": "Tell me about it. I reply on WhatsApp and Telegram, usually within the day.",
+    "fa": "برایم بنویسید. در واتساپ و تلگرام پاسخ می‌دهم، معمولاً همان روز."
+   }
+  }
+ },
+ "work": {
+  "title": {
+   "en": "Work",
+   "fa": "نمونه‌کارها"
+  },
+  "sub": {
+   "en": "Every project is a room in the studio. Filter by kind of work.",
+   "fa": "هر پروژه یک اتاق در استودیوست. بر اساس نوع کار فیلتر کنید."
+  },
+  "categories": [
+   {
+    "id": "commercial",
+    "label": {
+     "en": "Commercial",
+     "fa": "تبلیغاتی"
+    }
+   },
+   {
+    "id": "jewelry",
+    "label": {
+     "en": "Gold and jewelry",
+     "fa": "طلا و جواهر"
+    }
+   },
+   {
+    "id": "realestate",
+    "label": {
+     "en": "Real estate",
+     "fa": "املاک"
+    }
+   },
+   {
+    "id": "podcast",
+    "label": {
+     "en": "Podcast",
+     "fa": "پادکست"
+    }
+   },
+   {
+    "id": "motion",
+    "label": {
+     "en": "Motion",
+     "fa": "موشن"
+    }
+   },
+   {
+    "id": "ai",
+    "label": {
+     "en": "AI films",
+     "fa": "فیلم هوش مصنوعی"
+    }
+   }
+  ]
+ },
+ "projects": [
+  {
+   "id": "hashemibros-series",
+   "category": "motion",
+   "title": {
+    "en": "The Brief Template Series",
+    "fa": "سری «قالب بریف»"
+   },
+   "client": {
+    "en": "Hashemibros (own brand)",
+    "fa": "هاشمی‌بروز (برند شخصی)"
+   },
+   "year": "2026",
+   "role": {
+    "en": "Art direction, motion design, content",
+    "fa": "آرت‌دایرکشن، موشن‌دیزاین، محتوا"
+   },
+   "summary": {
+    "en": "A ten-slide carousel that teaches clients how to brief a film shoot.",
+    "fa": "کاروسل ده‌اسلایدی که به کارفرماها یاد می‌دهد بریف فیلم‌برداری را چطور بنویسند."
+   },
+   "description": {
+    "en": "Part of my own Instagram programme for brand owners. Every slide is built on the same viewfinder frame so the series reads as one object: a calm cream stage, one gold accent, and big Persian type that survives a phone screen.",
+    "fa": "بخشی از برنامهٔ اینستاگرام خودم برای صاحبان برند. همهٔ اسلایدها روی یک قاب ویفایندر ساخته شده‌اند تا سری مثل یک مجموعهٔ واحد دیده شود: زمینهٔ آرام کرم، یک رنگ طلایی و تایپ درشت فارسی که روی صفحهٔ موبایل هم می‌خواند."
+   },
+   "cover": "content/media/series-01.jpg",
+   "images": [
+    "content/media/series-01.jpg",
+    "content/media/series-05.jpg"
+   ],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Concept and copy",
+      "fa": "ایده و متن"
+     },
+     "name": {
+      "en": "Mohammad Hashemi",
+      "fa": "محمد هاشمی"
+     }
+    },
+    {
+     "role": {
+      "en": "Design and motion",
+      "fa": "طراحی و موشن"
+     },
+     "name": {
+      "en": "HB Studio",
+      "fa": "اچ‌بی استودیو"
+     }
+    }
+   ]
+  },
+  {
+   "id": "work-philosophy",
+   "category": "motion",
+   "title": {
+    "en": "Work Philosophy Reel Card",
+    "fa": "کارت ریل «فلسفهٔ کاری من»"
+   },
+   "client": {
+    "en": "Hashemibros (own brand)",
+    "fa": "هاشمی‌بروز (برند شخصی)"
+   },
+   "year": "2026",
+   "role": {
+    "en": "Art direction, motion design",
+    "fa": "آرت‌دایرکشن، موشن‌دیزاین"
+   },
+   "summary": {
+    "en": "A single quote frame built for vertical video.",
+    "fa": "یک فریم نقل‌قول ساخته‌شده برای ویدیوی عمودی."
+   },
+   "description": {
+    "en": "A quote from twelve years of work, set in deep black with one warm gold accent. It is the visual signature I use between reels: type first, light second, nothing else competing.",
+    "fa": "نقلی از دوازده سال کار، روی مشکی عمیق با یک رنگ گرم طلایی. این امضای بصری من بین ریل‌هاست: اول تایپ، بعد نور و هیچ چیز دیگری که با آن رقابت کند."
+   },
+   "cover": "content/media/philosophy.jpg",
+   "images": [
+    "content/media/philosophy.jpg"
+   ],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Design and motion",
+      "fa": "طراحی و موشن"
+     },
+     "name": {
+      "en": "HB Studio",
+      "fa": "اچ‌بی استودیو"
+     }
+    }
+   ]
+  },
+  {
+   "id": "on-set",
+   "category": "commercial",
+   "title": {
+    "en": "On Set, Behind the Camera",
+    "fa": "پشت دوربین، سر صحنه"
+   },
+   "client": {
+    "en": "HB Studio",
+    "fa": "اچ‌بی استودیو"
+   },
+   "year": "2026",
+   "role": {
+    "en": "Director, DoP",
+    "fa": "کارگردان، فیلم‌بردار"
+   },
+   "summary": {
+    "en": "A frame from a shoot day: mirrorless on a fluid head, monitor beside it.",
+    "fa": "یک فریم از روز فیلم‌برداری: دوربین بدون‌آینه روی هد روان و مانیتور کنارش."
+   },
+   "description": {
+    "en": "Most of my commercial work starts like this: one camera, a fluid head, a small crew and a clear brief. This room is for shoot-day stills; swap in your own gallery from the admin panel.",
+    "fa": "بیشتر کارهای تبلیغاتی من این‌طور شروع می‌شود: یک دوربین، یک هد روان، گروه کوچک و یک بریف روشن. این اتاق برای عکس‌های روز فیلم‌برداری است؛ از پنل مدیریت گالری خودتان را جایگزین کنید."
+   },
+   "cover": "content/media/onset.jpg",
+   "images": [
+    "content/media/onset.jpg"
+   ],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Camera",
+      "fa": "دوربین"
+     },
+     "name": {
+      "en": "Mohammad Hashemi",
+      "fa": "محمد هاشمی"
+     }
+    }
+   ]
+  },
+  {
+   "id": "zargar",
+   "category": "commercial",
+   "title": {
+    "en": "Zargar: Education and Motion",
+    "fa": "زرگر: آموزش و موشن"
+   },
+   "client": {
+    "en": "Zargar",
+    "fa": "زرگر"
+   },
+   "year": "2026",
+   "role": {
+    "en": "Content direction, motion design",
+    "fa": "مدیریت محتوا، موشن‌دیزاین"
+   },
+   "summary": {
+    "en": "Educational films, motion storyboards and Instagram content for gold accounting software.",
+    "fa": "فیلم‌های آموزشی، استوری‌بُرد موشن و محتوای اینستاگرام برای نرم‌افزار حسابداری طلا."
+   },
+   "description": {
+    "en": "Ongoing monthly work for Zargar, the accounting platform for gold and jewelry businesses: educational videos, motion graphic storyboards and a content calendar that turns customer questions into scripts. Add stills and the final film from the admin panel.",
+    "fa": "همکاری ماهانهٔ مداوم با زرگر، پلتفرم حسابداری برای کسب‌وکارهای طلا و جواهر: ویدیوهای آموزشی، استوری‌بُرد موشن‌گرافیک و تقویم محتوایی که پرسش‌های مشتری را به سناریو تبدیل می‌کند. تصاویر و فیلم نهایی را از پنل مدیریت اضافه کنید."
+   },
+   "cover": "",
+   "images": [],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Content direction",
+      "fa": "مدیریت محتوا"
+     },
+     "name": {
+      "en": "Mohammad Hashemi",
+      "fa": "محمد هاشمی"
+     }
+    },
+    {
+     "role": {
+      "en": "Motion",
+      "fa": "موشن"
+     },
+     "name": {
+      "en": "HB Studio",
+      "fa": "اچ‌بی استودیو"
+     }
+    }
+   ]
+  },
+  {
+   "id": "picto-polo-hero",
+   "category": "ai",
+   "title": {
+    "en": "PICTO / Polo Hero",
+    "fa": "پیکتو / پولو هیرو"
+   },
+   "client": {
+    "en": "PICTO / Polo Hero",
+    "fa": "پیکتو / پولو هیرو"
+   },
+   "year": "2026",
+   "role": {
+    "en": "AI film direction",
+    "fa": "کارگردانی فیلم هوش مصنوعی"
+   },
+   "summary": {
+    "en": "Five colourway films for a minimalist watch brand, 20 seconds each.",
+    "fa": "پنج فیلم رنگ‌بندی برای یک برند مینیمال ساعت، هرکدام ۲۰ ثانیه."
+   },
+   "description": {
+    "en": "A full AI production package for a minimalist watch brand: five colourway-specific 20-second films, each with its own shot list, entrance concept and generation prompts, directed so the product never drifts from the real piece.",
+    "fa": "یک بستهٔ کامل تولید با هوش مصنوعی برای برند مینیمال ساعت: پنج فیلم ۲۰ ثانیه‌ای مخصوص هر رنگ‌بندی، هرکدام با شات‌لیست، ایدهٔ ورود و پرامپت‌های جداگانه؛ طوری کارگردانی شده که محصول هرگز از نمونهٔ واقعی فاصله نگیرد."
+   },
+   "cover": "",
+   "images": [],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Direction",
+      "fa": "کارگردانی"
+     },
+     "name": {
+      "en": "Mohammad Hashemi",
+      "fa": "محمد هاشمی"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ai-jewelry",
+   "category": "jewelry",
+   "title": {
+    "en": "Gold Against History",
+    "fa": "طلا در برابر تاریخ"
+   },
+   "client": {
+    "en": "Gold and jewelry brands",
+    "fa": "برندهای طلا و جواهر"
+   },
+   "year": "2026",
+   "role": {
+    "en": "AI film direction, product fidelity",
+    "fa": "کارگردانی فیلم هوش مصنوعی، وفاداری به محصول"
+   },
+   "summary": {
+    "en": "Gold pieces animated against Iranian landmarks.",
+    "fa": "قطعات طلا در برابر بناهای تاریخی ایران، متحرک‌شده."
+   },
+   "description": {
+    "en": "Jewelry pieces placed in front of Iranian historical landmarks and brought to life with image-to-video, with one rule: the piece must stay exactly the piece. Prompt libraries per engine keep the details stable from shot to shot.",
+    "fa": "قطعات جواهر مقابل بناهای تاریخی ایران قرار می‌گیرند و با تبدیل تصویر به ویدیو جان می‌گیرند، با یک قاعده: قطعه باید دقیقاً همان قطعه بماند. کتابخانهٔ پرامپت برای هر موتور، جزئیات را از شات به شات ثابت نگه می‌دارد."
+   },
+   "cover": "",
+   "images": [],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Direction",
+      "fa": "کارگردانی"
+     },
+     "name": {
+      "en": "Mohammad Hashemi",
+      "fa": "محمد هاشمی"
+     }
+    }
+   ]
+  },
+  {
+   "id": "residential",
+   "category": "realestate",
+   "title": {
+    "en": "Luxury Residential",
+    "fa": "مسکونی لوکس"
+   },
+   "client": {
+    "en": "Real estate clients",
+    "fa": "مشاوران و سازندگان املاک"
+   },
+   "year": "2026",
+   "role": {
+    "en": "Director, DoP, editor",
+    "fa": "کارگردان، فیلم‌بردار، تدوینگر"
+   },
+   "summary": {
+    "en": "Presenter-led and silent films for luxury apartments.",
+    "fa": "فیلم‌های مجری‌محور و بی‌کلام برای آپارتمان‌های لوکس."
+   },
+   "description": {
+    "en": "Promotional films for luxury residential units in two formats: presenter-led walkthroughs and silent, slow cinematic tours, each planned as a storyboard before the first frame is shot.",
+    "fa": "فیلم‌های تبلیغاتی برای واحدهای مسکونی لوکس در دو قالب: بازدید مجری‌محور و تور سینمایی آرام بی‌کلام؛ هرکدام پیش از اولین نما به‌صورت استوری‌بُرد برنامه‌ریزی می‌شوند."
+   },
+   "cover": "",
+   "images": [],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Direction and camera",
+      "fa": "کارگردانی و فیلم‌برداری"
+     },
+     "name": {
+      "en": "Mohammad Hashemi",
+      "fa": "محمد هاشمی"
+     }
+    }
+   ]
+  },
+  {
+   "id": "podcast",
+   "category": "podcast",
+   "title": {
+    "en": "Podcast Production",
+    "fa": "تولید پادکست"
+   },
+   "client": {
+    "en": "Podcast clients",
+    "fa": "مشتریان پادکست"
+   },
+   "year": "2026",
+   "role": {
+    "en": "Producer, multicam director, editor",
+    "fa": "تهیه‌کننده، کارگردان چنددوربینه، تدوینگر"
+   },
+   "summary": {
+    "en": "Recording, multicam video and audio finishing for talk series.",
+    "fa": "ضبط، ویدیوی چنددوربینه و نهایی‌سازی صدا برای سریال‌های گفتگو."
+   },
+   "description": {
+    "en": "End-to-end podcast production: a quiet room, three cameras, clean voice and a cut that keeps the conversation moving. Built for series that publish weekly without the quality slipping.",
+    "fa": "تولید کامل پادکست: یک اتاق ساکت، سه دوربین، صدای تمیز و تدوینی که گفتگو را پیش می‌برد. مناسب سریال‌هایی که هفتگی منتشر می‌شوند، بی‌آنکه کیفیت افت کند."
+   },
+   "cover": "",
+   "images": [],
+   "video": "",
+   "credits": [
+    {
+     "role": {
+      "en": "Production",
+      "fa": "تولید"
+     },
+     "name": {
+      "en": "HB Studio",
+      "fa": "اچ‌بی استودیو"
+     }
+    }
+   ]
+  }
+ ],
+ "studio": {
+  "title": {
+   "en": "Walk the studio",
+   "fa": "قدم بزن در استودیو"
+  },
+  "sub": {
+   "en": "A film studio built from my projects. Every room is one project; the walls hold its images, and a plaque tells the story.",
+   "fa": "استودیوی فیلمی که از پروژه‌هایم ساخته شده. هر اتاق یک پروژه است؛ دیوارها تصاویرش را دارند و یک پلاک داستانش را می‌گوید."
+  }
+ },
+ "tools": {
+  "title": {
+   "en": "Tools I build",
+   "fa": "ابزارهایی که می‌سازم"
+  },
+  "sub": {
+   "en": "Plugins and panels for After Effects and Premiere. Built for my own edits first, so they have to be fast.",
+   "fa": "افزونه‌ها و پنل‌هایی برای افترافکتس و پریمیر. اول برای تدوین خودم ساخته می‌شوند، پس باید سریع باشند."
+  },
+  "items": [
+   {
+    "id": "hb-glass",
+    "name": {
+     "en": "HB Glass",
+     "fa": "اچ‌بی گلس"
+    },
+    "kind": {
+     "en": "After Effects plugin",
+     "fa": "افزونهٔ افترافکتس"
+    },
+    "status": "dev",
+    "description": {
+     "en": "A refraction plugin for After Effects, written from scratch in C++ with the AE SDK. Bend light through glass, tint it with a Glass Color control, and keep it all editable on the timeline.",
+     "fa": "افزونهٔ شکست نور برای افترافکتس که از صفر با C++ و AE SDK نوشته شده است. نور را از میان شیشه عبور بدهید، با کنترل Glass Color رنگش کنید و همه‌چیز را روی تایم‌لاین قابل ویرایش نگه دارید."
+    },
+    "image": "",
+    "icon": "glass",
+    "hue": 205
+   },
+   {
+    "id": "sound-panel",
+    "name": {
+     "en": "Sound and Music Panel",
+     "fa": "پنل صدا و موسیقی"
+    },
+    "kind": {
+     "en": "Premiere and After Effects panel",
+     "fa": "پنل پریمیر و افترافکتس"
+    },
+    "status": "dev",
+    "description": {
+     "en": "Connects to your music and sound-effects folders, recognises what each sound is, files it into categories automatically, and lets you drop any style on the timeline in one click.",
+     "fa": "به پوشه‌های موسیقی و افکت صوتی شما وصل می‌شود، تشخیص می‌دهد هر صدا چیست، خودکار دسته‌بندی‌اش می‌کند و با یک کلیک هر سبک را روی تایم‌لاین می‌گذارد."
+    },
+    "image": "",
+    "icon": "wave",
+    "hue": 38
+   },
+   {
+    "id": "file-browser",
+    "name": {
+     "en": "File, Footage and Template Browser",
+     "fa": "مرورگر فایل، فوتیج و تمپلیت"
+    },
+    "kind": {
+     "en": "Premiere and After Effects panel",
+     "fa": "پنل پریمیر و افترافکتس"
+    },
+    "status": "soon",
+    "description": {
+     "en": "Call up projects, footage, backgrounds and studio template projects from inside the app with live previews, instead of an hour of folder hunting.",
+     "fa": "پروژه‌ها، فوتیج، بک‌گراند و تمپلیت‌های استودیو را با پیش‌نمایش زنده از داخل خود نرم‌افزار فرا بخوانید، به‌جای یک ساعت گشتن میان پوشه‌ها."
+    },
+    "image": "",
+    "icon": "folder",
+    "hue": 28
+   },
+   {
+    "id": "chat-editing",
+    "name": {
+     "en": "Chat-Directed Editing Panel",
+     "fa": "پنل تدوین با چت"
+    },
+    "kind": {
+     "en": "Premiere and After Effects panel",
+     "fa": "پنل پریمیر و افترافکتس"
+    },
+    "status": "soon",
+    "description": {
+     "en": "Direct the edit in plain language: remove gaps, cut to the beat, add music and sound effects, apply motion from a reference. You stay the editor; the panel does the clicking.",
+     "fa": "تدوین را با زبان ساده هدایت کنید: حذف فاصله‌ها، برش روی ضرب، افزودن موسیقی و افکت، اعمال موشن از روی یک مرجع. ادیتور شما هستید؛ پنل کلیک‌ها را انجام می‌دهد."
+    },
+    "image": "",
+    "icon": "chat",
+    "hue": 160
+   },
+   {
+    "id": "subtitle-tool",
+    "name": {
+     "en": "Auto-Subtitle and Animated Text",
+     "fa": "زیرنویس خودکار و متن متحرک"
+    },
+    "kind": {
+     "en": "Premiere tool",
+     "fa": "ابزار پریمیر"
+    },
+    "status": "soon",
+    "description": {
+     "en": "One-click transcription in Persian, English and Arabic, auto-timed subtitles, and a library of animation styles with a glass background that resizes to the text.",
+     "fa": "رونویسی یک‌کلیکی به فارسی، انگلیسی و عربی، زیرنویس با زمان‌بندی خودکار و کتابخانه‌ای از سبک‌های انیمیشن با پس‌زمینهٔ شیشه‌ای که با متن هم‌اندازه می‌شود."
+    },
+    "image": "",
+    "icon": "text",
+    "hue": 48
+   }
+  ]
+ },
+ "about": {
+  "title": {
+   "en": "About",
+   "fa": "درباره"
+  },
+  "sub": {
+   "en": "Twelve years of making things move.",
+   "fa": "دوازده سال حرکت دادن تصویرها."
+  },
+  "portrait": "content/media/portrait-2.jpg",
+  "portraitAlt": {
+   "en": "Portrait of Mohammad Hashemi",
+   "fa": "پرتره محمد هاشمی"
+  },
+  "heading": {
+   "en": "I am Mohammad Hashemi.",
+   "fa": "من محمد هاشمی هستم."
+  },
+  "bio": [
+   {
+    "en": "I have spent twelve years in content production. I am the founder of HB Studio, a seven-person team that covers digital marketing, Instagram management, editing, motion graphics, design and development.",
+    "fa": "دوازده سال است در تولید محتوا کار می‌کنم. بنیان‌گذار اچ‌بی استودیو هستم، تیمی هفت‌نفره که دیجیتال مارکتینگ، مدیریت اینستاگرام، تدوین، موشن گرافیک، طراحی و توسعه را پوشش می‌دهد."
+   },
+   {
+    "en": "I worked in Tehran for years and now I am based in Mashhad. Work that starts with a camera usually ends in After Effects, and increasingly, in a generative model that I direct like a crew.",
+    "fa": "سال‌ها در تهران کار کردم و حالا در مشهد مستقرم. کاری که با دوربین شروع می‌شود معمولاً در افترافکتس تمام می‌شود، و هرچه بیشتر، در یک مدل مولد که مثل یک گروه فیلم‌برداری کارگردانی‌اش می‌کنم."
+   },
+   {
+    "en": "My rule comes from an older friend: whatever you do, be the best at it. Mop the floor so it shines.",
+    "fa": "قاعدهٔ من را یک دوست بزرگ‌تر به من یاد داد: هر کاری می‌کنی، بهترین باش. کف را طوری بشور که برق بزند."
+   }
+  ],
+  "specialities": [
+   {
+    "en": "Commercial films",
+    "fa": "فیلم تبلیغاتی"
+   },
+   {
+    "en": "Gold and jewelry",
+    "fa": "طلا و جواهر"
+   },
+   {
+    "en": "Real estate",
+    "fa": "املاک"
+   },
+   {
+    "en": "Podcasts",
+    "fa": "پادکست"
+   },
+   {
+    "en": "Motion graphics",
+    "fa": "موشن گرافیک"
+   },
+   {
+    "en": "AI films",
+    "fa": "فیلم هوش مصنوعی"
+   }
+  ],
+  "timelineTitle": {
+   "en": "The road so far",
+   "fa": "مسیر تا امروز"
+  },
+  "timelineNote": {
+   "en": "Years are approximate and editable.",
+   "fa": "سال‌ها تقریبی و قابل ویرایش‌اند."
+  },
+  "timeline": [
+   {
+    "year": "2014",
+    "title": {
+     "en": "First wedding shoots",
+     "fa": "اولین فیلم‌برداری‌های عروسی"
+    },
+    "text": {
+     "en": "I pick up a camera and learn the job the hard way, on wedding days where there is no second take.",
+     "fa": "با دوربین شروع کردم و کار را به سخت‌ترین شکل یاد گرفتم؛ در روزهای عروسی که تکرار ندارد."
+    }
+   },
+   {
+    "year": "2015",
+    "title": {
+     "en": "From editing to motion",
+     "fa": "از تدوین به موشن"
+    },
+    "text": {
+     "en": "Editing leads me to After Effects. A months-long course in Tehran, then years of self-study, take me to professional motion work.",
+     "fa": "تدوین مرا به افترافکتس رساند. یک دورهٔ چندماهه در تهران و بعد سال‌ها یادگیری شخصی، مرا به موشن حرفه‌ای رساند."
+    }
+   },
+   {
+    "year": "2017",
+    "title": {
+     "en": "Staff editor in Tehran",
+     "fa": "تدوینگر تمام‌وقت در تهران"
+    },
+    "text": {
+     "en": "Years inside a production team: hundreds of educational films, Instagram content, animation and motion.",
+     "fa": "سال‌ها در یک تیم تولید: صدها فیلم آموزشی، محتوای اینستاگرام، انیمیشن و موشن."
+    }
+   },
+   {
+    "year": "2021",
+    "title": {
+     "en": "Exhibitions, branches and brands",
+     "fa": "نمایشگاه، شعبه و برند"
+    },
+    "text": {
+     "en": "Work widens to exhibitions, seminars, brand openings and the first jewelry and gold projects.",
+     "fa": "کار گسترده می‌شود: نمایشگاه، سمینار، افتتاح شعبه و اولین پروژه‌های طلا و جواهر."
+    }
+   },
+   {
+    "year": "2023",
+    "title": {
+     "en": "Back to Mashhad",
+     "fa": "بازگشت به مشهد"
+    },
+    "text": {
+     "en": "I move home to Mashhad and spend years inside a gold and jewelry company, shaping its films, content and motion.",
+     "fa": "به مشهد برمی‌گردم و سال‌ها داخل یک شرکت طلا و جواهر فیلم، محتوا و موشن آن را شکل می‌دهم."
+    }
+   },
+   {
+    "year": "2024",
+    "title": {
+     "en": "HB Studio is founded",
+     "fa": "تأسیس اچ‌بی استودیو"
+    },
+    "text": {
+     "en": "A studio of my own, then a team of seven: marketing, Instagram, editing, motion, design and development.",
+     "fa": "استودیوی خودم و بعد تیمی هفت‌نفره: مارکتینگ، اینستاگرام، تدوین، موشن، طراحی و توسعه."
+    }
+   },
+   {
+    "year": "2025",
+    "title": {
+     "en": "AI films enter the pipeline",
+     "fa": "فیلم‌های هوش مصنوعی وارد خط تولید می‌شوند"
+    },
+    "text": {
+     "en": "Image-to-video joins the camera: jewelry and watch films directed with the same discipline as a real set.",
+     "fa": "تبدیل تصویر به ویدیو کنار دوربین می‌نشیند: فیلم‌های جواهر و ساعت با همان انضباط یک صحنهٔ واقعی کارگردانی می‌شوند."
+    }
+   },
+   {
+    "year": "2026",
+    "title": {
+     "en": "Building my own tools",
+     "fa": "ساخت ابزارهای خودم"
+    },
+    "text": {
+     "en": "Plugins and panels for After Effects and Premiere, and a studio with room for filming, jewelry photography and podcasts.",
+     "fa": "افزونه‌ها و پنل‌هایی برای افترافکتس و پریمیر و استودیویی با جا برای فیلم‌برداری، عکاسی جواهر و پادکست."
+    }
+   }
+  ],
+  "toolsTitle": {
+   "en": "Tools I master",
+   "fa": "ابزارهایی که مسلطم"
+  },
+  "toolsSub": {
+   "en": "Premiere, After Effects, Resolve, Photoshop, Blender, Cinema 4D, and the AI models I direct. Drawn as monograms, not logos.",
+   "fa": "پریمیر، افترافکتس، ریزالو، فتوشاپ، بلندر، سینما فوردی و مدل‌های هوش مصنوعی که کارگردانی‌شان می‌کنم. به‌صورت تکنگاره کشیده شده‌اند، نه لوگو."
+  },
+  "software": [
+   {
+    "id": "pr",
+    "name": "Premiere Pro",
+    "mono": "Pr",
+    "color": "#9999ff",
+    "group": "edit"
+   },
+   {
+    "id": "ae",
+    "name": "After Effects",
+    "mono": "Ae",
+    "color": "#9999ff",
+    "group": "motion"
+   },
+   {
+    "id": "dr",
+    "name": "DaVinci Resolve",
+    "mono": "Dv",
+    "color": "#ff7a45",
+    "group": "edit"
+   },
+   {
+    "id": "ps",
+    "name": "Photoshop",
+    "mono": "Ps",
+    "color": "#31a8ff",
+    "group": "image"
+   },
+   {
+    "id": "bl",
+    "name": "Blender",
+    "mono": "Bl",
+    "color": "#ea7600",
+    "group": "3d"
+   },
+   {
+    "id": "c4",
+    "name": "Cinema 4D",
+    "mono": "C4",
+    "color": "#3a8fff",
+    "group": "3d"
+   },
+   {
+    "id": "mj",
+    "name": "Midjourney",
+    "mono": "Mj",
+    "color": "#d9d9d9",
+    "group": "ai"
+   },
+   {
+    "id": "kl",
+    "name": "Kling",
+    "mono": "Kl",
+    "color": "#27d3a2",
+    "group": "ai"
+   },
+   {
+    "id": "rw",
+    "name": "Runway",
+    "mono": "Rw",
+    "color": "#f2f2f2",
+    "group": "ai"
+   },
+   {
+    "id": "sd",
+    "name": "Seedance",
+    "mono": "Sd",
+    "color": "#ff5c8a",
+    "group": "ai"
+   },
+   {
+    "id": "vo",
+    "name": "Veo",
+    "mono": "Vo",
+    "color": "#6aa6ff",
+    "group": "ai"
+   }
+  ]
+ },
+ "contactPage": {
+  "title": {
+   "en": "Contact",
+   "fa": "تماس"
+  },
+  "sub": {
+   "en": "The fastest way to reach me is WhatsApp or Telegram.",
+   "fa": "سریع‌ترین راه ارتباط با من واتساپ یا تلگرام است."
+  },
+  "image": "content/media/portrait-3.jpg",
+  "imageAlt": {
+   "en": "Mohammad Hashemi outdoors",
+   "fa": "محمد هاشمی در فضای باز"
+  }
+ },
+ "services": {
+  "title": {
+   "en": "Services",
+   "fa": "خدمات"
+  },
+  "sub": {
+   "en": "Three ways to work together. Pick the closest one; we shape it to your brief.",
+   "fa": "سه شکل همکاری. نزدیک‌ترین را انتخاب کنید؛ با بریف شما شکلش می‌دهیم."
+  },
+  "quoteTitle": {
+   "en": "Request a quote",
+   "fa": "درخواست قیمت"
+  },
+  "quoteSub": {
+   "en": "Your package is already selected.",
+   "fa": "پکیج شما از قبل انتخاب شده است."
+  },
+  "tiers": [
+   {
+    "id": "essential",
+    "n": "01",
+    "name": {
+     "en": "Essential",
+     "fa": "پایه"
+    },
+    "tag": {
+     "en": "For brands that need to look the part.",
+     "fa": "برای برندی که باید حرفه‌ای دیده شود."
+    },
+    "lead": {
+     "en": "",
+     "fa": ""
+    },
+    "items": [
+     {
+      "en": "One hero film (30–60 s)",
+      "fa": "یک فیلم اصلی (۳۰ تا ۶۰ ثانیه)"
+     },
+     {
+      "en": "Product or space photography",
+      "fa": "عکاسی از محصول یا فضا"
+     },
+     {
+      "en": "Social cut-downs and reels",
+      "fa": "نسخه‌های کوتاه و ریلز برای شبکه‌های اجتماعی"
+     },
+     {
+      "en": "Colour grade and sound finish",
+      "fa": "اصلاح رنگ و نهایی‌سازی صدا"
+     }
+    ]
+   },
+   {
+    "id": "signature",
+    "n": "02",
+    "featured": true,
+    "name": {
+     "en": "Signature",
+     "fa": "سیگنیچر"
+    },
+    "tag": {
+     "en": "A campaign with a point of view.",
+     "fa": "یک کمپین با دیدگاه و شخصیت."
+    },
+    "lead": {
+     "en": "Everything in Essential, plus",
+     "fa": "همه چیز در «پایه»، به‌علاوه"
+    },
+    "items": [
+     {
+      "en": "Campaign film set",
+      "fa": "مجموعه‌فیلم‌های کمپین"
+     },
+     {
+      "en": "Motion graphics package",
+      "fa": "بستهٔ موشن گرافیک"
+     },
+     {
+      "en": "AI-generated film sequences",
+      "fa": "سکانس‌های ساخته‌شده با هوش مصنوعی"
+     },
+     {
+      "en": "Instagram content management",
+      "fa": "مدیریت محتوای اینستاگرام"
+     },
+     {
+      "en": "Art direction and lighting plan",
+      "fa": "آرت دایرکشن و طرح نورپردازی"
+     }
+    ]
+   },
+   {
+    "id": "prestige",
+    "n": "03",
+    "name": {
+     "en": "Prestige",
+     "fa": "پرستیژ"
+    },
+    "tag": {
+     "en": "A whole season, owned end to end.",
+     "fa": "یک فصل کامل، از ایده تا انتشار."
+    },
+    "lead": {
+     "en": "Everything in Signature, plus",
+     "fa": "همه چیز در «سیگنیچر»، به‌علاوه"
+    },
+    "items": [
+     {
+      "en": "Full-crew brand film",
+      "fa": "فیلم برند با گروه کامل"
+     },
+     {
+      "en": "Podcast or talk-show series production",
+      "fa": "تولید سریال پادکست یا تاک‌شو"
+     },
+     {
+      "en": "Monthly content programme",
+      "fa": "برنامهٔ محتوای ماهانه"
+     },
+     {
+      "en": "Digital marketing strategy",
+      "fa": "استراتژی دیجیتال مارکتینگ"
+     },
+     {
+      "en": "Website design and development",
+      "fa": "طراحی و توسعهٔ وب‌سایت"
+     }
+    ]
+   }
+  ]
+ }
+}
