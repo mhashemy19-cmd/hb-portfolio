@@ -256,7 +256,7 @@
   }
 
   /* ───────── schema-less friendly editor ───────── */
-  var TAB_LABELS = { site: 'Site', ui: 'Interface texts', contact: 'Contact details', home: 'Home page', work: 'Work page', projects: 'Projects', studio: 'Studio page', tools: 'Tools', about: 'About + timeline', contactPage: 'Contact page', services: 'Services' };
+  var TAB_LABELS = { licenses: 'Licenses', site: 'Site', ui: 'Interface texts', contact: 'Contact details', home: 'Home page', work: 'Work page', projects: 'Projects', studio: 'Studio page', tools: 'Tools', about: 'About + timeline', contactPage: 'Contact page', services: 'Services' };
   var TAB_HINT = { projects: 'Each project is a room in the 3D studio and a page in Work. Reorder with the arrows. Add images, a film, credits.', ui: 'Buttons, labels and messages used across the site.', about: 'Bio, timeline entries (change the years here), and the software icons.', tools: 'Products on the Tools page and their product pages. Status: Available = shown with price + Buy button (needs Price > 0), dev = in development, soon = coming soon. Prices are numbers: Toman and USD, with the regular price shown struck through. Bundle, steps, FAQ and what-you-get live under Store at the bottom.', contact: 'Used by every copy button, the contact panel, the footer and the quote form.', home: 'Hero, showreel slot, featured projects, services teaser and call to action.' };
   var IMG_KEYS = { image: 1, poster: 1, cover: 1, portrait: 1 };
   var VIDEO_KEYS = { video: 1, demo: 1 };
@@ -413,7 +413,82 @@
     box.appendChild(addRow); return box;
   }
 
+  /* ───────── Licenses: talks to the hb-license Cloudflare Worker (admin API) ─────────
+     The admin secret is typed once per session and kept in sessionStorage only. Nothing here is committed.
+     HBLicense.generate() is the single issuing function: a future payment-gateway webhook can call the same
+     POST /admin/create endpoint with the same payload. */
+  var LIC_PRODUCTS = { sub: 'Subtitle panel', voice: 'Voice panel', sound: 'Sound & Music panel', bundle: 'Bundle (all three)' };
+  var LIC_PLANS = { '1': { label: '1 month', days: 30 }, '3': { label: '3 months', days: 90 }, '12': { label: '12 months', days: 365 }, life: { label: 'Lifetime', days: 0 } };
+  function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+  function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+  function licBase() { return (lsGet('hb.lic.base') || '').replace(/\/+$/, ''); }
+  function licCall(path, method, body) {
+    var base = licBase(), secret = ssGet('hb.lic.secret') || '';
+    if (!/^https:\/\//.test(base)) return Promise.reject(new Error('Enter the license server URL (https://…) first.'));
+    if (!secret) return Promise.reject(new Error('Enter the admin secret first.'));
+    return fetch(base + path, { method: method || 'GET', headers: { authorization: 'Bearer ' + secret, 'content-type': 'application/json' }, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (r.status === 401) throw new Error('Wrong admin secret.'); if (!r.ok || j.ok === false) throw new Error(j.err || ('Server error ' + r.status)); return j; }); });
+  }
+  window.HBLicense = {
+    // o: { product: sub|voice|sound|bundle, plan: '1'|'3'|'12'|'life', name, contact, note }  ->  Promise<[{product, code, type, expires}]>
+    generate: function (o) {
+      var plan = LIC_PLANS[o.plan] || LIC_PLANS.life, prods = o.product === 'bundle' ? ['sub', 'voice', 'sound'] : [o.product];
+      var payload = { products: prods, type: plan.days ? 'sub' : 'life', name: o.name || '', contact: o.contact || '', note: (o.note || '') + (o.product === 'bundle' ? ' [bundle]' : '') };
+      if (plan.days) payload.days = plan.days;
+      return licCall('/admin/create', 'POST', payload).then(function (r) { return r.licenses; });
+    },
+    list: function () { return licCall('/admin/list').then(function (r) { return r.licenses || []; }); },
+    update: function (code, action, extra) { var b = { code: code, action: action }; if (extra) for (var k in extra) b[k] = extra[k]; return licCall('/admin/update', 'POST', b); }
+  };
+  function licMessage(lang, rows, o) {
+    var plan = LIC_PLANS[o.plan], keys = rows.map(function (r) { return (LIC_PRODUCTS[r.product] || r.product) + ': ' + r.code; });
+    var faNames = { sub: 'پنل زیرنویس', voice: 'پنل بهبود صدا', sound: 'پنل صدا و موسیقی' }, faPlan = { '1': 'ماهانه', '3': 'سه‌ماهه', '12': 'دوازده‌ماهه', life: 'دائمی' };
+    var exp = rows[0] && rows[0].expires, dl = (o.installer || '').trim();
+    if (lang === 'fa') return ['سلام ' + (o.name || '') + ' عزیز،', 'ممنون از خریدت! لایسنست آماده‌ست:', ''].concat(rows.map(function (r) { return (faNames[r.product] || r.product) + ': ⁦' + r.code + '⁩'; }), ['', 'پلن: ' + faPlan[o.plan] + (exp ? ' (اعتبار تا ⁦' + exp + '⁩)' : ''), dl ? 'لینک دانلود نصب‌کننده: ⁦' + dl + '⁩' : 'نصب‌کننده رو جداگانه برات می‌فرستم.', '', 'فعال‌سازی:', '۱. فایل EXE رو نصب کن', '۲. برنامهٔ ادوبی رو ببند و دوباره باز کن', '۳. از منوی Window پنل رو باز کن', '۴. کلید لایسنس رو بزن و Activate رو بزن', '', 'هر کلید روی یه کامپیوتر فعال می‌شه. اگه سیستمت رو عوض کردی بهم پیام بده. اگه جایی گیر کردی همین‌جا بنویس.', 'محمد']).join('\n');
+    return ['Hi ' + (o.name || '') + ',', 'Thanks for your order! Your license is ready:', ''].concat(keys, ['', 'Plan: ' + plan.label + (exp ? ' (valid until ' + exp + ')' : ' (lifetime)'), dl ? 'Installer download: ' + dl : 'I will send the installer separately.', '', 'To activate:', '1. Run the installer EXE', '2. Restart the Adobe app', '3. Open the panel from the Window menu', '4. Enter your license key and press Activate', '', 'Each key activates on one computer. If you change computers, message me and I will move it. Stuck anywhere? Just reply here.', 'Mohammad']).join('\n');
+  }
+  function licCopy(btn, txt) { var done = function () { var t = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = t; }, 1400); }; if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, function () { window.prompt('Copy:', txt); }); else window.prompt('Copy:', txt); }
+  function licensesPane() {
+    var pane = h('section', { class: 'pane', 'aria-label': 'Licenses' }); pane.appendChild(h('h2', { text: 'Licenses' }));
+    pane.appendChild(h('p', { class: 'hint', text: 'Issue, search and revoke license keys on your license server (the hb-license worker). Keys are created on payment confirmation by hand for now; the same function can be called by a payment webhook later.' }));
+    var msg = h('p', { class: 'hint', role: 'status', style: 'min-height:1.4em' }), say = function (t, bad) { msg.textContent = t || ''; msg.style.color = bad ? 'var(--bad,#e5736b)' : ''; };
+    var base = h('input', { type: 'url', dir: 'ltr', placeholder: 'https://hb-license.<your-account>.workers.dev', value: licBase() }), secret = h('input', { type: 'password', dir: 'ltr', autocomplete: 'off', placeholder: 'Admin secret (this session only)', value: ssGet('hb.lic.secret') || '' });
+    base.addEventListener('change', function () { lsSet('hb.lic.base', base.value.trim()); }); secret.addEventListener('change', function () { ssSet('hb.lic.secret', secret.value); });
+    pane.appendChild(h('div', { class: 'field' }, h('label', { text: 'License server URL' }), base, h('label', { text: 'Admin secret' }), secret));
+    function sel(opts, val) { var s = h('select'); Object.keys(opts).forEach(function (k) { s.appendChild(h('option', { value: k, text: typeof opts[k] === 'string' ? opts[k] : opts[k].label })); }); s.value = val; return s; }
+    var prod = sel(LIC_PRODUCTS, 'sub'), plan = sel(LIC_PLANS, 'life'), nm = h('input', { dir: 'auto', placeholder: 'Customer name' }), ct = h('input', { dir: 'ltr', placeholder: 'Email or phone' }), note = h('input', { dir: 'auto', placeholder: 'Note (payment ref…)' }), inst = h('input', { type: 'url', dir: 'ltr', placeholder: 'Installer download link (optional)', value: lsGet('hb.lic.inst') || '' });
+    inst.addEventListener('change', function () { lsSet('hb.lic.inst', inst.value.trim()); });
+    var out = h('div'), go = h('button', { type: 'button', class: 'btn', text: 'Generate license' });
+    pane.appendChild(h('div', { class: 'field' }, h('label', { text: 'Product' }), prod, h('label', { text: 'Plan' }), plan, h('label', { text: 'Customer' }), nm, ct, note, inst, h('div', { style: 'margin-top:10px' }, go), msg, out));
+    go.onclick = function () {
+      lsSet('hb.lic.base', base.value.trim()); ssSet('hb.lic.secret', secret.value); go.disabled = true; say('Generating…'); clear(out);
+      var o = { product: prod.value, plan: plan.value, name: nm.value.trim(), contact: ct.value.trim(), note: note.value.trim(), installer: inst.value };
+      HBLicense.generate(o).then(function (rows) {
+        say('Done: ' + rows.length + ' key' + (rows.length > 1 ? 's' : '') + ' created.');
+        rows.forEach(function (r) { var cb = h('button', { type: 'button', class: 'btn ghost sm', text: 'Copy' }); cb.onclick = function () { licCopy(cb, r.code); }; out.appendChild(h('div', { class: 'row', style: 'gap:10px;align-items:center;margin:6px 0' }, h('b', { text: LIC_PRODUCTS[r.product] || r.product }), h('code', { dir: 'ltr', text: r.code }), cb, h('span', { class: 'hint', text: r.expires ? 'valid until ' + r.expires : 'lifetime' }))); });
+        ['fa', 'en'].forEach(function (lg) { var m = licMessage(lg, rows, o), ta = h('textarea', { rows: 12, readonly: true, dir: lg === 'fa' ? 'rtl' : 'ltr', style: 'width:100%;margin-top:8px' }); ta.value = m; var cb = h('button', { type: 'button', class: 'btn ghost sm', text: lg === 'fa' ? 'Copy Persian message' : 'Copy English message' }); cb.onclick = function () { licCopy(cb, m); }; out.appendChild(h('div', { style: 'margin-top:14px' }, cb, ta)); });
+      }).catch(function (e) { say(e.message, true); }).then(function () { go.disabled = false; });
+    };
+    pane.appendChild(h('h3', { text: 'All licenses', style: 'margin:30px 0 8px' }));
+    var q = h('input', { dir: 'auto', placeholder: 'Search by key, name, email, product…', style: 'width:100%' }), lst = h('div'), all = [];
+    var ref = h('button', { type: 'button', class: 'btn ghost sm', text: 'Load / refresh' });
+    function paint() {
+      clear(lst); var t = q.value.trim().toLowerCase();
+      all.filter(function (l) { return !t || [l.code, l.name, l.contact, l.product, l.note, l.machine, l.status].join(' ').toLowerCase().indexOf(t) >= 0; }).forEach(function (l) {
+        var act = function (label, action, extra, ask) { var b = h('button', { type: 'button', class: 'btn ghost sm', text: label }); b.onclick = function () { if (ask && !confirm(ask)) return; b.disabled = true; HBLicense.update(l.code, action, extra).then(function () { return HBLicense.list(); }).then(function (r) { all = r; paint(); say(label + ' done.'); }).catch(function (e) { say(e.message, true); b.disabled = false; }); }; return b; };
+        var exp = l.type === 'sub' ? 'expires ' + (l.expires || '?') : 'lifetime';
+        var ext = h('button', { type: 'button', class: 'btn ghost sm', text: 'Extend…' }); ext.onclick = function () { var d = prompt('New expiry date (YYYY-MM-DD):', l.expires || ''); if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) HBLicense.update(l.code, 'extend', { expires: d }).then(function () { return HBLicense.list(); }).then(function (r) { all = r; paint(); }).catch(function (e) { say(e.message, true); }); };
+        lst.appendChild(h('div', { class: 'tile', style: 'padding:12px 14px;margin:8px 0;border:1px solid var(--line,#333);border-radius:10px' }, h('div', { class: 'row', style: 'gap:10px;align-items:center;flex-wrap:wrap' }, h('code', { dir: 'ltr', text: l.code }), h('b', { text: l.product }), h('span', { class: 'hint', text: l.status + ' · ' + exp + ' · ' + (l.machine ? 'bound' : 'not activated') })), h('div', { class: 'hint', dir: 'auto', text: [l.name, l.contact, l.note].filter(Boolean).join(' · ') }), h('div', { class: 'row', style: 'gap:6px;flex-wrap:wrap;margin-top:6px' }, l.status === 'active' ? act('Revoke', 'revoke', null, 'Revoke this license?') : act('Restore', 'restore'), act('Free machine', 'reset', null, 'Unbind from its machine so it can be activated again?'), l.type === 'sub' ? ext : null, act('Delete', 'delete', null, 'Permanently delete this license record?'))));
+      });
+      if (!lst.firstChild) lst.appendChild(h('p', { class: 'hint', text: all.length ? 'Nothing matches.' : 'Load the list to see licenses.' }));
+    }
+    ref.onclick = function () { ssSet('hb.lic.secret', secret.value); lsSet('hb.lic.base', base.value.trim()); say('Loading…'); HBLicense.list().then(function (r) { all = r; paint(); say(r.length + ' licenses.'); }).catch(function (e) { say(e.message, true); }); };
+    q.addEventListener('input', paint);
+    pane.appendChild(h('div', { class: 'row', style: 'gap:10px;margin-bottom:10px' }, ref)); pane.appendChild(q); pane.appendChild(lst); paint();
+    return pane;
+  }
   function renderTab(tab) {
+    if (tab === 'licenses') return licensesPane();
     var pane = h('section', { class: 'pane', 'aria-label': human(tab) }), v = S.content[tab];
     pane.appendChild(h('h2', { text: TAB_LABELS[tab] || human(tab) }));
     if (TAB_HINT[tab]) pane.appendChild(h('p', { class: 'hint', text: TAB_HINT[tab] }));
@@ -425,7 +500,7 @@
   }
 
   function showEditor() {
-    var tabs = Object.keys(S.content).filter(function (k) { return k !== 'version'; });
+    var tabs = Object.keys(S.content).filter(function (k) { return k !== 'version'; }).concat(['licenses']);
     if (tabs.indexOf(S.tab) < 0) S.tab = tabs[0];
     var main = h('div', { class: 'wrap ed' }), tabbar = h('nav', { class: 'tabs', role: 'tablist', 'aria-label': 'Sections' }), content = h('div');
     function paintTab() { titleRefs = []; clear(content).appendChild(renderTab(S.tab)); $$tabs(); }

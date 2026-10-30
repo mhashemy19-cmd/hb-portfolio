@@ -527,3 +527,20 @@ html[lang="fa"] .sheet-top h2{line-height:1.4}
 .o-steps b{color:var(--key-2);font-weight:700}
 .sheet .row .btn{flex:1 1 130px}
 .fld input[aria-invalid="true"]{border-color:var(--bad)}
+/* plan selector */
+.plan-seg{grid-template-columns:1fr 1fr;margin:4px 0 8px;width:100%}
+.plan-seg button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:52px;padding:6px 8px;line-height:1.2;text-align:center}
+.plan-seg button em{font:700 .62rem var(--f-ui);font-style:normal;letter-spacing:.04em;color:#0a0a0b;background:var(--key);border-radius:999px;padding:1px 8px}
+@media(min-width:560px){.plan-seg{grid-template-columns:repeat(4,1fr)}}
+.plan-seg button em.alt{background:transparent;color:var(--key-2);box-shadow:inset 0 0 0 1px var(--key)}
+/* product demo video */
+.demo-sq{position:relative;aspect-ratio:1/1;max-width:560px;margin-inline:auto;background:var(--bg-2);border-radius:var(--r);overflow:hidden}
+.demo-sq video{width:100%;height:100%;object-fit:cover;display:block}
+.demo-sq .unmute{position:absolute;inset-block-end:14px;inset-inline-end:14px;min-height:40px;padding:0 16px;border-radius:999px;background:rgba(6,6,7,.72);backdrop-filter:blur(10px);color:var(--ink);font:700 .82rem var(--f-ui);border:1px solid var(--line)}
+.demo-sq .unmute[aria-pressed="true"]{border-color:var(--key);color:var(--key-2)}
+.demo-sq .demo-note{position:absolute;inset-block-start:12px;inset-inline-start:14px;font:700 .66rem var(--f-ui);letter-spacing:.1em;color:rgba(255,255,255,.6);text-transform:uppercase;pointer-events:none;unicode-bidi:plaintext}
+/* bidi hygiene for prices and mixed text */
+.price-row .pv{unicode-bidi:isolate}
+.price-row .pv b,.price-row .pv s{unicode-bidi:isolate}
+.price-lic,.note,.badge,.save-pill,.plist li,.faq summary,.faq p,.pd-more p,.pd-more h3,.tile p,.tile h3,.step p,.step h3,.o-sum .t{unicode-bidi:plaintext;text-align:start}
+.plan-seg button span,.plan-seg button em{unicode-bidi:plaintext}

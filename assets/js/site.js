@@ -468,7 +468,7 @@
     host.innerHTML = HB.content.tools.items.map(function (t) {
       var sell = ST.sellable(t);
       var actions = sell ? '<div class="tool-actions">' + buyBtns(t) + '<a class="btn ghost" href="' + esc(ST.url(t.id)) + '">' + esc(UI('store.details')) + '</a></div>' : '<button type="button" class="btn" data-notify="' + esc(L(t.name)) + '">' + esc(UI('cta.notify')) + '</button>';
-      return '<article class="tool rv" id="' + esc(t.id) + '"><div class="tool-vis" style="--h:' + esc(t.hue || 38) + '">' + toolVis(t) + '</div><div class="tool-body"><div class="badges"><span class="badge ' + (t.status === 'soon' ? 'soon' : '') + '"><i></i>' + esc(UI('status.' + t.status)) + '</span></div><span class="kind">' + esc(L(t.kind)) + '</span><h3>' + (sell ? '<a href="' + esc(ST.url(t.id)) + '">' + esc(L(t.name)) + '</a>' : esc(L(t.name))) + '</h3><p>' + esc(L(t.description)) + '</p>' + (sell ? ST.priceHTML(t) + (t.trial ? '<p class="note">' + esc(trialText(t)) + '</p>' : '') : '') + actions + '</div></article>';
+      return '<article class="tool rv" id="' + esc(t.id) + '"><div class="tool-vis" style="--h:' + esc(t.hue || 38) + '">' + toolVis(t) + '</div><div class="tool-body"><div class="badges"><span class="badge ' + (t.status === 'soon' ? 'soon' : '') + '"><i></i>' + esc(UI('status.' + t.status)) + '</span></div><span class="kind">' + esc(L(t.kind)) + '</span><h3>' + (sell ? '<a href="' + esc(ST.url(t.id)) + '">' + esc(L(t.name)) + '</a>' : esc(L(t.name))) + '</h3><p>' + esc(L(t.description)) + '</p>' + (sell ? ST.priceHTML(t, { noPlans: true }) + (t.trial ? '<p class="note">' + esc(trialText(t)) + '</p>' : '') : '') + actions + '</div></article>';
     }).join('');
     var bh = $('#bundle'); if (bh) bh.innerHTML = bundleBand();
     var sh = $('#how'); if (sh) sh.innerHTML = '<div class="sec-head rv"><span class="eyebrow">' + esc(UI('nav.tools')) + '</span><h2 class="display">' + esc(UI('store.stepsTitle')) + '</h2><p class="lead">' + esc(UI('store.stepsSub')) + '</p></div>' + stepsHTML() + '<p class="note" style="margin-top:18px">' + esc(UI('store.payNote')) + '</p>';
@@ -610,18 +610,39 @@
   ST.toman = function (n) { var v = Number(n).toLocaleString('en-US'); if (HB.lang === 'fa') v = faDigits(v).replace(/,/g, '٬'); return v; };
   ST.tomanFull = function (n) { return ST.toman(n) + ' ' + UI('store.toman'); };
   ST.usd = function (n) { return '$' + Number(n).toLocaleString('en-US'); };
-  function regionRows(p) {
-    var iran = { k: 'iran', label: UI('store.iran'), now: '<b>' + esc(ST.tomanFull(p.price)) + '</b>', was: +p.regularPrice > +p.price ? '<s>' + esc(ST.toman(p.regularPrice)) + '</s>' : '' };
-    var intl = { k: 'intl', label: UI('store.intl'), now: '<b class="num">' + esc(ST.usd(p.priceUsd)) + '</b>', was: +p.regularPriceUsd > +p.priceUsd ? '<s class="num">' + esc(ST.usd(p.regularPriceUsd)) + '</s>' : '' };
+  ST.PLANS = ['1', '3', '12', 'life']; ST.plan = 'life';
+  ST.planOf = function (p, plan) {
+    var x = plan !== 'life' && p.plans && p.plans[plan];
+    if (!x) return { tn: +p.price, usd: +p.priceUsd, wasTn: +p.regularPrice, wasUsd: +p.regularPriceUsd };
+    return { tn: +x.price, usd: +x.usd, wasTn: Math.round(x.price * 1.3 / 1000) * 1000, wasUsd: Math.round(x.usd * 1.3) };
+  };
+  ST.saving = function (p, plan) { var sT = 0, sU = 0; (p.items || []).forEach(function (id) { var o = ST.planOf(ST.find(id), plan); sT += o.tn; sU += o.usd; }); var b = ST.planOf(p, plan); return { tn: Math.max(0, sT - b.tn), usd: Math.max(0, sU - b.usd) }; };
+  ST.planLabel = function (plan) { return UI('plan.' + plan); };
+  function regionRows(p, plan) {
+    var o = ST.planOf(p, plan || 'life');
+    var iran = { k: 'iran', label: UI('store.iran'), now: '<b>' + esc(ST.tomanFull(o.tn)) + '</b>', was: o.wasTn > o.tn ? '<s>' + esc(ST.toman(o.wasTn)) + '</s>' : '' };
+    var intl = { k: 'intl', label: UI('store.intl'), now: '<b class="num">' + esc(ST.usd(o.usd)) + '</b>', was: o.wasUsd > o.usd ? '<s class="num">' + esc(ST.usd(o.wasUsd)) + '</s>' : '' };
     var rows = HB.lang === 'fa' ? [iran, intl] : [intl, iran];
-    return rows.filter(function (r) { return r.k === 'iran' ? +p.price > 0 : +p.priceUsd > 0; });
+    return rows.filter(function (r) { return r.k === 'iran' ? o.tn > 0 : o.usd > 0; });
+  }
+  function planSeg(p, plan, attr) {
+    if (!(p.plans || p.isBundle)) return '';
+    return '<div class="seg plan-seg" role="group" aria-label="' + esc(UI('plan.title')) + '">' + ST.PLANS.map(function (k) {
+      return '<button type="button" ' + attr + '="' + k + '" aria-pressed="' + (k === plan) + '"><span>' + esc(UI('plan.' + k)) + '</span>' + (k === '12' ? '<em>' + esc(UI('plan.best')) + '</em>' : k === 'life' ? '<em class="alt">' + esc(UI('plan.lifeTag')) + '</em>' : '') + '</button>'; }).join('') + '</div>';
   }
   ST.priceHTML = function (p, opts) {
-    opts = opts || {};
-    var rows = regionRows(p).map(function (r) { return '<div class="price-row"><span class="rg">' + esc(r.label) + '</span><span class="pv">' + r.now + r.was + '</span></div>'; }).join('');
-    var save = p.isBundle && (p.saveTn > 0 || p.saveUsd > 0) ? '<div><span class="save-pill">' + esc(UI('store.save')) + ' ' + esc(ST.tomanFull(p.saveTn)) + ' · <span class="num">' + esc(ST.usd(p.saveUsd)) + '</span></span></div>' : '';
-    return '<div class="price-box">' + (opts.noBadge ? '' : '<div class="badges"><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span></div>') + rows + '<span class="price-lic">' + esc(UI('store.lifetime')) + '</span>' + save + '</div>';
+    opts = opts || {}; var plan = opts.noPlans ? 'life' : ST.plan, o = ST.planOf(p, plan);
+    var rows = regionRows(p, plan).map(function (r) { return '<div class="price-row"><span class="rg">' + esc(r.label) + '</span><span class="pv">' + r.now + r.was + '</span></div>'; }).join('');
+    var sv = p.isBundle ? ST.saving(p, plan) : null;
+    var save = sv && (sv.tn > 0 || sv.usd > 0) ? '<div><span class="save-pill">' + esc(UI('store.save')) + ' ' + esc(ST.tomanFull(sv.tn)) + ' · <span class="num">' + esc(ST.usd(sv.usd)) + '</span></span></div>' : '';
+    var from = opts.noPlans && p.plans && p.plans['1'] ? '<span class="price-lic">' + esc(UI('store.from').replace('{p}', HB.lang === 'fa' ? ST.tomanFull(p.plans['1'].price) : ST.usd(p.plans['1'].usd))) + '</span>' : '';
+    return '<div class="price-box" data-pid="' + esc(p.id) + '"' + (opts.noPlans ? '' : ' data-plans="1"') + (opts.noBadge ? ' data-nobadge="1"' : '') + '>' + (opts.noBadge ? '' : '<div class="badges"><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span></div>') + (opts.noPlans ? '' : planSeg(p, plan, 'data-plan')) + rows + '<span class="price-lic">' + esc(plan === 'life' ? UI('store.lifetime') : UI('plan.dur.' + plan)) + '</span>' + from + save + '</div>';
   };
+  document.addEventListener('click', function (e) {
+    var um = e.target.closest('[data-unmute]'); if (um) { var vd = um.parentNode.querySelector('video'); if (!vd) return; vd.muted = !vd.muted; if (!vd.muted) { vd.volume = 1; try { vd.play(); } catch (x) {} } um.setAttribute('aria-pressed', String(!vd.muted)); um.textContent = UI(vd.muted ? 'store.unmute' : 'store.mute'); return; }
+    var b = e.target.closest('[data-plan]'); if (!b) return; ST.plan = b.getAttribute('data-plan');
+    $$('.price-box[data-plans]').forEach(function (box) { var p = ST.get(box.getAttribute('data-pid')); if (!p) return; var t = document.createElement('div'); t.innerHTML = ST.priceHTML(p, { noBadge: !!box.getAttribute('data-nobadge') }); box.replaceWith(t.firstChild); });
+  });
   ST.url = function (id) { return page('product.html') + '?id=' + encodeURIComponent(id); };
   function trialText(t) { return UI('store.trialNote').replace('{n}', numFmt(t.trialDays || 7)); }
   function buyBtns(p) {
@@ -631,7 +652,7 @@
   }
 
   /* order sheet: choose product, name + email, then WhatsApp / Telegram / email with a prefilled message */
-  var OS = { id: '', trial: false, region: '', name: '', email: '', opener: null };
+  var OS = { id: '', trial: false, region: '', plan: 'life', name: '', email: '', opener: null };
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   function orderOptions() {
     var list = ST.products().filter(function (t) { return !OS.trial || t.trial; }).map(function (t) { return [t.id, L(t.name)]; });
@@ -645,8 +666,9 @@
     if (p.isBundle) lines.push(UI('store.msg.bundleIncludes') + ': ' + p.items.map(function (id) { return L(ST.find(id).name); }).join(', '));
     if (OS.trial) lines.push(UI('store.msg.trialDays') + ': ' + trialText(p));
     else {
-      lines.push(UI('store.msg.license') + ': ' + UI('store.lifetime'));
-      lines.push(UI('store.msg.price') + ': ' + (intl ? ST.usd(p.priceUsd) : ST.tomanFull(p.price)) + ' (' + UI('store.msg.launchPrice') + ')');
+      var po = ST.planOf(p, OS.plan), bdi = function (x) { return HB.lang === 'fa' ? '\u2066' + x + '\u2069' : x; };
+      lines.push(UI('store.msg.plan') + ': ' + UI('plan.' + OS.plan) + ' (' + (OS.plan === 'life' ? UI('store.lifetime') : UI('plan.dur.' + OS.plan)) + ')');
+      lines.push(UI('store.msg.price') + ': ' + (intl ? bdi(ST.usd(po.usd)) : ST.tomanFull(po.tn)) + ' (' + UI('store.msg.launchPrice') + ')');
     }
     lines.push(UI('store.name') + ': ' + OS.name.trim(), UI('store.email') + ': ' + OS.email.trim(), '', UI(OS.trial ? 'store.msg.closeTrial' : 'store.msg.close'));
     return lines.join('\n');
@@ -665,10 +687,10 @@
   function orderSummary() {
     var p = ST.get(OS.id); if (!p) return '';
     if (OS.trial) return '<div class="o-sum"><span class="t">' + esc(L(p.name)) + '</span><span class="price-lic">' + esc(trialText(p)) + '</span></div>';
-    var intl = OS.region === 'intl';
-    var now = intl ? '<b class="num">' + esc(ST.usd(p.priceUsd)) + '</b>' : '<b>' + esc(ST.tomanFull(p.price)) + '</b>';
-    var was = intl ? (+p.regularPriceUsd > +p.priceUsd ? '<s class="num">' + esc(ST.usd(p.regularPriceUsd)) + '</s>' : '') : (+p.regularPrice > +p.price ? '<s>' + esc(ST.toman(p.regularPrice)) + '</s>' : '');
-    return '<div class="o-sum"><span class="t">' + esc(L(p.name)) + '</span><div class="price-row solo"><span class="pv">' + now + was + '</span><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span></div><span class="price-lic">' + esc(UI('store.lifetime')) + '</span></div>';
+    var intl = OS.region === 'intl', po = ST.planOf(p, OS.plan);
+    var now = intl ? '<b class="num">' + esc(ST.usd(po.usd)) + '</b>' : '<b>' + esc(ST.tomanFull(po.tn)) + '</b>';
+    var was = intl ? (po.wasUsd > po.usd ? '<s class="num">' + esc(ST.usd(po.wasUsd)) + '</s>' : '') : (po.wasTn > po.tn ? '<s>' + esc(ST.toman(po.wasTn)) + '</s>' : '');
+    return '<div class="o-sum"><span class="t">' + esc(L(p.name)) + '</span><div class="price-row solo"><span class="pv">' + now + was + '</span><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span></div><span class="price-lic">' + esc(OS.plan === 'life' ? UI('store.lifetime') : UI('plan.dur.' + OS.plan)) + '</span></div>';
   }
   function buildSheet(focus) {
     var e = sheetEls(), sh = e.sh, steps = storeCfg().steps || [];
@@ -677,6 +699,7 @@
     sh.innerHTML = '<div class="sheet-top"><div><h2 class="display" id="sheet-h">' + esc(UI(OS.trial ? 'store.trialTitle' : 'store.orderTitle')) + '</h2><p class="mute" style="margin-top:6px;font-size:.92rem">' + esc(UI('store.orderSub')) + '</p></div><button type="button" class="x" data-close-sheet aria-label="' + esc(UI('cta.close')) + '">' + IC.x + '</button></div>' +
       '<div class="fld"><label for="o-prod">' + esc(UI('store.product')) + '</label><select id="o-prod">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === OS.id ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select></div>' +
       (OS.trial ? '' : '<div class="fld"><label id="o-reg-l">' + esc(UI('store.region')) + '</label><div class="seg" role="group" aria-labelledby="o-reg-l"><button type="button" data-region="iran" aria-pressed="' + (OS.region === 'iran') + '">' + esc(UI('store.iran')) + ' · ' + esc(UI('store.toman')) + '</button><button type="button" data-region="intl" aria-pressed="' + (OS.region === 'intl') + '">' + esc(UI('store.intl')) + ' · USD</button></div></div>') +
+      (OS.trial ? '' : '<div class="fld"><label>' + esc(UI('plan.title')) + '</label>' + planSeg(ST.get(OS.id) || {}, OS.plan, 'data-oplan') + '</div>') +
       '<div id="o-sum">' + orderSummary() + '</div>' +
       '<div class="form-2"><div class="fld"><label for="o-name">' + esc(UI('store.name')) + '</label><input id="o-name" autocomplete="name" dir="auto" value="' + esc(OS.name) + '"></div><div class="fld"><label for="o-email">' + esc(UI('store.email')) + '</label><input id="o-email" type="email" inputmode="email" autocomplete="email" dir="ltr" value="' + esc(OS.email) + '"></div></div>' +
       '<span id="o-err" style="display:none;color:var(--bad);font-size:.86rem" role="alert">' + esc(UI('store.invalid')) + '</span>' +
@@ -701,7 +724,7 @@
     return ok;
   }
   HB.openOrder = function (o) {
-    o = o || {}; OS.opener = document.activeElement; OS.trial = !!o.trial; OS.id = o.id || OS.id || '';
+    o = o || {}; OS.opener = document.activeElement; OS.trial = !!o.trial; OS.plan = ST.plan; OS.id = o.id || OS.id || '';
     var p = ST.get(OS.id); if (OS.trial && !(p && p.trial)) OS.trial = false;
     var e = sheetEls(); buildSheet(true);
     requestAnimationFrame(function () { e.sh.classList.add('open'); e.sc.classList.add('open'); });
@@ -718,6 +741,8 @@
     var t = e.target.closest('[data-trial]'); if (t) { e.preventDefault(); HB.openOrder({ id: t.getAttribute('data-trial'), trial: true }); return; }
     if (e.target.closest('[data-close-sheet]')) { HB.closeOrder(); return; }
     var sh = e.target.closest('.sheet'); if (!sh) return;
+    var op = e.target.closest('[data-oplan]');
+    if (op) { OS.plan = op.getAttribute('data-oplan'); $$('[data-oplan]', sh).forEach(function (x) { x.setAttribute('aria-pressed', String(x === op)); }); $('#o-sum', sh).innerHTML = orderSummary(); syncSheet(); return; }
     var r = e.target.closest('[data-region]');
     if (r) { OS.region = r.getAttribute('data-region'); $$('[data-region]', sh).forEach(function (x) { x.setAttribute('aria-pressed', String(x === r)); }); $('#o-sum', sh).innerHTML = orderSummary(); syncSheet(); return; }
     if (e.target.closest('#o-wa') || e.target.closest('#o-mail')) { if (!checkOrder()) e.preventDefault(); return; }
@@ -730,7 +755,7 @@
   });
   document.addEventListener('change', function (e) {
     if (e.target.id !== 'o-prod') return;
-    OS.id = e.target.value; $('#o-sum').innerHTML = orderSummary(); syncSheet();
+    OS.id = e.target.value; buildSheet(false); var pe = $('#o-prod'); if (pe) pe.focus();
   });
   document.addEventListener('keydown', function (e) {
     var sh = $('.sheet.open'); if (!sh) return;
@@ -751,7 +776,7 @@
     var b = ST.bundle(); if (!b) return '';
     return '<div class="bundle rv"><div><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span><h2>' + esc(UI('store.bundleTitle')) + '</h2><p class="lead" style="font-size:1rem">' + esc(L(b.tagline)) + '</p><ul>' +
       b.items.map(function (id) { var t = ST.find(id); return '<li><a href="' + esc(ST.url(id)) + '">' + esc(L(t.name)) + '</a></li>'; }).join('') + '</ul></div>' +
-      '<div class="buy">' + ST.priceHTML(b, { noBadge: true }) + '<div class="tool-actions"><button type="button" class="btn" data-buy="bundle">' + esc(UI('store.buyBundle')) + ' ' + IC.arr + '</button></div></div></div>';
+      '<div class="buy">' + ST.priceHTML(b, { noBadge: true, noPlans: true }) + '<div class="tool-actions"><button type="button" class="btn" data-buy="bundle">' + esc(UI('store.buyBundle')) + ' ' + IC.arr + '</button></div></div></div>';
   }
   function toolVis(t) { return t.image ? '<img src="' + esc(img(t.image)) + '" alt="' + esc(L(t.name)) + '" loading="lazy">' : (TOOL_ICONS[t.icon] || TOOL_ICONS.glass); }
 
@@ -784,16 +809,16 @@
     setMeta('meta[property="og:title"]', 'content', ttl); setMeta('meta[property="og:description"]', 'content', desc); setMeta('meta[property="og:url"]', 'content', url);
     setLD(productLD(t));
     var cfg = storeCfg(), b = ST.bundle(), others = ST.products().filter(function (x) { return x.id !== t.id; });
-    var demo = t.demo ? '<div class="vid"><video src="' + esc(img(t.demo)) + '" controls playsinline preload="metadata"' + (t.image ? ' poster="' + esc(img(t.image)) + '"' : '') + '></video></div>' :
+    var demo = t.demo ? '<div class="vid demo-sq"><video src="' + esc(img(t.demo)) + '" autoplay muted loop playsinline preload="auto"' + (t.poster || t.image ? ' poster="' + esc(img(t.poster || t.image)) + '"' : '') + ' aria-label="' + esc(UI('store.demoNote')) + '"></video><button type="button" class="unmute" data-unmute aria-pressed="false">' + esc(UI('store.unmute')) + '</button><span class="demo-note">' + esc(UI('store.demoNote')) + '</span></div>' :
       '<div class="pd-poster" style="--h:' + esc(t.hue || 38) + '" role="img" aria-label="' + esc(UI('store.demoSoon')) + '">' + (TOOL_ICONS[t.icon] || TOOL_ICONS.glass) + '<div class="soon-tag"><span class="badge soon"><i></i>' + esc(UI('store.demoSoon')) + '</span></div></div>';
     var feats = (t.features || []).map(function (f, i) { return '<div class="tile rv"><div class="n">' + esc(numFmt('0' + (i + 1))) + '</div><h3>' + esc(L(f.title)) + '</h3><p>' + esc(L(f.text)) + '</p></div>'; }).join('');
     var reqs = [t.hosts].concat(cfg.requirements || []).filter(function (r) { return r && L(r); }).map(function (r) { return '<li>' + esc(L(r)) + '</li>'; }).join('');
     var inc = (cfg.includes || []).map(function (r) { return '<li>' + esc(L(r)) + '</li>'; }).join('');
     var faqs = (t.faq || []).concat(cfg.faq || []).map(function (q, i) { return '<details' + (i === 0 ? ' open' : '') + '><summary>' + esc(L(q.q)) + '</summary><p>' + esc(L(q.a)) + '</p></details>'; }).join('');
-    var upsell = b ? '<div class="pbox"><h2>' + esc(UI('store.bundleTitle')) + '</h2><p class="mute" style="margin-bottom:14px">' + esc(L(b.tagline)) + '</p>' + ST.priceHTML(b, { noBadge: true }) + '<div class="tool-actions" style="margin-top:16px"><button type="button" class="btn ghost" data-buy="bundle">' + esc(UI('store.buyBundle')) + '</button></div></div>' : '';
+    var upsell = b ? '<div class="pbox"><h2>' + esc(UI('store.bundleTitle')) + '</h2><p class="mute" style="margin-bottom:14px">' + esc(L(b.tagline)) + '</p>' + ST.priceHTML(b, { noBadge: true, noPlans: true }) + '<div class="tool-actions" style="margin-top:16px"><button type="button" class="btn ghost" data-buy="bundle">' + esc(UI('store.buyBundle')) + '</button></div></div>' : '';
     host.innerHTML = '<section class="pd-hero"><div class="wrap"><div class="pd-grid"><div class="pd-copy"><a class="eyebrow" href="' + page('tools.html') + '">' + esc(UI('nav.tools')) + '</a>' +
       '<div class="badges"><span class="badge"><i></i>' + esc(UI('status.available')) + '</span><span class="badge soon"><i></i>' + esc(L(t.kind)) + '</span></div>' +
-      '<h1 class="display">' + esc(L(t.name)) + '</h1><p class="lead">' + esc(L(t.tagline) || L(t.description)) + '</p>' + ST.priceHTML(t) +
+      '<h1 class="display">' + esc(L(t.name)) + '</h1><p class="lead">' + esc(L(t.tagline) || L(t.description)) + '</p>' + ST.priceHTML(t, { noPlans: true }) +
       '<div class="tool-actions">' + buyBtns(t) + '</div>' + (t.trial ? '<p class="note">' + esc(trialText(t)) + '</p>' : '') + '</div>' +
       '<div>' + demo + '</div></div></div></section>' +
       '<section class="wrap pd-sec"><h2 class="eyebrow">' + esc(UI('store.featuresTitle')) + '</h2><div class="pd-feats">' + feats + '</div></section>' +

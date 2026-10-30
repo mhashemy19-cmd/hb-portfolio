@@ -419,27 +419,27 @@
   },
   "store.save": {
    "en": "You save",
-   "fa": "صرفه‌جویی"
+   "fa": "سودت"
   },
   "store.buy": {
-   "en": "Buy",
-   "fa": "خرید"
+   "en": "Get it",
+   "fa": "می‌خوامش"
   },
   "store.buyBundle": {
-   "en": "Buy the bundle",
-   "fa": "خرید بسته"
+   "en": "Get the bundle",
+   "fa": "بستهٔ کامل رو می‌خوام"
   },
   "store.trial": {
-   "en": "Request trial",
-   "fa": "درخواست آزمایش"
+   "en": "Try it free",
+   "fa": "امتحانش کن"
   },
   "store.trialNote": {
    "en": "Free {n}-day trial",
    "fa": "{n} روز آزمایش رایگان"
   },
   "store.details": {
-   "en": "View details",
-   "fa": "جزئیات"
+   "en": "See how it works",
+   "fa": "ببین چی می‌تونه"
   },
   "store.lifetime": {
    "en": "Lifetime · 1 machine",
@@ -458,40 +458,40 @@
    "fa": "تومان"
   },
   "store.bundleTitle": {
-   "en": "Get all three and save",
-   "fa": "هر سه را بگیرید و صرفه‌جویی کنید"
+   "en": "Get all three, pay less",
+   "fa": "هر سه تا رو با هم بگیر، کمتر بده"
   },
   "store.bundleSub": {
-   "en": "Subtitle panel, voice panel and Sound & Music panel in one license bundle.",
-   "fa": "پنل زیرنویس، پنل صدا و پنل صدا و موسیقی در یک بستهٔ لایسنس."
+   "en": "Subtitle, voice and sound panels in one pack.",
+   "fa": "پنل زیرنویس، صدا و موسیقی تو یه بسته."
   },
   "store.stepsTitle": {
    "en": "How buying works",
-   "fa": "خرید چطور انجام می‌شود"
+   "fa": "خرید چطوریه؟"
   },
   "store.stepsSub": {
-   "en": "No payment gateway: you order by message and we issue your license by hand.",
-   "fa": "بدون درگاه پرداخت: سفارش را با پیام می‌دهید و لایسنس را دستی صادر می‌کنیم."
+   "en": "No payment gateway, no sign-up. You message me and I issue your license by hand.",
+   "fa": "درگاه و ثبت‌نام نداره. بهم پیام می‌دی و لایسنس رو خودم دستی برات صادر می‌کنم."
   },
   "store.featuresTitle": {
-   "en": "Key features",
-   "fa": "ویژگی‌های کلیدی"
+   "en": "What it does",
+   "fa": "چی کار می‌کنه"
   },
   "store.reqTitle": {
-   "en": "System requirements",
-   "fa": "نیازمندی‌های سیستم"
+   "en": "What you need",
+   "fa": "چی لازم داری"
   },
   "store.getTitle": {
    "en": "What you get",
-   "fa": "چه چیزی دریافت می‌کنید"
+   "fa": "چی دستت می‌رسه"
   },
   "store.pricingTitle": {
-   "en": "Pricing",
+   "en": "Price",
    "fa": "قیمت"
   },
   "store.faqTitle": {
-   "en": "Questions",
-   "fa": "پرسش‌های متداول"
+   "en": "Quick answers",
+   "fa": "جواب سریع"
   },
   "store.demo": {
    "en": "Demo",
@@ -507,63 +507,63 @@
   },
   "store.more": {
    "en": "More tools",
-   "fa": "ابزارهای دیگر"
+   "fa": "ابزارهای دیگه"
   },
   "store.single": {
    "en": "Single-machine license",
    "fa": "لایسنس تک‌سیستم"
   },
   "store.homeCta": {
-   "en": "Visit the store",
-   "fa": "ورود به فروشگاه"
+   "en": "Browse the tools",
+   "fa": "برو سراغ ابزارها"
   },
   "store.orderTitle": {
-   "en": "Place your order",
-   "fa": "ثبت سفارش"
+   "en": "Order your license",
+   "fa": "سفارش لایسنس"
   },
   "store.orderSub": {
-   "en": "Your order opens as a ready message. Send it, pay, and get your license within 24 hours.",
-   "fa": "سفارش شما به‌صورت پیام آماده باز می‌شود. بفرستید، پرداخت کنید و ظرف ۲۴ ساعت لایسنس بگیرید."
+   "en": "Fill in two fields and your order turns into a ready message. Send it, pay, and your license arrives within 24 hours.",
+   "fa": "دو تا فیلد رو پر کن تا سفارشت بشه یه پیام آماده. بفرست، پرداخت کن و ظرف ۲۴ ساعت لایسنست دستته."
   },
   "store.product": {
    "en": "Plugin",
-   "fa": "افزونه"
+   "fa": "پلاگین"
   },
   "store.region": {
-   "en": "I pay from",
-   "fa": "پرداخت از"
+   "en": "I'm paying from",
+   "fa": "از کجا پرداخت می‌کنم"
   },
   "store.name": {
    "en": "Your name",
-   "fa": "نام شما"
+   "fa": "اسمت"
   },
   "store.email": {
    "en": "Email",
    "fa": "ایمیل"
   },
   "store.invalid": {
-   "en": "Enter your name and a valid email",
-   "fa": "نام و یک ایمیل معتبر وارد کنید"
+   "en": "Add your name and a valid email",
+   "fa": "اسمت و یه ایمیل درست بنویس"
   },
   "store.sendVia": {
-   "en": "Send the order via",
-   "fa": "ارسال سفارش با"
+   "en": "Send it on",
+   "fa": "بفرستش با"
   },
   "store.trialTitle": {
-   "en": "Request your free trial",
+   "en": "Ask for the free trial",
    "fa": "درخواست آزمایش رایگان"
   },
   "store.payNote": {
-   "en": "Iran: card-to-card. International: crypto or PayPal, contact us to arrange.",
-   "fa": "ایران: کارت‌به‌کارت. خارج از ایران: کریپتو یا پی‌پال، برای هماهنگی با ما تماس بگیرید."
+   "en": "Iran: card-to-card. Abroad: crypto or PayPal, message me and we'll arrange it.",
+   "fa": "ایران: کارت‌به‌کارت. خارج از ایران: کریپتو یا پی‌پال؛ پیام بده تا هماهنگ کنیم."
   },
   "store.msg.order": {
-   "en": "Hello Mohammad, I would like to order a license.",
-   "fa": "سلام آقای هاشمی، می‌خواهم یک لایسنس سفارش بدهم."
+   "en": "Hi Mohammad! I'd like to get a license:",
+   "fa": "سلام محمد جان! می‌خوام این لایسنس رو بگیرم:"
   },
   "store.msg.trial": {
-   "en": "Hello Mohammad, I would like to request the free trial.",
-   "fa": "سلام آقای هاشمی، می‌خواهم آزمایش رایگان را درخواست بدهم."
+   "en": "Hi Mohammad! I'd like to try the free trial:",
+   "fa": "سلام محمد جان! می‌خوام نسخهٔ آزمایشی رو امتحان کنم:"
   },
   "store.msg.product": {
    "en": "Product",
@@ -582,12 +582,12 @@
    "fa": "آزمایش"
   },
   "store.msg.close": {
-   "en": "Please send me the payment details.",
-   "fa": "لطفاً اطلاعات پرداخت را برایم بفرستید."
+   "en": "Could you send me the payment details? Thanks!",
+   "fa": "اطلاعات پرداخت رو برام می‌فرستی؟ ممنون!"
   },
   "store.msg.closeTrial": {
-   "en": "Please send me the installer with a trial license.",
-   "fa": "لطفاً نصب‌کننده را با لایسنس آزمایشی برایم بفرستید."
+   "en": "Could you send me the installer with a trial license? Thanks!",
+   "fa": "نصب‌کننده رو با لایسنس آزمایشی برام می‌فرستی؟ ممنون!"
   },
   "store.msg.bundleIncludes": {
    "en": "Includes",
@@ -599,11 +599,83 @@
   },
   "store.notfound": {
    "en": "Product not found",
-   "fa": "محصول پیدا نشد"
+   "fa": "این محصول پیدا نشد"
   },
   "store.home.badge": {
    "en": "New · Store",
    "fa": "جدید · فروشگاه"
+  },
+  "plan.1": {
+   "en": "Monthly",
+   "fa": "ماهانه"
+  },
+  "plan.3": {
+   "en": "3 months",
+   "fa": "۳ ماهه"
+  },
+  "plan.12": {
+   "en": "12 months",
+   "fa": "۱۲ ماهه"
+  },
+  "plan.life": {
+   "en": "Lifetime",
+   "fa": "دائمی"
+  },
+  "plan.best": {
+   "en": "Best value",
+   "fa": "به‌صرفه‌ترین"
+  },
+  "plan.forever": {
+   "en": "Pay once",
+   "fa": "یه بار بده، تا همیشه"
+  },
+  "plan.dur.1": {
+   "en": "1 month · 1 machine",
+   "fa": "یه ماه · تک‌سیستم"
+  },
+  "plan.dur.3": {
+   "en": "3 months · 1 machine",
+   "fa": "سه ماه · تک‌سیستم"
+  },
+  "plan.dur.12": {
+   "en": "12 months · 1 machine",
+   "fa": "دوازده ماه · تک‌سیستم"
+  },
+  "plan.title": {
+   "en": "Pick your plan",
+   "fa": "پلنت رو انتخاب کن"
+  },
+  "store.msg.plan": {
+   "en": "Plan",
+   "fa": "پلن"
+  },
+  "store.msg.duration": {
+   "en": "Duration",
+   "fa": "مدت"
+  },
+  "store.from": {
+   "en": "From {p} / month",
+   "fa": "از ماهی {p}"
+  },
+  "store.monthShort": {
+   "en": "month",
+   "fa": "ماه"
+  },
+  "plan.lifeTag": {
+   "en": "Forever",
+   "fa": "همیشگی"
+  },
+  "store.unmute": {
+   "en": "Sound on",
+   "fa": "صدا رو روشن کن"
+  },
+  "store.mute": {
+   "en": "Mute",
+   "fa": "بی‌صدا"
+  },
+  "store.demoNote": {
+   "en": "Motion-graphic concept demo",
+   "fa": "دموی انیمیشنی از ایدهٔ ابزار"
   }
  },
  "contact": {
@@ -752,8 +824,8 @@
     "fa": "ابزارهایی که برای تدوین خودم ساختم"
    },
    "sub": {
-    "en": "Premiere and After Effects panels, now available. Lifetime license, launch prices.",
-    "fa": "پنل‌های پریمیر و افترافکتس، اکنون موجود. لایسنس دائمی، با قیمت معرفی."
+    "en": "Premiere and After Effects panels, ready to use. Lifetime license at launch prices.",
+    "fa": "پنل‌های پریمیر و افترافکتس، آمادهٔ استفاده. لایسنس دائمی، با قیمت معرفی."
    }
   }
  },
@@ -1172,12 +1244,12 @@
  },
  "tools": {
   "title": {
-   "en": "Tools I build",
-   "fa": "ابزارهایی که می‌سازم"
+   "en": "Tools I built for my own edits",
+   "fa": "ابزارهایی که برای تدوین خودم ساختم"
   },
   "sub": {
-   "en": "Plugins and panels for After Effects and Premiere. Built for my own edits first, so they have to be fast. Three are on sale now.",
-   "fa": "افزونه‌ها و پنل‌هایی برای افترافکتس و پریمیر. اول برای تدوین خودم ساخته می‌شوند، پس باید سریع باشند. سه تا از آن‌ها همین حالا برای فروش آماده‌اند."
+   "en": "Panels and plugins for Premiere and After Effects. I wrote them for my own edits first, so they had better be fast. Three are ready to buy right now.",
+   "fa": "پنل و پلاگین برای پریمیر و افترافکتس. اول برای تدوین‌های خودم نوشتمشون، برای همین باید سریع و بی‌دردسر باشن. سه‌تاشون همین الان آمادهٔ فروشن."
   },
   "items": [
    {
@@ -1192,76 +1264,76 @@
     },
     "status": "available",
     "description": {
-     "en": "One-click transcription in Persian, English and Arabic, auto-timed subtitles, and 10 to 15 animation styles with a glass background that resizes to the text.",
-     "fa": "رونویسی یک‌کلیکی به فارسی، انگلیسی و عربی، زیرنویس با زمان‌بندی خودکار و ۱۰ تا ۱۵ سبک انیمیشن با پس‌زمینهٔ شیشه‌ای که با متن هم‌اندازه می‌شود."
+     "en": "Say it in Persian, English or Arabic and it becomes text, timed and sitting right on your timeline. Then pick one of 10 to 15 animated styles. The glass plate behind the words resizes itself.",
+     "fa": "فارسی، انگلیسی یا عربی، هرچی بگی می‌شه متن و خودش سر جای درست تایم‌لاین می‌شینه. بعدش یکی از ۱۰ تا ۱۵ استایل متحرک رو بزن؛ پلیت شیشه‌ای پشت کلمه‌ها هم خودش اندازهٔ متن می‌شه."
     },
     "image": "",
     "icon": "text",
     "hue": 48,
     "tagline": {
-     "en": "Captions in Persian, English and Arabic in one click — animated, timed and styled.",
-     "fa": "زیرنویس فارسی، انگلیسی و عربی با یک کلیک — متحرک، زمان‌بندی‌شده و استایل‌دار."
+     "en": "Stop typing subtitles by hand. One click, done.",
+     "fa": "دیگه لازم نیست ساعت‌ها زیرنویس تایپ کنی؛ یه کلیک، تمام."
     },
     "hosts": {
      "en": "Adobe Premiere Pro 2022 or newer",
      "fa": "ادوبی پریمیر پرو ۲۰۲۲ یا جدیدتر"
     },
-    "price": 2900000,
-    "regularPrice": 3770000,
-    "priceUsd": 39,
-    "regularPriceUsd": 51,
+    "price": 890000,
+    "regularPrice": 1157000,
+    "priceUsd": 19,
+    "regularPriceUsd": 25,
     "trial": true,
     "trialDays": 7,
-    "demo": "",
+    "demo": "content/media/demos/subtitle-demo.mp4",
     "features": [
      {
       "title": {
        "en": "One-click transcription",
-       "fa": "رونویسی یک‌کلیکی"
+       "fa": "رونویسی با یه کلیک"
       },
       "text": {
-       "en": "Transcribe speech in Persian, English or Arabic straight from the panel.",
-       "fa": "گفتار را به فارسی، انگلیسی یا عربی مستقیم از داخل پنل به متن تبدیل کنید."
+       "en": "Turn Persian, English or Arabic speech into text without leaving the panel.",
+       "fa": "فارسی، انگلیسی یا عربی رو همون توی خود پنل به متن تبدیل کن."
       }
      },
      {
       "title": {
-       "en": "Auto-timed subtitles",
-       "fa": "زمان‌بندی خودکار"
+       "en": "Timing handled for you",
+       "fa": "زمان‌بندی با خودش"
       },
       "text": {
-       "en": "Every line lands on the timeline timed to the speech, no manual syncing.",
-       "fa": "هر خط با زمان‌بندی گفتار روی تایم‌لاین می‌نشیند، بدون همگام‌سازی دستی."
+       "en": "Every line lands where it was spoken. No more nudging captions by hand.",
+       "fa": "هر خط دقیقاً همون‌جا که گفته شده می‌شینه؛ دیگه کپشن‌ها رو با دست جابه‌جا نمی‌کنی."
       }
      },
      {
       "title": {
-       "en": "10 to 15 animation styles",
-       "fa": "۱۰ تا ۱۵ سبک انیمیشن"
+       "en": "10 to 15 animated styles",
+       "fa": "۱۰ تا ۱۵ استایل متحرک"
       },
       "text": {
-       "en": "A library of animated text styles you can apply and switch in one click.",
-       "fa": "کتابخانه‌ای از سبک‌های متن متحرک که با یک کلیک اعمال یا عوض می‌شوند."
+       "en": "A ready library of text animations. Apply one with a click, swap it with another click.",
+       "fa": "یه کتابخونهٔ آماده از انیمیشن متن. با یه کلیک می‌زنی، با یه کلیک عوضش می‌کنی."
       }
      },
      {
       "title": {
-       "en": "Glass background that fits the text",
-       "fa": "پس‌زمینهٔ شیشه‌ای هم‌اندازه با متن"
+       "en": "Glass that fits the words",
+       "fa": "شیشه‌ای که اندازهٔ کلمه‌ها می‌شه"
       },
       "text": {
-       "en": "The glass plate behind the text resizes automatically as the words change.",
-       "fa": "صفحهٔ شیشه‌ای پشت متن با تغییر کلمات خودکار هم‌اندازه می‌شود."
+       "en": "Change the text and the glass background grows or shrinks to match.",
+       "fa": "متن عوض بشه، پس‌زمینهٔ شیشه‌ای هم خودکار بزرگ و کوچیک می‌شه."
       }
      },
      {
       "title": {
-       "en": "Bilingual interface",
-       "fa": "رابط دوزبانه"
+       "en": "Speaks English and Persian",
+       "fa": "هم فارسی، هم انگلیسی"
       },
       "text": {
-       "en": "The panel itself speaks English and Persian.",
-       "fa": "خود پنل به دو زبان انگلیسی و فارسی کار می‌کند."
+       "en": "The panel itself comes in both languages.",
+       "fa": "خود پنل هم دو زبانه‌ست."
       }
      }
     ],
@@ -1269,7 +1341,7 @@
      {
       "q": {
        "en": "Which languages can it transcribe?",
-       "fa": "چه زبان‌هایی را رونویسی می‌کند؟"
+       "fa": "چه زبون‌هایی رو می‌فهمه؟"
       },
       "a": {
        "en": "Persian, English and Arabic.",
@@ -1279,11 +1351,11 @@
      {
       "q": {
        "en": "How does the free trial work?",
-       "fa": "آزمایش رایگان چگونه است؟"
+       "fa": "آزمایش رایگان چطوریه؟"
       },
       "a": {
-       "en": "Request the 7-day trial and we send you the installer with a trial license, so you can test it on your own footage before paying.",
-       "fa": "درخواست آزمایش ۷ روزه را بدهید تا نصب‌کننده را با لایسنس آزمایشی برایتان بفرستیم و پیش از پرداخت روی فوتیج خودتان امتحانش کنید."
+       "en": "Ask for the 7-day trial and I will send the installer with a trial license, so you can try it on your own footage before paying.",
+       "fa": "درخواست ۷ روز آزمایش بده؛ نصب‌کننده رو با لایسنس آزمایشی برات می‌فرستم تا قبل از پرداخت روی فوتیج خودت امتحانش کنی."
       }
      }
     ],
@@ -1292,9 +1364,24 @@
      "fa": "پنل زیرنویس خودکار پریمیر پرو — فارسی، انگلیسی، عربی"
     },
     "metaDescription": {
-     "en": "Premiere Pro panel with one-click Persian, English and Arabic transcription, auto-timed subtitles and 10–15 animated styles with a glass background. Lifetime license, 7-day free trial.",
-     "fa": "پنل پریمیر پرو با رونویسی یک‌کلیکی فارسی، انگلیسی و عربی، زیرنویس خودکار و ۱۰ تا ۱۵ سبک متحرک با پس‌زمینهٔ شیشه‌ای. لایسنس دائمی، ۷ روز آزمایش رایگان."
-    }
+     "en": "Premiere Pro panel: one-click Persian, English and Arabic transcription, auto-timed subtitles and 10–15 animated styles with a glass background. Lifetime license, 7-day free trial.",
+     "fa": "پنل پریمیر پرو: رونویسی یه‌کلیکی فارسی، انگلیسی و عربی، زیرنویس با زمان‌بندی خودکار و ۱۰ تا ۱۵ استایل متحرک با پس‌زمینهٔ شیشه‌ای. لایسنس دائمی، ۷ روز آزمایش رایگان."
+    },
+    "plans": {
+     "1": {
+      "price": 149000,
+      "usd": 4
+     },
+     "3": {
+      "price": 349000,
+      "usd": 9
+     },
+     "12": {
+      "price": 690000,
+      "usd": 15
+     }
+    },
+    "poster": "content/media/demos/subtitle-poster.jpg"
    },
    {
     "id": "voice-panel",
@@ -1308,12 +1395,12 @@
     },
     "status": "available",
     "tagline": {
-     "en": "Studio-quality voice from the clip you already selected.",
-     "fa": "صدای کیفیت استودیویی از همان کلیپی که انتخاب کرده‌اید."
+     "en": "Studio-clean voice, straight from the clip you already selected.",
+     "fa": "صدای تمیز استودیویی، از همون کلیپی که انتخاب کردی."
     },
     "description": {
-     "en": "Studio-quality voice enhancement and voice/background separation, applied to the clip you select in Premiere.",
-     "fa": "بهبود صدا در حد استودیو و جداسازی صدای گوینده از پس‌زمینه، روی کلیپی که در پریمیر انتخاب کرده‌اید."
+     "en": "Select a clip in Premiere, open the panel and clean up the voice. Need the speaker apart from the background? It splits those too.",
+     "fa": "کلیپ رو توی پریمیر انتخاب کن، پنل رو باز کن و صدا رو تمیز کن. صدای گوینده رو هم می‌تونی از پس‌زمینه جدا کنی."
     },
     "image": "",
     "icon": "mic",
@@ -1322,52 +1409,52 @@
      "en": "Adobe Premiere Pro 2022 or newer",
      "fa": "ادوبی پریمیر پرو ۲۰۲۲ یا جدیدتر"
     },
-    "price": 2400000,
-    "regularPrice": 3120000,
-    "priceUsd": 29,
-    "regularPriceUsd": 38,
+    "price": 690000,
+    "regularPrice": 897000,
+    "priceUsd": 15,
+    "regularPriceUsd": 20,
     "trial": false,
     "trialDays": 0,
-    "demo": "",
+    "demo": "content/media/demos/voice-demo.mp4",
     "features": [
      {
       "title": {
-       "en": "Studio-quality enhancement",
-       "fa": "بهبود در حد استودیو"
+       "en": "Studio-grade cleanup",
+       "fa": "تمیزکاری در حد استودیو"
       },
       "text": {
-       "en": "Clean up and lift a voice recording to a studio-grade sound.",
-       "fa": "صدای ضبط‌شده را تمیز کنید و به کیفیت استودیویی برسانید."
+       "en": "Take an ordinary recording up to a studio-grade sound.",
+       "fa": "ضبط معمولی‌ت رو به صدای استودیویی برسون."
       }
      },
      {
       "title": {
-       "en": "Voice and background separation",
-       "fa": "جداسازی صدا از پس‌زمینه"
+       "en": "Voice on one side, background on the other",
+       "fa": "گوینده یه طرف، پس‌زمینه یه طرف"
       },
       "text": {
-       "en": "Split the speaker's voice from the background audio.",
-       "fa": "صدای گوینده را از صدای پس‌زمینه جدا کنید."
+       "en": "Separate the speaker's voice from everything behind it.",
+       "fa": "صدای گوینده رو از هرچی پشتشه جدا کن."
       }
      },
      {
       "title": {
        "en": "Works on the selected clip",
-       "fa": "روی کلیپ انتخاب‌شده"
+       "fa": "روی همون کلیپ انتخاب‌شده"
       },
       "text": {
-       "en": "Select a clip in Premiere, open the panel, and process it from there.",
-       "fa": "کلیپ را در پریمیر انتخاب کنید، پنل را باز کنید و همان‌جا پردازشش کنید."
+       "en": "Pick a clip, open the panel, process it right there.",
+       "fa": "کلیپ رو انتخاب کن، پنل رو باز کن و همون‌جا پردازشش کن."
       }
      },
      {
       "title": {
-       "en": "Bilingual interface",
-       "fa": "رابط دوزبانه"
+       "en": "Speaks English and Persian",
+       "fa": "هم فارسی، هم انگلیسی"
       },
       "text": {
-       "en": "The panel itself speaks English and Persian.",
-       "fa": "خود پنل به دو زبان انگلیسی و فارسی کار می‌کند."
+       "en": "The panel itself comes in both languages.",
+       "fa": "خود پنل هم دو زبانه‌ست."
       }
      }
     ],
@@ -1375,11 +1462,11 @@
      {
       "q": {
        "en": "Which audio does it process?",
-       "fa": "روی کدام صدا کار می‌کند؟"
+       "fa": "روی کدوم صدا کار می‌کنه؟"
       },
       "a": {
        "en": "The clip you have selected in the Premiere Pro timeline.",
-       "fa": "کلیپی که در تایم‌لاین پریمیر پرو انتخاب کرده‌اید."
+       "fa": "روی کلیپی که توی تایم‌لاین پریمیر انتخاب کردی."
       }
      }
     ],
@@ -1388,9 +1475,24 @@
      "fa": "پنل بهبود و جداسازی صدا برای پریمیر پرو"
     },
     "metaDescription": {
-     "en": "Premiere Pro panel for studio-quality voice enhancement and voice/background separation on the selected clip. Lifetime single-machine license.",
-     "fa": "پنل پریمیر پرو برای بهبود صدا در حد استودیو و جداسازی صدا از پس‌زمینه روی کلیپ انتخاب‌شده. لایسنس دائمی تک‌سیستم."
-    }
+     "en": "Premiere Pro panel for studio-grade voice cleanup and voice/background separation on the selected clip. Lifetime single-machine license.",
+     "fa": "پنل پریمیر پرو برای تمیزکردن صدا در حد استودیو و جداکردن صدای گوینده از پس‌زمینه، روی کلیپ انتخاب‌شده. لایسنس دائمی تک‌سیستم."
+    },
+    "plans": {
+     "1": {
+      "price": 119000,
+      "usd": 3
+     },
+     "3": {
+      "price": 279000,
+      "usd": 7
+     },
+     "12": {
+      "price": 549000,
+      "usd": 12
+     }
+    },
+    "poster": "content/media/demos/voice-poster.jpg"
    },
    {
     "id": "sound-panel",
@@ -1404,76 +1506,76 @@
     },
     "status": "available",
     "description": {
-     "en": "Connects to your music and sound-effects folders, recognises what each sound is, files it into categories automatically, and lets you drop any style on the timeline in one click.",
-     "fa": "به پوشه‌های موسیقی و افکت صوتی شما وصل می‌شود، تشخیص می‌دهد هر صدا چیست، خودکار دسته‌بندی‌اش می‌کند و با یک کلیک هر سبک را روی تایم‌لاین می‌گذارد."
+     "en": "Point it at your music and sound-effects folders. It works out what each sound is, files it into categories, and drops any style on the timeline in one click.",
+     "fa": "بنداز روی پوشه‌های موسیقی و افکتت. می‌فهمه هر صدا چیه، خودش دسته‌بندیش می‌کنه و هر سبکی رو که خواستی با یه کلیک می‌ندازه روی تایم‌لاین."
     },
     "image": "",
     "icon": "wave",
     "hue": 38,
     "tagline": {
-     "en": "Your music and sound effects, sorted automatically and one click from the timeline.",
-     "fa": "موسیقی و افکت‌های صوتی شما، خودکار دسته‌بندی‌شده و یک کلیک تا تایم‌لاین."
+     "en": "Your music and SFX sort themselves and sit one click from the timeline.",
+     "fa": "موسیقی و افکت‌هات خودشون مرتب می‌شن و یه کلیک تا تایم‌لاین فاصله دارن."
     },
     "hosts": {
      "en": "Adobe Premiere Pro and After Effects 2022 or newer",
      "fa": "ادوبی پریمیر پرو و افترافکتس ۲۰۲۲ یا جدیدتر"
     },
-    "price": 1500000,
-    "regularPrice": 1950000,
-    "priceUsd": 19,
-    "regularPriceUsd": 25,
+    "price": 490000,
+    "regularPrice": 637000,
+    "priceUsd": 9,
+    "regularPriceUsd": 12,
     "trial": false,
     "trialDays": 0,
-    "demo": "",
+    "demo": "content/media/demos/sound-demo.mp4",
     "features": [
      {
       "title": {
-       "en": "Connects to your folders",
-       "fa": "اتصال به پوشه‌های شما"
+       "en": "Plugs into your folders",
+       "fa": "وصل به پوشه‌های خودت"
       },
       "text": {
-       "en": "Point it at your music and sound-effects folders.",
-       "fa": "آن را به پوشه‌های موسیقی و افکت صوتی خود وصل کنید."
+       "en": "Point it at your own music and sound-effects folders.",
+       "fa": "بنداز روی پوشه‌های موسیقی و افکت صوتی خودت."
       }
      },
      {
       "title": {
-       "en": "Auto-categorized library",
-       "fa": "کتابخانهٔ دسته‌بندی خودکار"
+       "en": "A library that files itself",
+       "fa": "کتابخونه‌ای که خودش مرتب می‌شه"
       },
       "text": {
-       "en": "It recognises what each sound is and files it into categories for you.",
-       "fa": "تشخیص می‌دهد هر صدا چیست و خودکار در دسته‌های مناسب قرارش می‌دهد."
+       "en": "It recognises what each sound is and puts it in the right category.",
+       "fa": "تشخیص می‌ده هر صدا چیه و می‌ذارتش تو دستهٔ درست."
       }
      },
      {
       "title": {
-       "en": "One-click to the timeline",
-       "fa": "یک کلیک تا تایم‌لاین"
+       "en": "One click to the timeline",
+       "fa": "یه کلیک تا تایم‌لاین"
       },
       "text": {
-       "en": "Drop any style of music or effect on the timeline instantly.",
-       "fa": "هر سبک موسیقی یا افکت را فوری روی تایم‌لاین بگذارید."
+       "en": "Drop any style of music or effect straight onto the timeline.",
+       "fa": "هر سبک موسیقی یا افکتی رو مستقیم بنداز روی تایم‌لاین."
       }
      },
      {
       "title": {
        "en": "Premiere and After Effects",
-       "fa": "پریمیر و افترافکتس"
+       "fa": "هم پریمیر، هم افترافکتس"
       },
       "text": {
-       "en": "One panel, available inside both apps.",
-       "fa": "یک پنل، در هر دو نرم‌افزار."
+       "en": "One panel, inside both apps.",
+       "fa": "یه پنل، توی هر دو برنامه."
       }
      },
      {
       "title": {
-       "en": "Bilingual interface",
-       "fa": "رابط دوزبانه"
+       "en": "Speaks English and Persian",
+       "fa": "هم فارسی، هم انگلیسی"
       },
       "text": {
-       "en": "The panel itself speaks English and Persian.",
-       "fa": "خود پنل به دو زبان انگلیسی و فارسی کار می‌کند."
+       "en": "The panel itself comes in both languages.",
+       "fa": "خود پنل هم دو زبانه‌ست."
       }
      }
     ],
@@ -1481,22 +1583,37 @@
      {
       "q": {
        "en": "Does it come with music?",
-       "fa": "آیا موسیقی هم همراهش هست؟"
+       "fa": "موسیقی هم همراهشه؟"
       },
       "a": {
-       "en": "The panel organizes the music and sound-effects folders you connect to it.",
-       "fa": "پنل پوشه‌های موسیقی و افکت صوتی‌ای را که به آن وصل می‌کنید سازمان‌دهی می‌کند."
+       "en": "It organizes your own library: the music and sound-effects folders you connect to it.",
+       "fa": "کتابخونهٔ خودت رو مرتب می‌کنه؛ یعنی همون پوشه‌های موسیقی و افکتی که بهش وصل می‌کنی."
       }
      }
     ],
     "metaTitle": {
      "en": "Sound & Music Panel for Premiere Pro and After Effects",
-     "fa": "پنل صدا و موسیقی برای پریمیر پرو و افترافکتس"
+     "fa": "پنل صدا و موسیقی برای پریمیر و افترافکتس"
     },
     "metaDescription": {
-     "en": "Auto-categorized music and sound-effects library inside Premiere Pro and After Effects. One-click drop to the timeline. Lifetime single-machine license.",
-     "fa": "کتابخانهٔ دسته‌بندی خودکار موسیقی و افکت صوتی داخل پریمیر پرو و افترافکتس. یک کلیک تا تایم‌لاین. لایسنس دائمی تک‌سیستم."
-    }
+     "en": "Panel for Premiere Pro and After Effects that auto-sorts your music and sound-effects folders and drops any style on the timeline in one click. Lifetime single-machine license.",
+     "fa": "پنلی برای پریمیر و افترافکتس که پوشه‌های موسیقی و افکت صوتی‌ت رو خودکار دسته‌بندی می‌کنه و هر سبکی رو با یه کلیک روی تایم‌لاین می‌ذاره. لایسنس دائمی تک‌سیستم."
+    },
+    "plans": {
+     "1": {
+      "price": 79000,
+      "usd": 2
+     },
+     "3": {
+      "price": 189000,
+      "usd": 5
+     },
+     "12": {
+      "price": 390000,
+      "usd": 7
+     }
+    },
+    "poster": "content/media/demos/sound-poster.jpg"
    },
    {
     "id": "hb-glass",
@@ -1639,18 +1756,32 @@
      "fa": "بستهٔ سه‌گانه"
     },
     "tagline": {
-     "en": "Subtitle panel, voice panel and Sound & Music panel together.",
-     "fa": "پنل زیرنویس، پنل صدا و پنل صدا و موسیقی، با هم."
+     "en": "All three panels in one pack: subtitles, voice and sound, sorted.",
+     "fa": "هر سه پنل تو یه بسته: زیرنویس، صدا و موسیقی، همه‌چیز سرجاش."
     },
     "items": [
      "subtitle-tool",
      "voice-panel",
      "sound-panel"
     ],
-    "price": 5400000,
-    "regularPrice": 7020000,
-    "priceUsd": 69,
-    "regularPriceUsd": 90
+    "price": 1690000,
+    "regularPrice": 2197000,
+    "priceUsd": 35,
+    "regularPriceUsd": 46,
+    "plans": {
+     "1": {
+      "price": 299000,
+      "usd": 7
+     },
+     "3": {
+      "price": 690000,
+      "usd": 16
+     },
+     "12": {
+      "price": 1290000,
+      "usd": 27
+     }
+    }
    },
    "requirements": [
     {
@@ -1668,27 +1799,27 @@
      "fa": "نصب‌کننده (فایل EXE)"
     },
     {
-     "en": "License key for one machine, lifetime",
-     "fa": "کلید لایسنس برای یک سیستم، دائمی"
+     "en": "Lifetime license key for one machine",
+     "fa": "کلید لایسنس دائمی برای یه سیستم"
     },
     {
      "en": "Free updates",
-     "fa": "به‌روزرسانی رایگان"
+     "fa": "آپدیت‌های رایگان"
     },
     {
-     "en": "Bilingual interface: English and Persian",
-     "fa": "رابط دوزبانه: انگلیسی و فارسی"
+     "en": "Panel in English and Persian",
+     "fa": "پنل به دو زبان فارسی و انگلیسی"
     }
    ],
    "steps": [
     {
      "title": {
-      "en": "Send your order",
-      "fa": "ارسال سفارش"
+      "en": "Send the order",
+      "fa": "سفارش رو بفرست"
      },
      "text": {
-      "en": "Pick the plugin, enter your name and email, and send the ready message on WhatsApp, Telegram or email.",
-      "fa": "افزونه را انتخاب کنید، نام و ایمیل را وارد کنید و پیام آماده را در واتساپ، تلگرام یا ایمیل بفرستید."
+      "en": "Pick the plugin, type your name and email, and send the ready message on WhatsApp, Telegram or email.",
+      "fa": "پلاگین رو انتخاب کن، اسم و ایمیلت رو بزن و پیام آماده رو تو واتساپ، تلگرام یا ایمیل بفرست."
      }
     },
     {
@@ -1697,18 +1828,18 @@
       "fa": "پرداخت"
      },
      "text": {
-      "en": "In Iran, pay by card-to-card. Internationally, we arrange crypto or PayPal together.",
-      "fa": "در ایران با کارت‌به‌کارت پرداخت کنید. برای خارج از ایران، کریپتو یا پی‌پال را با هم هماهنگ می‌کنیم."
+      "en": "In Iran it's card-to-card. From abroad we sort out crypto or PayPal together.",
+      "fa": "تو ایران کارت‌به‌کارت. از خارج از ایران هم کریپتو یا پی‌پال، با هم هماهنگ می‌کنیم."
      }
     },
     {
      "title": {
-      "en": "Receive your license",
-      "fa": "دریافت لایسنس"
+      "en": "Get your license",
+      "fa": "لایسنست رو بگیر"
      },
      "text": {
-      "en": "You get the installer and your license key within 24 hours.",
-      "fa": "نصب‌کننده و کلید لایسنس را حداکثر ظرف ۲۴ ساعت دریافت می‌کنید."
+      "en": "The installer and your license key reach you within 24 hours.",
+      "fa": "نصب‌کننده و کلید لایسنس حداکثر ظرف ۲۴ ساعت دستته."
      }
     }
    ],
@@ -1719,38 +1850,38 @@
       "fa": "چطور نصبش کنم؟"
      },
      "a": {
-      "en": "Run the installer EXE we send you, restart the Adobe app, open the panel from the Window menu and enter your license key.",
-      "fa": "فایل نصب‌کنندهٔ EXE را اجرا کنید، نرم‌افزار ادوبی را دوباره باز کنید، پنل را از منوی Window باز کنید و کلید لایسنس را وارد کنید."
+      "en": "Run the installer EXE I send you, restart the Adobe app, open the panel from the Window menu and enter your license key.",
+      "fa": "فایل EXE رو اجرا کن، برنامهٔ ادوبی رو ببند و دوباره باز کن، پنل رو از منوی Window باز کن و کلید لایسنس رو بزن."
      }
     },
     {
      "q": {
       "en": "What does “one machine” mean?",
-      "fa": "«تک‌سیستم» یعنی چه؟"
+      "fa": "«تک‌سیستم» یعنی چی؟"
      },
      "a": {
-      "en": "Each license key activates on one computer. Need to move to a new computer? Contact us and we will transfer it.",
-      "fa": "هر کلید لایسنس روی یک کامپیوتر فعال می‌شود. اگر سیستم را عوض کردید، با ما تماس بگیرید تا منتقلش کنیم."
+      "en": "Each license key activates on one computer. Switching computers? Message me and I will move it over.",
+      "fa": "هر کلید روی یه کامپیوتر فعال می‌شه. سیستمت رو عوض کردی؟ بهم پیام بده، منتقلش می‌کنم."
      }
     },
     {
      "q": {
-      "en": "Refunds and support?",
-      "fa": "بازگشت وجه و پشتیبانی؟"
+      "en": "Support and refunds?",
+      "fa": "پشتیبانی و بازگشت وجه؟"
      },
      "a": {
-      "en": "We support every buyer directly on WhatsApp and Telegram. Because a license is a digital product, refund requests are reviewed case by case: contact us first and we will sort it out.",
-      "fa": "از هر خریدار مستقیم در واتساپ و تلگرام پشتیبانی می‌کنیم. چون لایسنس محصول دیجیتال است، درخواست بازگشت وجه موردی بررسی می‌شود: ابتدا با ما تماس بگیرید تا حلش کنیم."
+      "en": "I answer every buyer directly on WhatsApp and Telegram. A license is a digital product, so refunds are decided case by case: message me first and we will find a fix.",
+      "fa": "تو واتساپ و تلگرام مستقیم جواب می‌دم. چون لایسنس محصول دیجیتاله، بازگشت وجه موردی بررسی می‌شه؛ اول بهم پیام بده، یه راهی پیدا می‌کنیم."
      }
     },
     {
      "q": {
       "en": "How can I pay?",
-      "fa": "چطور پرداخت کنم؟"
+      "fa": "چطور پول بدم؟"
      },
      "a": {
-      "en": "In Iran: card-to-card. International buyers: crypto or PayPal, contact us to arrange it.",
-      "fa": "در ایران: کارت‌به‌کارت. خریداران خارج از ایران: کریپتو یا پی‌پال؛ برای هماهنگی با ما تماس بگیرید."
+      "en": "In Iran: card-to-card. From abroad: crypto or PayPal, message me and we will arrange it.",
+      "fa": "تو ایران: کارت‌به‌کارت. از خارج از ایران: کریپتو یا پی‌پال؛ پیام بده تا هماهنگ کنیم."
      }
     }
    ]
