@@ -36,7 +36,7 @@
   var FALLBACK_UI = { 'cta.quote': 'Get a quote', 'cta.copy': 'Copy', 'toast.copied': 'Copied', 'cta.close': 'Close' };
   var img = HB.img = function (p) { if (!p) return ''; if (/^(https?:|data:|blob:)/.test(p)) return p; return ROOT + String(p).replace(/^\//, ''); };
   var page = HB.pageUrl = function (name) { return ROOT + name; };
-  var contact = function () { return (HB.content && HB.content.contact) || { email: 'Mhashemy54@yahoo.com', phone: '09211359942', phoneIntl: '+989211359942', whatsapp: 'https://wa.me/989211359942', telegram: 'https://t.me/+989211359942', instagram: 'https://instagram.com/hashemibros', instagramHandle: '@hashemibros' }; };
+  var contact = function () { return (HB.content && HB.content.contact) || { email: 'Mhashemy54@yahoo.com', phone: '09211359942', phoneIntl: '+989211359942', whatsapp: 'https://wa.me/989211359942', telegram: 'https://t.me/+989211359942', telegramUser: 'https://t.me/hashemibros', instagram: 'https://instagram.com/hashemibros', instagramHandle: '@hashemibros' }; };
   HB.contact = contact;
   var projects = function () { return (HB.content && HB.content.projects) || []; };
   HB.projects = projects;
@@ -61,6 +61,7 @@
     wave: '<svg class="ico" viewBox="0 0 60 60"><path d="M6 30h4M14 20v20M22 12v36M30 22v16M38 8v44M46 18v24M54 27v6"/></svg>',
     folder: '<svg class="ico" viewBox="0 0 60 60"><path d="M6 14h17l5 6h26v28H6z"/><path d="M6 26h48"/></svg>',
     chat: '<svg class="ico" viewBox="0 0 60 60"><path d="M8 10h44v30H26l-12 10V40H8z"/><path d="M18 22h24M18 30h14"/></svg>',
+    mic: '<svg class="ico" viewBox="0 0 60 60"><rect x="22" y="6" width="16" height="28" rx="8"/><path d="M14 28a16 16 0 0 0 32 0M30 44v10M21 54h18"/></svg>',
     text: '<svg class="ico" viewBox="0 0 60 60"><rect x="6" y="12" width="48" height="36" rx="4"/><path d="M16 36h28M22 28h16"/></svg>'
   };
 
@@ -132,7 +133,7 @@
     var titleEl = $('meta[name="hb-title"]');
     var pageTitle = titleEl ? titleEl.content : '';
     var site = L(c.site.title);
-    if (PAGE === 'project') return;
+    if (PAGE === 'project' || PAGE === 'product') return;
     document.title = pageTitle ? pageTitle.replace('{lang}', '') + ' — ' + c.site.brand : site;
     if (HB.lang === 'fa') {
       var pk = { home: 'nav.home', work: 'nav.work', studio: 'nav.studio', tools: 'nav.tools', about: 'nav.about', contact: 'nav.contact', services: 'nav.services' }[PAGE];
@@ -144,7 +145,7 @@
   /* ───────── header / footer ───────── */
   var NAV = [['home', 'index.html', 'nav.home'], ['work', 'work.html', 'nav.work'], ['studio', 'studio.html', 'nav.studio'], ['services', 'services.html', 'nav.services'], ['tools', 'tools.html', 'nav.tools'], ['about', 'about.html', 'nav.about'], ['contact', 'contact.html', 'nav.contact']];
   function navLinks() {
-    return NAV.map(function (n) { return '<a href="' + page(n[1]) + '"' + (n[0] === PAGE || (PAGE === 'project' && n[0] === 'work') ? ' aria-current="page"' : '') + '>' + esc(UI(n[2])) + '</a>'; }).join('');
+    return NAV.map(function (n) { return '<a href="' + page(n[1]) + '"' + (n[0] === PAGE || (PAGE === 'project' && n[0] === 'work') || (PAGE === 'product' && n[0] === 'tools') ? ' aria-current="page"' : '') + '>' + esc(UI(n[2])) + '</a>'; }).join('');
   }
   function langSwitch() {
     return '<div class="lang" role="group" aria-label="' + esc(UI('label.language')) + '"><button type="button" data-lang="en" aria-pressed="' + (HB.lang === 'en') + '">EN</button><button type="button" data-lang="fa" aria-pressed="' + (HB.lang === 'fa') + '" lang="fa">فا</button></div>';
@@ -417,6 +418,16 @@
       if (!list.length) list = projects().slice(0, 4);
       fe.innerHTML = list.map(HB.cardHTML).join('');
     }
+    var sh = $('#store-home'); if (sh) {
+      var pl = ST.products(), bd = ST.bundle();
+      sh.hidden = !pl.length;
+      if (pl.length) {
+        $('#store-title', sh).textContent = L(c.home.store && c.home.store.title) || UI('nav.tools');
+        $('#store-sub', sh).textContent = L(c.home.store && c.home.store.sub);
+        $('#store-grid', sh).innerHTML = pl.map(function (t) { var r = regionRows(t)[0]; return '<a class="tile sc-tile rv" href="' + esc(ST.url(t.id)) + '"><span class="eyebrow" style="font-size:.66rem">' + esc(L(t.kind)) + '</span><h3>' + esc(L(t.name)) + '</h3><p>' + esc(L(t.tagline) || L(t.description)) + '</p><div class="price-row solo"><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span><span class="pv">' + r.now + r.was + '</span></div></a>'; }).join('');
+        $('#store-cta', sh).innerHTML = (bd ? '<button type="button" class="btn" data-buy="bundle">' + esc(UI('store.buyBundle')) + ' ' + IC.arr + '</button>' : '') + '<a class="btn ghost" href="' + page('tools.html') + '">' + esc(UI('store.homeCta')) + '</a>' + (bd ? '<span class="save-pill">' + esc(UI('store.save')) + ' ' + esc(HB.lang === 'fa' ? ST.tomanFull(bd.saveTn) : ST.usd(bd.saveUsd)) + '</span>' : '');
+      }
+    }
     var sv = $('#teaser'); if (sv) sv.innerHTML = h.services.items.map(function (it, i) { return '<div class="tile rv"><div class="n">' + numFmt('0' + (i + 1)) + '</div><h3>' + esc(L(it.title)) + '</h3><p>' + esc(L(it.text)) + '</p></div>'; }).join('');
   };
   R.work = function () {
@@ -455,9 +466,12 @@
   R.tools = function () {
     var host = $('#tools'); if (!host) return;
     host.innerHTML = HB.content.tools.items.map(function (t) {
-      var vis = t.image ? '<img src="' + esc(img(t.image)) + '" alt="' + esc(L(t.name)) + '" loading="lazy">' : (TOOL_ICONS[t.icon] || TOOL_ICONS.glass);
-      return '<article class="tool rv" id="' + esc(t.id) + '"><div class="tool-vis" style="--h:' + esc(t.hue || 38) + '">' + vis + '</div><div class="tool-body"><span class="badge ' + (t.status === 'soon' ? 'soon' : '') + '"><i></i>' + esc(UI('status.' + t.status)) + '</span><span class="kind">' + esc(L(t.kind)) + '</span><h3>' + esc(L(t.name)) + '</h3><p>' + esc(L(t.description)) + '</p><button type="button" class="btn" data-notify="' + esc(L(t.name)) + '">' + esc(UI('cta.notify')) + '</button></div></article>';
+      var sell = ST.sellable(t);
+      var actions = sell ? '<div class="tool-actions">' + buyBtns(t) + '<a class="btn ghost" href="' + esc(ST.url(t.id)) + '">' + esc(UI('store.details')) + '</a></div>' : '<button type="button" class="btn" data-notify="' + esc(L(t.name)) + '">' + esc(UI('cta.notify')) + '</button>';
+      return '<article class="tool rv" id="' + esc(t.id) + '"><div class="tool-vis" style="--h:' + esc(t.hue || 38) + '">' + toolVis(t) + '</div><div class="tool-body"><div class="badges"><span class="badge ' + (t.status === 'soon' ? 'soon' : '') + '"><i></i>' + esc(UI('status.' + t.status)) + '</span></div><span class="kind">' + esc(L(t.kind)) + '</span><h3>' + (sell ? '<a href="' + esc(ST.url(t.id)) + '">' + esc(L(t.name)) + '</a>' : esc(L(t.name))) + '</h3><p>' + esc(L(t.description)) + '</p>' + (sell ? ST.priceHTML(t) + (t.trial ? '<p class="note">' + esc(trialText(t)) + '</p>' : '') : '') + actions + '</div></article>';
     }).join('');
+    var bh = $('#bundle'); if (bh) bh.innerHTML = bundleBand();
+    var sh = $('#how'); if (sh) sh.innerHTML = '<div class="sec-head rv"><span class="eyebrow">' + esc(UI('nav.tools')) + '</span><h2 class="display">' + esc(UI('store.stepsTitle')) + '</h2><p class="lead">' + esc(UI('store.stepsSub')) + '</p></div>' + stepsHTML() + '<p class="note" style="margin-top:18px">' + esc(UI('store.payNote')) + '</p>';
   };
   R.services = function () {
     var host = $('#tiers'), s = HB.content.services; if (!host) return;
@@ -574,6 +588,222 @@
     host.innerHTML = '<div class="grid">' + projects().map(HB.cardHTML).join('') + '</div>'; reveal(host);
   }
   HB.renderStudioList = renderStudioList;
+
+
+  /* ───────── store: prices, order sheet, product page ───────── */
+  var ST = HB.store = {};
+  var storeCfg = function () { return (HB.content && HB.content.tools && HB.content.tools.store) || {}; };
+  ST.items = function () { return ((HB.content && HB.content.tools && HB.content.tools.items) || []); };
+  ST.sellable = function (t) { return !!t && t.status === 'available' && +t.price > 0; };
+  ST.products = function () { return ST.items().filter(ST.sellable); };
+  ST.find = function (id) { var r = ST.items().filter(function (t) { return t.id === id; })[0]; return r || null; };
+  ST.bundle = function () {
+    var b = storeCfg().bundle; if (!b || !(+b.price > 0)) return null;
+    var ids = (b.items || []).filter(function (id) { return ST.sellable(ST.find(id)); });
+    if (ids.length < 2) return null;
+    var o = {}; Object.keys(b).forEach(function (k) { o[k] = b[k]; }); o.items = ids; o.isBundle = true;
+    var sT = 0, sU = 0; ids.forEach(function (id) { var p = ST.find(id); sT += +p.price; sU += +p.priceUsd; });
+    o.saveTn = Math.max(0, sT - b.price); o.saveUsd = Math.max(0, sU - b.priceUsd);
+    return o;
+  };
+  ST.get = function (id) { return id === 'bundle' ? ST.bundle() : (ST.sellable(ST.find(id)) ? ST.find(id) : null); };
+  ST.toman = function (n) { var v = Number(n).toLocaleString('en-US'); if (HB.lang === 'fa') v = faDigits(v).replace(/,/g, '٬'); return v; };
+  ST.tomanFull = function (n) { return ST.toman(n) + ' ' + UI('store.toman'); };
+  ST.usd = function (n) { return '$' + Number(n).toLocaleString('en-US'); };
+  function regionRows(p) {
+    var iran = { k: 'iran', label: UI('store.iran'), now: '<b>' + esc(ST.tomanFull(p.price)) + '</b>', was: +p.regularPrice > +p.price ? '<s>' + esc(ST.toman(p.regularPrice)) + '</s>' : '' };
+    var intl = { k: 'intl', label: UI('store.intl'), now: '<b class="num">' + esc(ST.usd(p.priceUsd)) + '</b>', was: +p.regularPriceUsd > +p.priceUsd ? '<s class="num">' + esc(ST.usd(p.regularPriceUsd)) + '</s>' : '' };
+    var rows = HB.lang === 'fa' ? [iran, intl] : [intl, iran];
+    return rows.filter(function (r) { return r.k === 'iran' ? +p.price > 0 : +p.priceUsd > 0; });
+  }
+  ST.priceHTML = function (p, opts) {
+    opts = opts || {};
+    var rows = regionRows(p).map(function (r) { return '<div class="price-row"><span class="rg">' + esc(r.label) + '</span><span class="pv">' + r.now + r.was + '</span></div>'; }).join('');
+    var save = p.isBundle && (p.saveTn > 0 || p.saveUsd > 0) ? '<div><span class="save-pill">' + esc(UI('store.save')) + ' ' + esc(ST.tomanFull(p.saveTn)) + ' · <span class="num">' + esc(ST.usd(p.saveUsd)) + '</span></span></div>' : '';
+    return '<div class="price-box">' + (opts.noBadge ? '' : '<div class="badges"><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span></div>') + rows + '<span class="price-lic">' + esc(UI('store.lifetime')) + '</span>' + save + '</div>';
+  };
+  ST.url = function (id) { return page('product.html') + '?id=' + encodeURIComponent(id); };
+  function trialText(t) { return UI('store.trialNote').replace('{n}', numFmt(t.trialDays || 7)); }
+  function buyBtns(p) {
+    var h = '<button type="button" class="btn" data-buy="' + esc(p.id) + '">' + esc(UI(p.isBundle ? 'store.buyBundle' : 'store.buy')) + ' ' + IC.arr + '</button>';
+    if (p.trial) h += '<button type="button" class="btn ghost" data-trial="' + esc(p.id) + '">' + esc(UI('store.trial')) + '</button>';
+    return h;
+  }
+
+  /* order sheet: choose product, name + email, then WhatsApp / Telegram / email with a prefilled message */
+  var OS = { id: '', trial: false, region: '', name: '', email: '', opener: null };
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function orderOptions() {
+    var list = ST.products().filter(function (t) { return !OS.trial || t.trial; }).map(function (t) { return [t.id, L(t.name)]; });
+    var b = !OS.trial && ST.bundle(); if (b) list.push(['bundle', L(b.name)]);
+    return list;
+  }
+  function orderMessage() {
+    var p = ST.get(OS.id); if (!p) return '';
+    var intl = OS.region === 'intl', lines = [UI(OS.trial ? 'store.msg.trial' : 'store.msg.order'), ''];
+    lines.push(UI('store.msg.product') + ': ' + L(p.name));
+    if (p.isBundle) lines.push(UI('store.msg.bundleIncludes') + ': ' + p.items.map(function (id) { return L(ST.find(id).name); }).join(', '));
+    if (OS.trial) lines.push(UI('store.msg.trialDays') + ': ' + trialText(p));
+    else {
+      lines.push(UI('store.msg.license') + ': ' + UI('store.lifetime'));
+      lines.push(UI('store.msg.price') + ': ' + (intl ? ST.usd(p.priceUsd) : ST.tomanFull(p.price)) + ' (' + UI('store.msg.launchPrice') + ')');
+    }
+    lines.push(UI('store.name') + ': ' + OS.name.trim(), UI('store.email') + ': ' + OS.email.trim(), '', UI(OS.trial ? 'store.msg.closeTrial' : 'store.msg.close'));
+    return lines.join('\n');
+  }
+  function orderValid() { return OS.name.trim().length > 0 && EMAIL_RE.test(OS.email.trim()); }
+  function sheetEls() {
+    var sc = $('.sheet-scrim'), sh = $('.sheet');
+    if (!sh) {
+      sc = document.createElement('div'); sc.className = 'sheet-scrim';
+      sh = document.createElement('div'); sh.className = 'sheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-modal', 'true'); sh.setAttribute('aria-labelledby', 'sheet-h');
+      document.body.appendChild(sc); document.body.appendChild(sh);
+      sc.addEventListener('click', function () { HB.closeOrder(); });
+    }
+    return { sc: sc, sh: sh };
+  }
+  function orderSummary() {
+    var p = ST.get(OS.id); if (!p) return '';
+    if (OS.trial) return '<div class="o-sum"><span class="t">' + esc(L(p.name)) + '</span><span class="price-lic">' + esc(trialText(p)) + '</span></div>';
+    var intl = OS.region === 'intl';
+    var now = intl ? '<b class="num">' + esc(ST.usd(p.priceUsd)) + '</b>' : '<b>' + esc(ST.tomanFull(p.price)) + '</b>';
+    var was = intl ? (+p.regularPriceUsd > +p.priceUsd ? '<s class="num">' + esc(ST.usd(p.regularPriceUsd)) + '</s>' : '') : (+p.regularPrice > +p.price ? '<s>' + esc(ST.toman(p.regularPrice)) + '</s>' : '');
+    return '<div class="o-sum"><span class="t">' + esc(L(p.name)) + '</span><div class="price-row solo"><span class="pv">' + now + was + '</span><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span></div><span class="price-lic">' + esc(UI('store.lifetime')) + '</span></div>';
+  }
+  function buildSheet(focus) {
+    var e = sheetEls(), sh = e.sh, steps = storeCfg().steps || [];
+    if (!OS.region) OS.region = HB.lang === 'fa' ? 'iran' : 'intl';
+    var opts = orderOptions(); if (!opts.some(function (o) { return o[0] === OS.id; })) OS.id = opts[0] ? opts[0][0] : '';
+    sh.innerHTML = '<div class="sheet-top"><div><h2 class="display" id="sheet-h">' + esc(UI(OS.trial ? 'store.trialTitle' : 'store.orderTitle')) + '</h2><p class="mute" style="margin-top:6px;font-size:.92rem">' + esc(UI('store.orderSub')) + '</p></div><button type="button" class="x" data-close-sheet aria-label="' + esc(UI('cta.close')) + '">' + IC.x + '</button></div>' +
+      '<div class="fld"><label for="o-prod">' + esc(UI('store.product')) + '</label><select id="o-prod">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === OS.id ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') + '</select></div>' +
+      (OS.trial ? '' : '<div class="fld"><label id="o-reg-l">' + esc(UI('store.region')) + '</label><div class="seg" role="group" aria-labelledby="o-reg-l"><button type="button" data-region="iran" aria-pressed="' + (OS.region === 'iran') + '">' + esc(UI('store.iran')) + ' · ' + esc(UI('store.toman')) + '</button><button type="button" data-region="intl" aria-pressed="' + (OS.region === 'intl') + '">' + esc(UI('store.intl')) + ' · USD</button></div></div>') +
+      '<div id="o-sum">' + orderSummary() + '</div>' +
+      '<div class="form-2"><div class="fld"><label for="o-name">' + esc(UI('store.name')) + '</label><input id="o-name" autocomplete="name" dir="auto" value="' + esc(OS.name) + '"></div><div class="fld"><label for="o-email">' + esc(UI('store.email')) + '</label><input id="o-email" type="email" inputmode="email" autocomplete="email" dir="ltr" value="' + esc(OS.email) + '"></div></div>' +
+      '<span id="o-err" style="display:none;color:var(--bad);font-size:.86rem" role="alert">' + esc(UI('store.invalid')) + '</span>' +
+      '<div><p class="mute" style="font:700 .7rem var(--f-ui);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px">' + esc(UI('store.sendVia')) + '</p><div class="row"><a class="btn" id="o-wa" target="_blank" rel="noopener" href="#">' + esc(UI('label.whatsapp')) + '</a><button type="button" class="btn ghost" id="o-tg">' + esc(UI('label.telegram')) + '</button><a class="btn ghost" id="o-mail" href="#">' + esc(UI('label.email')) + '</a></div></div>' +
+      '<p class="note">' + esc(UI('quote.tgNote')) + '</p><p class="note">' + esc(UI('store.payNote')) + '</p>' +
+      (steps.length ? '<div class="o-steps">' + steps.map(function (st, i) { return '<span><b>' + esc(numFmt(i + 1)) + '.</b> ' + esc(L(st.title)) + '</span>'; }).join('') + '</div>' : '');
+    syncSheet();
+    if (focus) { var n = $('#o-name', sh); if (n) setTimeout(function () { try { n.focus({ preventScroll: true }); } catch (x) {} }, 150); }
+  }
+  function syncSheet() {
+    var sh = $('.sheet'); if (!sh) return;
+    var msg = orderMessage(), wa = $('#o-wa', sh), ml = $('#o-mail', sh);
+    if (wa) wa.href = contact().whatsapp + '?text=' + encodeURIComponent(msg);
+    if (ml) { var p = ST.get(OS.id); ml.href = 'mailto:' + contact().email + '?subject=' + encodeURIComponent(UI(OS.trial ? 'store.trial' : 'store.orderTitle') + ' — ' + (p ? L(p.name) : '')) + '&body=' + encodeURIComponent(msg); }
+  }
+  function checkOrder() {
+    var ok = orderValid(), sh = $('.sheet'), er = $('#o-err', sh), n = $('#o-name', sh), m = $('#o-email', sh);
+    if (er) er.style.display = ok ? 'none' : 'block';
+    if (n) n.setAttribute('aria-invalid', String(!OS.name.trim()));
+    if (m) m.setAttribute('aria-invalid', String(!EMAIL_RE.test(OS.email.trim())));
+    if (!ok) { var f = !OS.name.trim() ? n : m; if (f) f.focus(); }
+    return ok;
+  }
+  HB.openOrder = function (o) {
+    o = o || {}; OS.opener = document.activeElement; OS.trial = !!o.trial; OS.id = o.id || OS.id || '';
+    var p = ST.get(OS.id); if (OS.trial && !(p && p.trial)) OS.trial = false;
+    var e = sheetEls(); buildSheet(true);
+    requestAnimationFrame(function () { e.sh.classList.add('open'); e.sc.classList.add('open'); });
+    document.body.style.overflow = 'hidden';
+  };
+  HB.closeOrder = function () {
+    var sh = $('.sheet'), sc = $('.sheet-scrim'); if (!sh || !sh.classList.contains('open')) return;
+    sh.classList.remove('open'); sc.classList.remove('open'); document.body.style.overflow = '';
+    if (OS.opener && OS.opener.focus) { try { OS.opener.focus(); } catch (e) {} }
+  };
+  HB.onLang(function () { var sh = $('.sheet.open'); if (sh) buildSheet(false); });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-buy]'); if (b) { e.preventDefault(); HB.openOrder({ id: b.getAttribute('data-buy') }); return; }
+    var t = e.target.closest('[data-trial]'); if (t) { e.preventDefault(); HB.openOrder({ id: t.getAttribute('data-trial'), trial: true }); return; }
+    if (e.target.closest('[data-close-sheet]')) { HB.closeOrder(); return; }
+    var sh = e.target.closest('.sheet'); if (!sh) return;
+    var r = e.target.closest('[data-region]');
+    if (r) { OS.region = r.getAttribute('data-region'); $$('[data-region]', sh).forEach(function (x) { x.setAttribute('aria-pressed', String(x === r)); }); $('#o-sum', sh).innerHTML = orderSummary(); syncSheet(); return; }
+    if (e.target.closest('#o-wa') || e.target.closest('#o-mail')) { if (!checkOrder()) e.preventDefault(); return; }
+    if (e.target.closest('#o-tg')) { if (!checkOrder()) return; copyText(orderMessage(), null, 'toast.msgCopied'); window.open(contact().telegramUser || contact().telegram, '_blank', 'noopener'); }
+  });
+  document.addEventListener('input', function (e) {
+    if (!e.target.closest || !e.target.closest('.sheet')) return;
+    if (e.target.id === 'o-name') OS.name = e.target.value; else if (e.target.id === 'o-email') OS.email = e.target.value; else return;
+    e.target.setAttribute('aria-invalid', 'false'); syncSheet(); if (orderValid()) { var er = $('#o-err'); if (er) er.style.display = 'none'; }
+  });
+  document.addEventListener('change', function (e) {
+    if (e.target.id !== 'o-prod') return;
+    OS.id = e.target.value; $('#o-sum').innerHTML = orderSummary(); syncSheet();
+  });
+  document.addEventListener('keydown', function (e) {
+    var sh = $('.sheet.open'); if (!sh) return;
+    if (e.key === 'Escape') { e.stopPropagation(); HB.closeOrder(); return; }
+    if (e.key === 'Tab') {
+      var f = $$('a[href],button:not([disabled]),input,select', sh).filter(function (x) { return x.offsetParent !== null; }); if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }, true);
+
+  function stepsHTML() {
+    var steps = storeCfg().steps || []; if (!steps.length) return '';
+    return '<div class="steps">' + steps.map(function (st, i) { return '<div class="step rv"><div class="n">' + esc(numFmt('0' + (i + 1))) + '</div><h3>' + esc(L(st.title)) + '</h3><p>' + esc(L(st.text)) + '</p></div>'; }).join('') + '</div>';
+  }
+  function bundleBand() {
+    var b = ST.bundle(); if (!b) return '';
+    return '<div class="bundle rv"><div><span class="badge launch"><i></i>' + esc(UI('store.launch')) + '</span><h2>' + esc(UI('store.bundleTitle')) + '</h2><p class="lead" style="font-size:1rem">' + esc(L(b.tagline)) + '</p><ul>' +
+      b.items.map(function (id) { var t = ST.find(id); return '<li><a href="' + esc(ST.url(id)) + '">' + esc(L(t.name)) + '</a></li>'; }).join('') + '</ul></div>' +
+      '<div class="buy">' + ST.priceHTML(b, { noBadge: true }) + '<div class="tool-actions"><button type="button" class="btn" data-buy="bundle">' + esc(UI('store.buyBundle')) + ' ' + IC.arr + '</button></div></div></div>';
+  }
+  function toolVis(t) { return t.image ? '<img src="' + esc(img(t.image)) + '" alt="' + esc(L(t.name)) + '" loading="lazy">' : (TOOL_ICONS[t.icon] || TOOL_ICONS.glass); }
+
+  function setMeta(sel, attr, val) { var el = $(sel); if (el) el.setAttribute(attr, val); }
+  function productLD(t) {
+    var url = ROOT + 'product.html?id=' + encodeURIComponent(t.id), tx = function (o) { return o && (o[HB.lang] || o.en) || ''; };
+    var offers = [];
+    if (+t.priceUsd > 0) offers.push({ '@type': 'Offer', price: String(t.priceUsd), priceCurrency: 'USD', availability: 'https://schema.org/InStock', itemCondition: 'https://schema.org/NewCondition', url: url });
+    if (+t.price > 0) offers.push({ '@type': 'Offer', price: String(Math.round(t.price * 10)), priceCurrency: 'IRR', availability: 'https://schema.org/InStock', itemCondition: 'https://schema.org/NewCondition', url: url });
+    return { '@context': 'https://schema.org', '@graph': [
+      { '@type': 'Product', name: tx(t.name), description: tx(t.metaDescription) || tx(t.description), sku: t.id, category: 'Software > Adobe plugin', image: [t.image ? img(t.image) : ROOT + 'content/media/portrait-1.jpg'], url: url, inLanguage: HB.lang, brand: { '@type': 'Brand', name: HB.content.site.studio || 'HB Studio' }, offers: offers },
+      { '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: UI('nav.home'), item: ROOT },
+        { '@type': 'ListItem', position: 2, name: UI('nav.tools'), item: ROOT + 'tools.html' },
+        { '@type': 'ListItem', position: 3, name: tx(t.name), item: url }] }] };
+  }
+  function setLD(obj) {
+    var el = $('#ld-product'); if (!el) { el = document.createElement('script'); el.type = 'application/ld+json'; el.id = 'ld-product'; document.head.appendChild(el); }
+    el.textContent = JSON.stringify(obj);
+  }
+  R.product = function () {
+    var host = $('#product'); if (!host) return;
+    var id = new URLSearchParams(location.search).get('id'), t = id ? ST.find(id) : ST.products()[0];
+    if (!t || !ST.sellable(t)) {
+      host.innerHTML = '<div class="wrap page-head"><h1 class="display">' + esc(UI('store.notfound')) + '</h1><p class="lead"><a class="btn ghost" href="' + page('tools.html') + '">' + esc(UI('store.allTools')) + '</a></p></div>';
+      document.title = UI('store.notfound'); var old = $('#ld-product'); if (old) old.remove(); return;
+    }
+    var c = HB.content, url = ROOT + 'product.html?id=' + encodeURIComponent(t.id), ttl = (L(t.metaTitle) || L(t.name)) + ' — ' + c.site.brand, desc = L(t.metaDescription) || L(t.description);
+    document.title = ttl; setMeta('meta[name="description"]', 'content', desc); setMeta('link[rel="canonical"]', 'href', url);
+    setMeta('meta[property="og:title"]', 'content', ttl); setMeta('meta[property="og:description"]', 'content', desc); setMeta('meta[property="og:url"]', 'content', url);
+    setLD(productLD(t));
+    var cfg = storeCfg(), b = ST.bundle(), others = ST.products().filter(function (x) { return x.id !== t.id; });
+    var demo = t.demo ? '<div class="vid"><video src="' + esc(img(t.demo)) + '" controls playsinline preload="metadata"' + (t.image ? ' poster="' + esc(img(t.image)) + '"' : '') + '></video></div>' :
+      '<div class="pd-poster" style="--h:' + esc(t.hue || 38) + '" role="img" aria-label="' + esc(UI('store.demoSoon')) + '">' + (TOOL_ICONS[t.icon] || TOOL_ICONS.glass) + '<div class="soon-tag"><span class="badge soon"><i></i>' + esc(UI('store.demoSoon')) + '</span></div></div>';
+    var feats = (t.features || []).map(function (f, i) { return '<div class="tile rv"><div class="n">' + esc(numFmt('0' + (i + 1))) + '</div><h3>' + esc(L(f.title)) + '</h3><p>' + esc(L(f.text)) + '</p></div>'; }).join('');
+    var reqs = [t.hosts].concat(cfg.requirements || []).filter(function (r) { return r && L(r); }).map(function (r) { return '<li>' + esc(L(r)) + '</li>'; }).join('');
+    var inc = (cfg.includes || []).map(function (r) { return '<li>' + esc(L(r)) + '</li>'; }).join('');
+    var faqs = (t.faq || []).concat(cfg.faq || []).map(function (q, i) { return '<details' + (i === 0 ? ' open' : '') + '><summary>' + esc(L(q.q)) + '</summary><p>' + esc(L(q.a)) + '</p></details>'; }).join('');
+    var upsell = b ? '<div class="pbox"><h2>' + esc(UI('store.bundleTitle')) + '</h2><p class="mute" style="margin-bottom:14px">' + esc(L(b.tagline)) + '</p>' + ST.priceHTML(b, { noBadge: true }) + '<div class="tool-actions" style="margin-top:16px"><button type="button" class="btn ghost" data-buy="bundle">' + esc(UI('store.buyBundle')) + '</button></div></div>' : '';
+    host.innerHTML = '<section class="pd-hero"><div class="wrap"><div class="pd-grid"><div class="pd-copy"><a class="eyebrow" href="' + page('tools.html') + '">' + esc(UI('nav.tools')) + '</a>' +
+      '<div class="badges"><span class="badge"><i></i>' + esc(UI('status.available')) + '</span><span class="badge soon"><i></i>' + esc(L(t.kind)) + '</span></div>' +
+      '<h1 class="display">' + esc(L(t.name)) + '</h1><p class="lead">' + esc(L(t.tagline) || L(t.description)) + '</p>' + ST.priceHTML(t) +
+      '<div class="tool-actions">' + buyBtns(t) + '</div>' + (t.trial ? '<p class="note">' + esc(trialText(t)) + '</p>' : '') + '</div>' +
+      '<div>' + demo + '</div></div></div></section>' +
+      '<section class="wrap pd-sec"><h2 class="eyebrow">' + esc(UI('store.featuresTitle')) + '</h2><div class="pd-feats">' + feats + '</div></section>' +
+      '<section class="wrap pd-sec"><div class="pd-cols"><div class="pcard"><h2>' + esc(UI('store.pricingTitle')) + '</h2>' + ST.priceHTML(t) + '<div class="tool-actions">' + buyBtns(t) + '</div><p class="note">' + esc(UI('store.payNote')) + '</p></div>' +
+      '<div style="display:flex;flex-direction:column;gap:16px"><div class="pbox"><h2>' + esc(UI('store.getTitle')) + '</h2><ul class="plist">' + inc + '</ul></div><div class="pbox"><h2>' + esc(UI('store.reqTitle')) + '</h2><ul class="plist">' + reqs + '</ul></div>' + upsell + '</div></div></section>' +
+      '<section class="wrap pd-sec"><h2 class="eyebrow">' + esc(UI('store.stepsTitle')) + '</h2>' + stepsHTML() + '</section>' +
+      '<section class="wrap pd-sec"><h2 class="eyebrow">' + esc(UI('store.faqTitle')) + '</h2><div class="faq">' + faqs + '</div></section>' +
+      (others.length ? '<section class="wrap pd-sec"><h2 class="eyebrow">' + esc(UI('store.more')) + '</h2><div class="pd-more">' + others.map(function (o) { return '<a href="' + esc(ST.url(o.id)) + '"><h3>' + esc(L(o.name)) + '</h3><p>' + esc(L(o.tagline) || L(o.description)) + '</p></a>'; }).join('') + '</div></section>' : '') +
+      '<div class="wrap pd-sec" style="margin-bottom:clamp(20px,4vw,40px)"><a class="btn ghost" href="' + page('tools.html') + '">' + esc(UI('store.allTools')) + '</a></div>';
+  };
 
   /* ───────── orchestrate ───────── */
   function renderAll() {
